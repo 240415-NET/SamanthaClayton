@@ -1,4 +1,5 @@
-﻿using System.Security.Authentication;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Security.Authentication;
 using System.Security.Principal;
 
 namespace MethodExceptionDemo;
@@ -27,6 +28,10 @@ class Program
             Console.WriteLine($"The sum of {firstNum} and {secondNum} is: {sum}");
 
         }
+        //catch (FormatException exceptionaboutformatting)
+        // {
+        // }
+            
         catch(Exception myException) //catch a potential exception & if so, do something
         {
             //Console.Clear;
@@ -54,6 +59,7 @@ class Program
     // arguments are given a type and a name like a field/variable
     static int AddTwoNumbers (int num1, int num2)
     {
+
         //I can access arguments passed into
         //my method within the method's block of code
         int sum = num1 + num2;
