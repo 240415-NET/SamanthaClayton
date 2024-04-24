@@ -23,11 +23,19 @@ public class Dog
     protected internal - access is limited to the current assembly or types derived from the containing class
     private protected - access is limited to the containing class ortypes derived from the containing class that are within the current assembly
     */
+
+    //Instance Fields
     public string name {get; set;}
     public string breed {get; set;}
     public int age {get; set;}
     public string gender {get; set;}
     public double weight {get; set;}
+
+    // Static Fields
+    public static int legs = 4;
+    public static bool hasTail = true;
+
+
 
 
 

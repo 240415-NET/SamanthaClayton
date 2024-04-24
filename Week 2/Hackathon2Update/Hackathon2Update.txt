@@ -1,0 +1,10 @@
+Overall goal:  Refactor Hackathon2 to use classes & lists
+
+1. Create a class to model some sort of object
+2. Prompt the user for values for that object
+3. Use these values to create objects that we define (maybe use a constructor)
+4. Store them in a list (or an array)
+5. Handle the exceptions during the running of the application (no hard crashing)
+6. Want to be able to create, modify, & delete values for our objects store in a list
+7. Continue to run until the user quits the application (no CTRL+C)
+

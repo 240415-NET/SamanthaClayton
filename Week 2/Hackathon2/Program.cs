@@ -4,121 +4,88 @@ class Program
 {
     static void Main(string[] args)
     {
-        ﻿string[] menuOptions =
-{ "View grocery list", "Add to grocery list",
-"Remove from grocery List", "Exit" };
-bool keepAlive = true;
-GroceryList groceryList = new GroceryList();
+       ﻿string[] options = { "View grocery list", "Add to grocery list", "Exit" };
+int currentItems = 0;
+string[] groceryList = new string[10];
+//bool isPurchased = false;
 
-do
-{
-    MainMenu();
-}
-while (keepAlive);
+MainMenu();
+
 
 void MainMenu()
 {
-    bool isValid = false;
-    int selection = 0;
-    do
+
+    Console.WriteLine("Please select a number to choose an option: ");
+    for (int i = 0; i < options.Count(); i++)
     {
-        Console.Clear();
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Console.WriteLine("Please select a number to choose an option: ");
-        for (int i = 0; i < menuOptions.Count(); i++)
-        {
-            Console.WriteLine($"{i + 1}. {menuOptions[i]}");
-        }
-        Console.ResetColor();
-        string input = Console.ReadLine();
-        isValid = int.TryParse(input, out selection);
-        isValid = Validator.ValidateMenuInput(selection, menuOptions);
-
-        if (!isValid)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Invalid selection");
-            Console.ResetColor();
-            Console.ReadKey();
-        }
-        else { MenuSelection(selection);}
+        Console.WriteLine($"{i + 1}. {options[i]}");
     }
-    while (!isValid);
+
+    var input = Convert.ToInt32(Console.ReadLine());
 
 
-}
-
-void MenuSelection (int selection)
-{
-    switch (selection)
+    switch (input)
     {
         case 1:
-            groceryList.PrintGroceries();
-            Console.ReadKey();
+            PrintGroceries();
             break;
         case 2:
             AddGroceries();
             break;
         case 3:
-            RemoveGroceries();
-            Console.ReadKey();
-            break;
-        case 4:
-            keepAlive = false;
             break;
 
     }
 }
 
+void PrintGroceries()
+{
+    Console.WriteLine("Here is your grocery list:");
+    Console.WriteLine("--------------------------");
+    for (int i = 0; i < groceryList.Count(); i++)
+    {
+        if (groceryList[i] != null)
+        {
+            Console.WriteLine($"{i + 1}. {groceryList[i]}");
+        }
+    }
+    Console.WriteLine("Press any key to return to the main menu.");
+    Console.ReadKey();
+    MainMenu();
+}
 
 void AddGroceries()
 {
-    bool addItems = false;
+    bool keepAlive = false;
     do
     {
-        Console.Write("Please enter the name of your item, or press Enter to return to the main menu: ");
-        string? input = Console.ReadLine();
-        if (input.ToLower() != "")
+        Console.Write("Please enter the name of your item: ");
+        string input = Console.ReadLine();
+        groceryList[currentItems] = input;
+        currentItems++;
+        Console.Write("Press Y to enter another item: ");
+        input = Console.ReadLine();
+        if (input.ToLower() == "y")
         {
-            addItems = true;
-            groceryList.AddItem(input);
+            keepAlive = true;
         }
-        else { addItems = false; }
+        else {keepAlive = false;}
     }
-    while (addItems);
+    while (keepAlive);
+
+    Console.WriteLine("Press any key to return to the main menu.");
+    Console.ReadKey();
+    MainMenu();
 }
 
+// string[] UpdateList(string[] groceryList)
+// {
 
-void RemoveGroceries()
-{
-    bool keepRemovingItems = false;
-    bool isValid = true;
-    int selection = 0;
-    groceryList.PrintGroceries();
-    do
-    {
-        Console.WriteLine
-        ("Please select the number of the item you want to remove," +
-        "or press enter to return to the Main Menu.");
+//     Console.WriteLine("Which item would you like to mark as purchased?");
+//     PrintGroceries();
 
-        string input = Console.ReadLine().Trim();
 
-        if (input == "")
-        {
-            keepRemovingItems = false;
-        }
-        else
-        {
-            isValid = int.TryParse(input, out selection);
-            isValid = Validator.ValidateGroceryInput(selection, groceryList);
-            Console.WriteLine($"{groceryList.GetItem(selection - 1)} was removed.");
-            groceryList.RemoveItem(selection - 1);
-        }
-
-    }
-    while (keepRemovingItems && !isValid);
-
-}
+// }
 
 
     }
