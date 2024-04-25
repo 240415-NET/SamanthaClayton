@@ -1,0 +1,17 @@
+Class = a blueprint
+
+Use a class in this app
+
+The app allows a user to create a grocery list
+
+A grocery list could be a blueprint
+A grocery item could be a blueprint (a grocery item )
+
+type dog has breed
+create a dog named Pete, his breed is Dalmation
+
+type grocery item has color, brand, aisle
+create a grocery item named apple, the description is red, brand is NA, aisle is 2
+
+
+type grocery list has strings of item names, has methods like being able to add/remove/delete/view
