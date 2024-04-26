@@ -11,14 +11,31 @@ namespace ClassBasics.TodoList
         private string DueDate = "4/24/2024";
         private bool Status = false; //false is incomplete
 
-        public Todoitem(){}
-        public Todoitem(string Description, int EstimatedTime, string DueDate, bool Status)
+        //public Todoitem(){}
+
+        public Todoitem(string Description)
         {
             this.Description = Description;
+        }
+
+
+        //Constuctor.WriteLine(new TodoItem("Sharpen my pencil", 5, "5/25/2025"));
+        public Todoitem(string Description, int EstimatedTime, string DueDate) : this(Description)
+        {
             this.EstimatedTime = EstimatedTime;
             this.DueDate = DueDate;
+        }
+
+
+        //Constuctor.WriteLine(new TodoItem("Sharpen my pencil", 5, "5/25/2025", true));
+        public Todoitem(string Description, int EstimatedTime, string DueDate, bool Status) : this(Description, EstimatedTime,DueDate)
+        {
+            // this.Description = Description;
+            // this.EstimatedTime = EstimatedTime;
+            // this.DueDate = DueDate;
             this.Status = Status;
         }
+        
         
         //my methods are how I will interact with the objects
         //& how the objects will interact with each other

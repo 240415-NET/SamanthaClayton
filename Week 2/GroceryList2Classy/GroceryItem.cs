@@ -2,6 +2,9 @@ using System.IO.Pipes;
 using System.Runtime.CompilerServices;
 
 namespace GroceryItems;
+using GroceryListApp;
+using MainMenu;
+using ModifySubMenu;
 
 
     public class GroceryItem
@@ -11,12 +14,18 @@ namespace GroceryItems;
         private string ItemName = "Default item name";
         private int Quantity = 1;
         private string BrandOrVariety = "any";
-        private bool hasBeenPurchased = false;
+        private string hasBeenPurchased = "no";
 
 
         // Generic constructor for creating objects of the GroceryItem class
         public GroceryItem(){}
 
+        public GroceryItem(string Name, int Number, string VarietyOrBrand)
+        {
+            ItemName = Name;
+            Quantity = Number;
+            BrandOrVariety = VarietyOrBrand;
+        }
         // Constructor that allows parameters to be passed in order to create an object of the GroceryItem class
 
         public GroceryItem(string Name, int Number, string VarietyOrBrand, string Purchased)
@@ -24,14 +33,7 @@ namespace GroceryItems;
             ItemName = Name;
             Quantity = Number;
             BrandOrVariety = VarietyOrBrand;
-            if (Purchased == "yes")
-            {
-                hasBeenPurchased = true;
-            }
-            else
-            {
-                hasBeenPurchased = false;
-            }
+            hasBeenPurchased = "yes";
         }
 
 
@@ -62,56 +64,19 @@ namespace GroceryItems;
         }
 
         public string GethasBeenPurchased(){
-            if (hasBeenPurchased==true)
-            {return "yes";}
-            else {return "no";}
+            return hasBeenPurchased;
+            
         }
 
         public void SethasBeenPurchased(string Purchased){
-            if (Purchased == "yes")
-            {hasBeenPurchased=true;
-            }
-            else {hasBeenPurchased = false;}
+            hasBeenPurchased = Purchased;
         }
 
-         // Override the ToString
-
-        // public override string ToString()
-        // {
-        //    return $"{ItemName} ---- {Quantity} ---- {BrandOrVariety} ---- {hasBeenPurchased}";
-        // }
-    
-
-    //Practicing adding and displaying a list that contains objects of the GroceryItem class
-    // public static void Main(string[] args)
-    // {
-    //     List<GroceryItem> MyGroceryList = new List<GroceryItem>();
-    //     GroceryItem item1 = new GroceryItem("apples", 2, "gala", "no");
-    //     GroceryItem item2 = new GroceryItem("bananas", 3, "regular", "no");
-    //     MyGroceryList.Add(item1);
-    //     MyGroceryList.Add(item2);
-
-    //     foreach (var item in MyGroceryList)
-    //     {
-    //         Console.WriteLine($"{item.ItemName} -- {item.Quantity} -- {item.BrandOrVariety} -- {item.hasBeenPurchased}");
-    //     }
-
-    //     item1.SetBrandOrVariety("red delicious");
-
-    //     foreach (var item in MyGroceryList)
-    //     {
-    //         Console.WriteLine($"{item.ItemName} -- {item.Quantity} -- {item.BrandOrVariety} -- {item.hasBeenPurchased}");
-        
-    // }
-    // Console.WriteLine(item1.GetItemName());
-    // item2.SethasBeenPurchased("yes");
-    // Console.WriteLine(item2.GethasBeenPurchased());
-    // Console.WriteLine(item2.hasBeenPurchased);
-
-    
-    
-    // }
+    public override string ToString()
+    {
+       // return $"{ItemName}          {Quantity}          {BrandOrVariety}          {hasBeenPurchased}";
+        return String.Format("{0,-20}{1,-20}{2,-20}{3,-20}",ItemName,Quantity,BrandOrVariety,hasBeenPurchased);
     }
 
-    
+    }
 
