@@ -5,11 +5,11 @@ namespace ExampleConsole;
 //Creating a class named thinga_ma_bobs
 public class thinga_ma_bobs
 {
-    //We are creating a class and here we are defining the fields in that class
-    string AttributeColor = "You can a set the class default color";
+    //Here are the fields that will be part of the thinga_ma_bobs class
+    string AttributeColor = "Default class color";
     
-    //Constructor 1:  Implied, Hidden No-Args or No Arguments Constructor
-    //Automatically generated blank constructor that's hidden
+    //Constructor 1:  (Implied, Hidden) No-Args or No Arguments Constructor
+    //Automatically generated blank constructor that's hidden.
     //Gets created for every class you make without you having to type it or even see it
     //But you CAN type it if you want to
     //public thinga_ma_bobs(){}
@@ -18,11 +18,22 @@ public class thinga_ma_bobs
   
     //Constructor 2:
     //Here we are going to set the rules for how to create an object of type thinga_ma_bobs
-    //We're essentially saying "If you wanna create a new object of type thinga_ma_bobs, you have to pass a string"
-
-    public thinga_ma_bobs(string ColorTheUserPassesUs)
+    //There are 2 parts to this:
+    //1.  Dictate what the person creating an object has to provide you if they want to use this constructor
+    //      classname(parametertype paramatername) << You tell whoever wants to use this constructor that they have to pass
+    //      a parameter in order to use it
+    //2.  Okay, since you're using this specific constructor, here's how we'll create an object using it
+    //      {this is where you specify what will happen when someone uses this constructor} << inside the {}
+    
+    public thinga_ma_bobs(string ColorTheUserPassesUs) 
+    //^ this is saying "if you want to use this constructor, ya gotta give us a
+    //parameter named ColorTheUserPassesUs and it's gotta be a string"
     { 
         AttributeColor = ColorTheUserPassesUs;
+        //^ this is saying
+        //"since you're using this specific constructor, here's how we're going
+        //to create an object.  We'll set the object's AttributeColor to
+        //the ColorTheUserPassesUs"
     }
 
     //Constructor 3:  No-Args or No Arguments Constructor
