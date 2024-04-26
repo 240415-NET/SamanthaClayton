@@ -76,6 +76,7 @@ using ModifySubMenu;
     {
        // return $"{ItemName}          {Quantity}          {BrandOrVariety}          {hasBeenPurchased}";
         return String.Format("{0,-20}{1,-20}{2,-20}{3,-20}",ItemName,Quantity,BrandOrVariety,hasBeenPurchased);
+
     }
 
     }
