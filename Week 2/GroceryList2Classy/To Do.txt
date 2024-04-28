@@ -1,0 +1,10 @@
+1. Separate out the modify functionality into separate files
+    a) Modify submenu
+    b) Modify submenu selection handler
+    c) Remove submenu
+    d) Remove submenu selection handler
+2. Create a GroceryList class
+3. Make GroceryList a parent of GroceryItem
+    a) Play around with parent:child constructors
+4. Review what Brian did with the "using classes to organize your UI"
+5. Check out other people's grocery list apps to learn

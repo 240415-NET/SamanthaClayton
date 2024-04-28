@@ -34,6 +34,7 @@ public class thinga_ma_bobs
         //"since you're using this specific constructor, here's how we're going
         //to create an object.  We'll set the object's AttributeColor to
         //the ColorTheUserPassesUs"
+
     }
 
     //Constructor 3:  No-Args or No Arguments Constructor
