@@ -1,0 +1,19 @@
+
+
+GroceryListApp calls MainMenu()
+MainMenu creates blank list & calls MenuSelectionHandler() with the main menu selection and the blank list
+MenuSelectionHandler() 
+    Option 1:   Displays the list using the ToString() 
+    Option 2:   Calls AddSubMenu() with the list
+                AddSubMenu() calls AddSubMenuHandler() with the list
+    Option 3:   TO DO:  Calls RemoveSubMenu() with the list
+                TO DO: RemoveSubMenu() calls RemoveSubMenuHandler() with the list
+    Option 4:   Calls ModifySubMenu() with the list
+                Calls ModifySubMenuSelectionHandler() with the list
+                ModifySubMenuSelectionHandler() asks user for an item to modify and then a modify sub menu selection
+                    Option 1:   Calls AddSubMenu() with the item to modify
+                                Calls Add SubMenuHandler() with the item 
+
+                    and the modify sub menu selection
+SubMenu
+    Option 1:  Add SubMenu

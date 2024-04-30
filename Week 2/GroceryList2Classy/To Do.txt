@@ -8,3 +8,36 @@
     a) Play around with parent:child constructors
 4. Review what Brian did with the "using classes to organize your UI"
 5. Check out other people's grocery list apps to learn
+
+Need to fix
+- when you select 'add an item' then type 3 - it goes to main menu instead of repeating the addsubmenu
+- when you select 'modify an item' then type something not in the list - fix the error message and have them re-select something to modify
+
+
+
+To do:
+-	Handle modify/remove if there are 0 items in the list
+-	Clear console
+-	Ways to cancel an action
+1.	Validation for every menu that takes in the user input and then the possible values and figures out if it’s valid or not then outputs a display message
+
+
+-	Practice problems and/or working on the grocery list app:
+o	Constructor:
+	Add a constructor to my application
+o	Method overloading
+	Within a single class
+	Between a parent and a child class
+o	Method overwriting
+	Within a single class
+	Between a parent and a child class
+o	Constructor overloading
+	Within a single class
+	Between a parent and a child class
+o	ToString()
+o	
+o	Add a constructor to my application
+o	Add a 2nd constructor with different parameters (aka overloading a constructor)
+o	Add a 3rd constructor that references the 2nd constructor
+o	Create a method that overrides another method
+o	Create a subclass with a constructor that references a parent's constructor
