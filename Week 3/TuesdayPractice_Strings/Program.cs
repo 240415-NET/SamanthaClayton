@@ -56,6 +56,9 @@ class Program
         
         //In coding challenge:  return answer;
 
+        //This is just for us to display right now, but you wouldn't
+        //include this console.writeline statement
+        //in the coding challenge
         Console.WriteLine(answer);
   
     }
