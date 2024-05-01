@@ -9,16 +9,19 @@ class Program
     //code challenge 1 answers
     static void Main(string[] args)
     {
-        int b = 444;
-        int s = 15;
-        int t = 20;
+        //This was an example given in the coding challenge
+        int b = 9;
+        int s = 2;
+        int t = 3;
+
+        //This is where the coding challenge answer I did starts:
         int rocksremaining = b;
         int srocks = 0;
         int trocks = 0;
         int turncount=1;
         int answer;
         
-        //find count of 2nd to last turn
+    //find count of 2nd to last turn
      do 
         {
             if (turncount%2 == 0)
@@ -35,10 +38,8 @@ class Program
         } while (rocksremaining >0);
         //during the test, i put >= 0 
 
-   int secondtolastturncount = turncount - 2;
-            //}
-        
-        
+        int secondtolastturncount = turncount - 2;
+    
         
         //if the last 'full turn' was Steve, then game will end with Tommy
         //if the last 'full turn' was Tommy, then game will end with Steve
@@ -53,7 +54,8 @@ class Program
             answer = trocks;
         }
         
-        Console.WriteLine(turncount);
+        //In coding challenge:  return answer;
+
         Console.WriteLine(answer);
   
     }

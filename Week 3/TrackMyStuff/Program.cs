@@ -1,6 +1,7 @@
 ﻿namespace TrackMyStuff.App;
 
 using TrackMyStuff.Models;
+using TrackMyStuff.Presentation;
 
 class Program
 {
@@ -10,6 +11,8 @@ class Program
         // User myUser = new User();
         // myUser.userId = 0;
         // Console.WriteLine(myUser.userId);
+
+        Menu.StartMenu();
         
     }
 }
