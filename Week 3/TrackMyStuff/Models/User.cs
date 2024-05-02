@@ -11,8 +11,8 @@ public class User
     // We are using a pre-built data type from the default
     // System library to generate a truly unique userId
     
-    public Guid userId {get; private set;} // could also do = 1; here to default it to 1
-    public string userName {get; private set;}
+    public Guid userId {get; set;} // could also do = 1; here to default it to 1
+    public string userName {get; set;}
 
     // Constructors
 

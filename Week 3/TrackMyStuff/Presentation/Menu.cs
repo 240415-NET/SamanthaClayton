@@ -39,7 +39,7 @@ public class Menu
                         return; // If you put a return, exit this method and go back to wherever called it.
                         
                     default:  // If the uesr enters an integer that is not 1, 2, or 3
-                        Console.WriteLine("Please enter a valid choice!");
+                        Console.WriteLine("Please enter a valid choice! from the default");
                         validInput = false;
                         break; // breaks us out of the switch, there's no more of the switch, so we continue the try, there's nothing else, so we 
                 }
@@ -47,8 +47,9 @@ public class Menu
             catch (Exception ex)
             {
                 validInput = false;
+                Console.WriteLine(ex.Message);
                 Console.WriteLine(ex.StackTrace);
-                Console.WriteLine("Please enter a valid choice!");
+                Console.WriteLine("Please enter a valid choice! from the exception");
             }
             
         } while(!validInput);
