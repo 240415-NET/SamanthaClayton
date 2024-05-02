@@ -1,4 +1,5 @@
 using TrackMyStuff.Models;
+using TrackMyStuff.Data;
 
 namespace TrackMyStuff.Controllers;
 
@@ -18,7 +19,7 @@ public class UserController
     // data access layer
     public static void CreateUser(string userName)
     {
-       //Creating the user
+       // Creating the user
        User newUser = new User(userName);
 
        // Adding a WriteLine to verify that we got here from the presentation layer
@@ -27,6 +28,7 @@ public class UserController
 
        // Eventually, we'll come here and call a data access method
        // to store the user.
+        UserStorage.StoreUser(newUser);
 
     }
 
