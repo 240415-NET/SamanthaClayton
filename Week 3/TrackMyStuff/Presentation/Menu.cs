@@ -29,7 +29,7 @@ public class Menu
                 switch(userChoice)
                 {
                     case 1: // Creating a new user profile
-                        UserController.CreateUser();
+                        Menu.UserCreationMenu();
                         break;
 
                     case 2:

@@ -23,7 +23,7 @@ public class UserController
 
        // Adding a WriteLine to verify that we got here from the presentation layer
        Console.WriteLine($"User {newUser.userName} created using CreateUser()!");
-       Console.WriteLine($"{newUser.userID}");
+       Console.WriteLine($"{newUser.userId}");
 
        // Eventually, we'll come here and call a data access method
        // to store the user.
