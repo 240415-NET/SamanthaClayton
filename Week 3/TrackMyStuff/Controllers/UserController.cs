@@ -37,6 +37,13 @@ public class UserController
 
     public static bool UserExists(string userName)
     {
+        //We will need to write some method in our UserStorage
+        
+        if(UserStorage.FindUser(userName)!=null)
+        {
+            return true;
+        }
+
         return false;
     }
 
