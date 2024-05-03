@@ -61,7 +61,7 @@ public class UserStorage
             //deserialize the whole file.  Don't forget to read the actual
             //string from the file BEFORE deserialization
 
-            string existingUsersJson = File.ReadAllText(filePath);
+            string existingUsersJson = File.ReadAllText(_filePath);
 
             //once you get the string from the file, then you can dserialize it
             
@@ -80,10 +80,10 @@ public class UserStorage
             string jsonExistingUsersListString = JsonSerializer.Serialize(existingUsersList);
             
             // Now we will store our jsonUsersString to our file
-            File.WriteAllText(filePath, jsonExistingUsersListString);
+            File.WriteAllText(_filePath, jsonExistingUsersListString);
             
         }
-        else if (!File.Exists(filePath)) // The first time the program runs, the file probably doesn't exist
+        else if (!File.Exists(_filePath)) // The first time the program runs, the file probably doesn't exist
         {
             // Creating a blank list to use later
             List<User> initialUsersList = new List<User>();
@@ -97,7 +97,7 @@ public class UserStorage
             string jsonUsersListString = JsonSerializer.Serialize(initialUsersList);
             
             // Now we will store our jsonUsersString to our file
-            File.WriteAllText(filePath, jsonUsersListString);
+            File.WriteAllText(_filePath, jsonUsersListString);
 
             
             
