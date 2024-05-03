@@ -31,6 +31,7 @@ using ModifySubMenu;
                 ItemName = Name;
                 Quantity = Number;
             }
+
             
             // Constructor that allows you to create an object
             // of GroceryItem class to be created by passing name, number, &

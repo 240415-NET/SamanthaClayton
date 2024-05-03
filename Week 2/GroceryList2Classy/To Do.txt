@@ -1,43 +1,19 @@
-1. Separate out the modify functionality into separate files
-    a) Modify submenu
-    b) Modify submenu selection handler
-    c) Remove submenu
-    d) Remove submenu selection handler
-2. Create a GroceryList class
-3. Make GroceryList a parent of GroceryItem
-    a) Play around with parent:child constructors
-4. Review what Brian did with the "using classes to organize your UI"
-5. Check out other people's grocery list apps to learn
-
-Need to fix
-- when you select 'add an item' then type 3 - it goes to main menu instead of repeating the addsubmenu
-- when you select 'modify an item' then type something not in the list - fix the error message and have them re-select something to modify
+Cosmetic/cool:
+1) Clear console/formatting stuff
+2) Ways to cancel an action (like when you go to the remove menu, have a "back to main menu" option)
+3) Validation for every menu that takes in the user input and then the possible values and figures out if it’s valid or not then outputs a display message
+4) Check out other people's grocery list apps to learn
+5) Maybe look into what Brian did re: "using classes to organize your UI"
 
 
+Practicing what we learned in class:
+1) Add a GroceryList class & edit it's ToString()
+2) Practice general method overloading & general method overriding
+3) Make GroceryList a parent of GroceryItem?  Or find a way to make a parent/child
+    - Practice parent:child constructors, including constructor overloading
+    - Practice parent:child method overriding
+    - Practice parent:child method overloading
 
-To do:
--	Handle modify/remove if there are 0 items in the list
--	Clear console
--	Ways to cancel an action
-1.	Validation for every menu that takes in the user input and then the possible values and figures out if it’s valid or not then outputs a display message
-
-
--	Practice problems and/or working on the grocery list app:
-o	Constructor:
-	Add a constructor to my application
-o	Method overloading
-	Within a single class
-	Between a parent and a child class
-o	Method overwriting
-	Within a single class
-	Between a parent and a child class
-o	Constructor overloading
-	Within a single class
-	Between a parent and a child class
-o	ToString()
-o	
-o	Add a constructor to my application
-o	Add a 2nd constructor with different parameters (aka overloading a constructor)
-o	Add a 3rd constructor that references the 2nd constructor
-o	Create a method that overrides another method
-o	Create a subclass with a constructor that references a parent's constructor
+More of what we learned in class:
+1) Add in user creation
+2) Add in storage of the list
