@@ -49,7 +49,7 @@ public class UserStorage
             //We could put a ? after List<User> to make it stop warning us
             // that it could be null
             List<User> existingUsersList = JsonSerializer.Deserialize<List<User>>(existingUsersJson);
-            
+  
             //Once we deserialize the existing JSON text from the file into a new
             //List<User> object, we will then simply add it to the list
             //using the Add() method
