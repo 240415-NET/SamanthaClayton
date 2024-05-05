@@ -13,12 +13,16 @@ public class AddSubMenuClass
     {
         bool keepAdding = false;
 
+
         do
          {  
+            Console.Clear();
+
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("1. Add an item item");
-            Console.WriteLine("2. Return to main menu");
+            Console.WriteLine("2. Return to main menu\n");
             int userSubMenuSelection = 0;
+            Console.Write("Selection: ");
         
             try
             { 
@@ -26,13 +30,16 @@ public class AddSubMenuClass
             }
             catch(Exception invalidInputType)
             {
-                Console.WriteLine($"{invalidInputType.Message} Please enter an integer value of 1 or 2.");
+                //Console.Clear();
+                Console.WriteLine($"{invalidInputType.Message} You entered {userSubMenuSelection}. Please enter an integer value of 1 or 2.");
             }
 
             if (userSubMenuSelection == 1)
             {
                 keepAdding = true;
                 AddSubMenuSelectionHandlerClass.AddSubMenuSelectionHandler(userGroceryList);
+                Console.WriteLine($"Your items were added!");
+
             }
             else if (userSubMenuSelection == 2)
             { 
@@ -40,7 +47,8 @@ public class AddSubMenuClass
             }
             else
             {
-                Console.WriteLine("Invalid selection: Please enter an integer value of 1 or 2.");
+                //Console.Clear();
+                Console.WriteLine($"You entered {userSubMenuSelection}. Pease enter an integer value of 1 or 2.");
             }
             
         }

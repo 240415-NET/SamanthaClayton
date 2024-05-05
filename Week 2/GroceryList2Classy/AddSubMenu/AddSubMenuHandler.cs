@@ -11,17 +11,18 @@ public class AddSubMenuSelectionHandlerClass
     {
 
             GroceryItem newuserGroceryItem = new GroceryItem();
+            Console.Clear();
 
 
             // Have the user enter the item name and set it
-                Console.WriteLine("Enter the name of the item you'd like to add:");
+                Console.Write("Enter the name of the item you'd like to add: ");
                 newuserGroceryItem.SetItemName(Console.ReadLine());
 
 
             // Have the user enter the quantiy of the item, check to make sure it's an
             // integer.  If it is, then set it.  If it's not an integer, keep
             // prompting them until they enter an integer
-                Console.WriteLine("Enter the quantity of the item you're adding");
+                Console.Write("Enter the quantity of the item you're adding: ");
 
                 bool keepAsking = false;
 
@@ -42,12 +43,14 @@ public class AddSubMenuSelectionHandlerClass
 
 
             // Have the user enter the brand or variety and set it
-                Console.WriteLine("Enter the brand or variety of the item:");
+                Console.Write("Enter the brand or variety of the item: ");
                 newuserGroceryItem.SetBrandOrVariety(Console.ReadLine());
             
             
             // Add the new item to the list
             userGroceryList.Add(newuserGroceryItem);
+            
+
             return userGroceryList;
     }
 }

@@ -13,7 +13,7 @@ class Program
 
         void Menu ()
         {
-            do{
+        do{
         Console.WriteLine("What would you like to do?");
         Console.WriteLine("1. View the grocery list");
         Console.WriteLine("2. Add to the grocery list");

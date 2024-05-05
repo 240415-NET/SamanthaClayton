@@ -149,6 +149,7 @@ public class UserStorage
 
             foundUser = existingUsersList.FirstOrDefault(user => user.userName == usernameToFind);
 
+         
             // The stuff in () above is called the lambda expression.  
             // user is essentially the input parameter for tihs mehod
             // after the => is the condition we're trying to satisfy

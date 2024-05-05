@@ -5,6 +5,7 @@ using GroceryListApp;
 using MainMenu;
 using AddSubMenu;
 using RemoveSubMenu;
+using System.Runtime.InteropServices;
 
 public class MainMenuSelectionHandlerClass
 {
@@ -23,24 +24,34 @@ public class MainMenuSelectionHandlerClass
         {
             // User selects 1 to view the grocery list
             case 1:
-                Console.WriteLine("ITEM NAME\tQUANTITY\tBRAND/VARIETY\tPURCHASED?");
-                foreach (var userGroceryItem in userGroceryList)
+                Console.Clear();
+                Console.WriteLine("Here is your grocery list!\n");
+                
+                if (userGroceryList.Count() == 0)
                 {
-                    Console.WriteLine(userGroceryItem);
+                   Console.WriteLine("Oops! Your list is empty. Please add some items.\n");}
+                else
+                {
+                    Console.WriteLine("ITEM NAME\tQUANTITY\tBRAND/VARIETY\tPURCHASED?");
+                    foreach (var userGroceryItem in userGroceryList)
+                    {
+                        Console.WriteLine(userGroceryItem);
+                    }
+                    Console.WriteLine("\n");
                 }
                 break;
 
             // User selects 2 to add item(s) to the grocery list
             case 2:
-
                 AddSubMenuClass.AddSubMenu(userGroceryList);
 
                 break;
 
             case 3:  //User selects 3 to remove an item from the grocery list
+                Console.Clear();
                 if(userGroceryList.Count() == 0)
                 {
-                    Console.WriteLine("Sorry, it looks like your grocery list is empty.  Plesae add to your list.");
+                    Console.WriteLine("Oops! Your list is empty. Plesae select another option.\n");
                 }
                 else
                 {
@@ -52,7 +63,7 @@ public class MainMenuSelectionHandlerClass
             case 4:  //modify an item in the grocery list
                 if (userGroceryList.Count()==0)
                 {
-                    Console.WriteLine("Sorry, it looks like your grocery list is empty.  Please add to your list.");
+                    Console.WriteLine("Oops! Your list is emppty. Plesae select another option.");
                 }
                 else
                 {
@@ -62,7 +73,8 @@ public class MainMenuSelectionHandlerClass
 
 
             default:
-                Console.WriteLine("Invalid entry.  Please enter an integer value from 1 to 5.");
+                Console.Clear();
+                Console.WriteLine($"You entered {userMenuSelection}. Please enter an integer value from 1 to 5.\n");
                 break;
 
         }
