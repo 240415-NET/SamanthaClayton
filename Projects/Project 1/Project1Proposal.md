@@ -40,6 +40,7 @@ Meal planning app that allows the user to plan their meals for a week and then c
 - Users
     - userId (int)
     - userName (string)
+    - firstName (string)
 - Meal Plan
     - startDate (dateTime)
     - endDate (dateTime)
@@ -56,7 +57,8 @@ Meal planning app that allows the user to plan their meals for a week and then c
 - GroceryItem
     - itemName (string)
     - quantity of each item (int)
-    - measurement of each item (int)
+    - unitOfMeasure of each item (string))
+    - purchased (string)
 - Meat: inherits base class GroceryItem
 - Processed Food: inherits base class GroceryItem
     - glutenFree (string)
