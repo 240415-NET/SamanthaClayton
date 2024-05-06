@@ -57,11 +57,26 @@ Meal planning app that allows the user to plan their meals for a week and then c
 - GroceryItem
     - itemName (string)
     - quantity of each item (int)
-    - unitOfMeasure of each item (string))
+    - unitOfMeasure of each item (string)
     - purchased (string)
 - Meat: inherits base class GroceryItem
 - Processed Food: inherits base class GroceryItem
     - glutenFree (string)
     - dairyFree (string)
 
+## Presentation Layer
+- Menus Class
+    - StartMenu()
+    - CreateNewUserPrompts()
+    - LogInPrompts()
 
+## Logic Layer
+- UsersLogic Class
+    - CreateNewUser()
+    - CheckIfUserExists()
+    - FindExistingUsers()
+
+## Data Access Layer
+- UsersStorage Class
+    - StoreNewUser()
+    - SearchUsersStorage()
