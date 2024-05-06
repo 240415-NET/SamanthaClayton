@@ -38,7 +38,9 @@ public class MainMenuClass
             catch (Exception e)
             {
                 Console.Clear();
-                Console.WriteLine($"{e.Message}.\nYou entered {userMenuSelection}. Please enter an integer value from 1 to 5.\n");
+                Console.WriteLine($"{e.Message}\nYou entered {userMenuSelection}. Please enter an integer value from 1 to 5.\n");
+                keepAlive = true;
+                break;
             }
 
             if (userMenuSelection == 5)
