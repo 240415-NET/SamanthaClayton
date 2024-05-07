@@ -19,20 +19,19 @@ Meal planning app that allows the user to plan their meals for a week and then c
 
  ## User Stories/Features
  - As a user, I want to be able to create a profile and log in
-    - Main menu that allows a user to choose to create a new profile or log in to an existing one
-    - Use their selection to
-        - Create a new profile & stor eit
-        - Pull up their existing information
+    ~~- Main menu that allows a user to choose to create a new profile or log in to an existing one~~
+    ~~- Use their selection to~~
+        ~~- Create a new profile & stor exit~~
+        ~~- Pull up their existing profle information~~
 - As a user, I want to be able to view the weekly meal plan
     - Create and display a meal plan from a pre-loaded list of meals
     - Allow user to modify the meal plan
         - Retrieve full list of pre-loaded meals from storage
         - Display the full list to the user and allow them to select
-- As a user, I want to be able to add new meals/recipes
 - As a user, I want to view my grocery list
         - Based on the weekly meal plan, generate the grocery list
         - Allow the uesr to modify the grocery list
-* Create a username/profile
+- As a user, I want to be able to add new meals/recipes
 
 
 
@@ -47,36 +46,59 @@ Meal planning app that allows the user to plan their meals for a week and then c
     - list of
         - dayOfWeek (string)
         - mealName (string)
-- Meals/Recipes
+- Recipes
     - mealName (string)
-    - ingredientList (List)
-        - ingredients (string)
-        - quantity of each ingredient (int)
-        - measurement of each ingredient (string)
+    - ingredientList (List of GroceryItems)
     - recipeSteps (string)
 - GroceryItem
     - itemName (string)
-    - quantity of each item (int)
-    - unitOfMeasure of each item (string)
+    - quantity (int)
+    - unitOfMeasure (string)
     - purchased (string)
-- Meat: inherits base class GroceryItem
-- Processed Food: inherits base class GroceryItem
-    - glutenFree (string)
-    - dairyFree (string)
+- Would like to do something to incroporate parent : child class
+    - Meat: inherits base class GroceryItem
+        - raw vs. pre-cooked or something?
+    - Processed Food: inherits base class GroceryItem
+        - glutenFree (string)
+        - dairyFree (string)
 
 ## Presentation Layer
 - Menus Class
     - StartMenu()
+    - InAppMainMenu()
+
+- UserProfilesUI Class
     - CreateNewUserPrompts()
     - LogInPrompts()
+
+- MealPlansUI Class
+    - ViewMealPlanPrompts()
+    - ModifyMealPlanPrompts()
 
 ## Logic Layer
 - UsersLogic Class
     - CreateNewUser()
     - CheckIfUserExists()
     - FindExistingUsers()
+- MealPlansLogic Class
+    - CreateNewMealPlan()
+    - DisplayMealPlan()
+    - ModifyMealPlan()
+- GroceryListLogic Class
+    - CreateGroceryList()
+    - Display GroceryList()
+    - ModifyGroceryList()
+    - FindGroceryList()??
+
 
 ## Data Access Layer
 - UsersStorage Class
     - StoreNewUser()
     - SearchUsersStorage()
+- MealPlansStorage Class
+    - Get5RandomStoredMeals() - given a list of 5 random integers, return 5 meals
+    - GetCountOfStoredMeals()
+- UsersMealsPlansStorage Class - would need to store the userId, dateTime of the meal plan, meals in meal plan
+    - StoreMealPlan()
+    - GetMealPlan()
+    - GetStoredGroceryList()

@@ -1,0 +1,71 @@
+using Project1.LogicLayer;
+using Project1.Models;
+namespace Project1.PresentationLayer;
+
+public class UserProfileUI
+{
+    public static void CreateNewUserPrompts()
+    {
+        bool validUserInput;
+        string userInput;
+
+        do
+        {
+            Console.Write("Please provide a username: ");
+            userInput = Console.ReadLine() ?? "";
+            if(string.IsNullOrEmpty(userInput))
+            {
+                Console.WriteLine("Username can't be blank. Please try again.");
+                validUserInput = false;
+            }
+            else if (UsersLogic.CheckIfUserExists(userInput) == true)
+            {
+                Console.WriteLine("Username already exists. Please enter another username.");
+                validUserInput = false;
+            }
+            else
+            {
+                Users newUser = UsersLogic.CreateNewUser(userInput);
+                Console.WriteLine("Profile created!");
+                Console.WriteLine($"Username: {newUser.userName}");
+                Console.WriteLine($"UserId: {newUser.userId}");
+                validUserInput = true;
+            }
+        } while (!validUserInput);
+
+    }
+
+
+    public static void LogInPrompts()
+    {
+        bool validUserInput;
+        string userInput;
+
+        do
+        {
+            Console.Write("Please enter your username: ");
+            userInput = Console.ReadLine() ?? "";
+            if(string.IsNullOrEmpty(userInput))
+            {
+                Console.WriteLine("Username can't be blank. Please try again.");
+                validUserInput = false;
+            }
+            else if (UsersLogic.CheckIfUserExists(userInput) == false)
+            {
+                Console.WriteLine("Profile does not exist. Please try again.");
+                validUserInput = false;
+            }
+            {        
+                Users currentUser = UsersLogic.FindExistingUser(userInput);
+                validUserInput = true;
+                Console.WriteLine("Profile found! You are now logged in.");
+                Console.WriteLine($"Username: {currentUser.userName}");
+                Console.WriteLine($"UserId: {currentUser.userId}");
+            }
+
+        } while (!validUserInput);
+    }
+
+
+
+}

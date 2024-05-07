@@ -26,11 +26,11 @@ public class Menus
                 switch(userSelection)
                 {
                     case 1: // Create new profile
-                    CreateNewUserPrompts();
+                    UserProfileUI.CreateNewUserPrompts();
                     break;
 
                     case 2: // Log into existing profile
-                    LogInPrompts();
+                    UserProfileUI.LogInPrompts();
                     break;
 
                     case 3: //Exit the application
@@ -50,66 +50,53 @@ public class Menus
         } while (!validUserInput);
     }
 
-
-    public static void CreateNewUserPrompts()
+    public static void InAppMainMenu()
     {
         bool validUserInput;
-        string userInput;
+        int userSelection;
 
         do
         {
-            Console.Write("Please provide a username: ");
-            userInput = Console.ReadLine() ?? "";
-            if(string.IsNullOrEmpty(userInput))
+            Console.WriteLine("What would you like to do?");
+            Console.WriteLine("1. Generate a new meal plan");
+            Console.WriteLine("2. View &/or modify an existing meal plan");
+            Console.WriteLine("3. View &/or modify an existing grocery list");
+            // Console.WriteLine("Add new recipe");
+            Console.WriteLine("4. Log out");
+
+            try
             {
-                Console.WriteLine("Username can't be blank. Please try again.");
-                validUserInput = false;
-            }
-            else if (UsersLogic.CheckIfUserExists(userInput) == true)
-            {
-                Console.WriteLine("Username already exists. Please enter another username.");
-                validUserInput = false;
-            }
-            else
-            {
-                Users newUser = UsersLogic.CreateNewUser(userInput);
-                Console.WriteLine("Profile created!");
-                Console.WriteLine($"Username: {newUser.userName}");
-                Console.WriteLine($"UserId: {newUser.userId}");
+                userSelection = int.Parse(Console.ReadLine() ?? "");
                 validUserInput = true;
+
+                switch(userSelection)
+                {
+                    case 1: // Create new meal plan & grocery list
+                    break;
+
+                    case 2: // View or modify existing meal plan   
+                    break;
+
+                    case 3: // View or modify existing grocery list
+                    break;
+
+                    case 4: // Log out
+                    break;
+
+                    default:
+                        Console.WriteLine("Please enter a valid selection.");
+                        validUserInput = false;
+                        break;
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($"{exception.Message}\nPlease enter a valid selection.");
+                validUserInput = false;
             }
         } while (!validUserInput);
     }
 
 
-    public static void LogInPrompts()
-    {
-        bool validUserInput;
-        string userInput;
-
-        do
-        {
-            Console.Write("Please enter your username: ");
-            userInput = Console.ReadLine() ?? "";
-            if(string.IsNullOrEmpty(userInput))
-            {
-                Console.WriteLine("Username can't be blank. Please try again.");
-                validUserInput = false;
-            }
-            else if (UsersLogic.CheckIfUserExists(userInput) == false)
-            {
-                Console.WriteLine("Profile does not exist. Please try again.");
-                validUserInput = false;
-            }
-            {        
-                Users currentUser = UsersLogic.FindExistingUser(userInput);
-                validUserInput = true;
-                Console.WriteLine("Profile found! You are now logged in.");
-                Console.WriteLine($"Username: {currentUser.userName}");
-                Console.WriteLine($"UserId: {currentUser.userId}");
-            }
-
-        } while (!validUserInput);
-    }
-
+    
 }
