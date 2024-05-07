@@ -4,6 +4,8 @@ namespace Project1.LogicLayer;
 
 public class MealPlansLogic
 {
+/* Should this logic be in the MealPlanssStorage.cs in the Data Access Layer?  This is what we're filtering based on.
+
     public static MealPlans GenerateNewMealPlan()
     {
         List<int> randomIntegerList = new List<int>();
@@ -21,6 +23,6 @@ public class MealPlansLogic
 
         
     }
-
+*/
 
 }
