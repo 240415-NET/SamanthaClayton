@@ -10,6 +10,18 @@ namespace TrackMyStuff.Controllers;
 // decide to add things like logging later on during training).
 public class UserController
 {
+
+    //Here, we will add an object to do data access stuff with
+    private static IUserStorageRepo _userData = new JsonUserStorage();
+    // We CANNOT instantiate an object representation of an interface
+    // We CAN however create an object of a class
+    //that implements that interface and store it in a varable of the 
+    //interface's type
+    // You can instantiate an object of some type that
+    //implements that interface & store it in a variable of that type
+
+
+
     // This function handles th ebusiness logic related to creating
     // a new user profile, using the User class
     // This function will take input from another function in the
@@ -28,7 +40,7 @@ public class UserController
 
        // Eventually, we'll come here and call a data access method
        // to store the user.
-        UserStorage.StoreUser(newUser);
+        _userData.StoreUser(newUser);
 
     }
 
@@ -39,7 +51,7 @@ public class UserController
     {
         //We will need to write some method in our UserStorage
         
-        if(UserStorage.FindUser(userName)!=null)
+        if(_userData.FindUser(userName)!=null)
         {
             return true;
         }

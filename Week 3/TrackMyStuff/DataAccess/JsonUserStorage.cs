@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using TrackMyStuff.Models;
 
-public class UserStorage
+public class JsonUserStorage : IUserStorageRepo
 {
 
     // This is allowing the filePath to be used by all the methods in this class
@@ -27,7 +27,7 @@ public class UserStorage
 
 
     // A method to store a user
-    public static void StoreUser(User user)
+    public void StoreUser(User user)
     {
         // String representing our file path and name.
         // This can take just a file name or it can take absolute
@@ -110,7 +110,7 @@ public class UserStorage
 
     }
 
-    public static User FindUser(string usernameToFind)
+    public User FindUser(string usernameToFind)
     {
 
         //User object to store a user if they are found or a null if they are not

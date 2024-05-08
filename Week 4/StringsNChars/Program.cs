@@ -7,7 +7,7 @@ namespace StringsNChars;
 class Program
 {
     static void Main(string[] args)
-    {
+    {/*
         string string1 = Console.ReadLine();
         Console.WriteLine(string1);
 
@@ -75,7 +75,28 @@ char[] myCharArrayformyString = myString.ToCharArray();
 Console.WriteLine($"{myString} has {myString.Length} letters");
 
 Console.WriteLine(myArray[0].Length);
+*/
+string str1 = "hello";
 
+char[] str1array = str1.ToArray();
+Array.Sort(str1array);
+Console.WriteLine(str1array);
+string newstr1= new string(str1array);
+//also tried str1array.ToString(); and that was wrong
+Console.WriteLine(newstr1);
+//tried Convert.ToString(str1array) and that was wrong
+
+
+string str2 = "world";
+char[] str2array = str2.ToArray();
+Array.Sort(str2array);
+Console.WriteLine(str2array);
+string newstr2 = new string(str2array);
+Console.WriteLine(newstr2);
+if (newstr1 != newstr2)
+{Console.WriteLine("false");
+}
+else{Console.WriteLine("true");}
 
 
 
