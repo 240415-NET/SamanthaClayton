@@ -2,7 +2,7 @@ namespace TrackMyStuff.Models;
 
 public class Item
 {
-    public Guid userId {get; internal set;}
+    public Guid userId {get; set;}
     public Guid itemId {get; private set;}
     public string category {get; set;}
     public double originalCost  {get; set;}
