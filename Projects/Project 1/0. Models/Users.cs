@@ -4,9 +4,7 @@ public class Users
 {
     public Guid userId {get; set;}
 
-    public string userName {get; set;}
-
-    public string firstName {get; set;}
+    public string? userName {get; set;}
 
     public Users(){}
 

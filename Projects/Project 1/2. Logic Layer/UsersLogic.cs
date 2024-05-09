@@ -1,22 +1,23 @@
 using Project1.Models;
 using Project1.DataAccessLayer;
-using System.Formats.Asn1;
 
 namespace Project1.LogicLayer;
 
 public class UsersLogic
 {
 
+    private static IUsersStorageRepo _userData = new JsonUsersStorage();
+
     public static Users CreateNewUser(string userInput)
     {
         Users newUser = new Users(userInput);
-        UsersStorage.StoreNewUser(newUser);
+        _userData.StoreNewUser(newUser);
         return newUser;
     }
 
     public static bool CheckIfUserExists(string userName)
     {
-        if(UsersStorage.SearchUsersStorage(userName) != null)
+        if(_userData.SearchUsersStorage(userName) != null)
         {
             return true;
         }
@@ -28,7 +29,7 @@ public class UsersLogic
 
     public static Users FindExistingUser(string userName)
     {
-        Users existingUser = UsersStorage.SearchUsersStorage(userName);
+        Users existingUser = _userData.SearchUsersStorage(userName);
         return existingUser;
     }
 

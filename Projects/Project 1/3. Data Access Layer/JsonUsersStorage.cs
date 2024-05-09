@@ -1,14 +1,13 @@
 using System.Text.Json;
-using System.Text.Json.Nodes;
 using Project1.Models;
 
 namespace Project1.DataAccessLayer;
 
-public class UsersStorage
+public class JsonUsersStorage : IUsersStorageRepo
 {
     public readonly static string _filePath = "./3. Data Access Layer/UserData.json";
 
-    public static void StoreNewUser(Users newUser)
+    public void StoreNewUser(Users newUser)
     {
         if(File.Exists(_filePath))
         {
@@ -28,7 +27,7 @@ public class UsersStorage
     }
 
 
-    public static Users SearchUsersStorage(string userNameToFind)
+    public Users SearchUsersStorage(string userNameToFind)
     {
         Users existingUser = new Users();
 

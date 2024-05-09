@@ -18,24 +18,28 @@ Meal planning app that allows the user to plan their meals for a week and then c
  - User can modify the list as needed
 
  ## User Stories/Features
- ~~- As a user, I want to be able to create a profile and log in~~
-    ~~- Main menu that allows a user to choose to create a new profile or log in to an existing one~~
-    ~~- Use their selection to~~
-        ~~- Create a new profile & stor exit~~
-        ~~- Pull up their existing profle information~~
-- As a user, I want to be able to view the weekly meal plan
+ - Done:  As a user, I want to be able to create a profile and log in
+    - Main menu that allows a user to choose to create a new profile or log in to an existing one
+    - Use their selection to
+        - Create a new profile & store it
+        - Log in
+- Done: As a user, I want to be able to view the weekly meal plan
     - Create and display a meal plan from a pre-loaded list of meals
-    - Allow user to modify the meal plan
-        - Retrieve full list of pre-loaded meals from storage
-        - Display the full list to the user and allow them to select
+- As a user, I want to be able to save my weekly meal plan & load it later
 - As a user, I want to view my grocery list
-        - Based on the weekly meal plan, generate the grocery list
-        - Allow the user to modify the grocery list
-- As a user, I want to be able to add new meals/recipes
+    - When a new meal plan is generated
+    - Also when I log in later
 
-To do:
-- Add an interface
-~~ - Add pre-loaded meals to storage (& write method to do it)~~
+**Nice to have:**
+- As a user, I want to be able to modify the weekly meal plan
+- As a user, I want to be able to add new meals/recipes
+- Add a grocery item type so I can separate the grocery list by area of store
+- Aa a user, I want to view a recipe
+
+
+**Other thoughts**
+- Should I add a recipe Id?
+- Modify the ToString for MealPlans class to display the meal plan instead of handling it in the MealPlanUI.cs
 
 
 ## Models

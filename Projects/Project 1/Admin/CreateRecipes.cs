@@ -24,7 +24,7 @@ public class CreatRecipes
         List<GroceryItems> recipe1ingredients = [recipe1ingredient1, recipe1ingredient2, recipe1ingredient3,
                                                 recipe1ingredient4, recipe1ingredient5, recipe1ingredient6];
 
-        Recipes recipe1 = new Recipes("Chicken & Broccoli Stir Fry", recipe1ingredients, "1. Cut chicken into 1 \" cubes.\n2. Cut broccoli into bite-sized florets\n"
+        Recipes recipe1 = new Recipes("Chicken & Broccoli Stir Fry", recipe1ingredients, "1. Cut chicken into 1\" cubes.\n2. Cut broccoli into bite-sized florets\n"
                                         +"3. Heat avocado oil in saute pan on medium high heat\n4.Add chicken and broccoli to pan and cook until chicken is cooked through");
 
         // RECIPE 2: PASTA WITH HOMEMADE PESTO
@@ -97,7 +97,7 @@ public class CreatRecipes
         List<GroceryItems> recipe5ingredients = [recipe5ingredient1, recipe5ingredient2, recipe5ingredient3,
                                                 recipe5ingredient4, recipe5ingredient5, recipe5ingredient6];
 
-        Recipes recipe5 = new Recipes(" Board", recipe5ingredients, "1. Cut the apple into slices\n"+
+        Recipes recipe5 = new Recipes("Girl Dinner", recipe5ingredients, "1. Cut the apple into slices\n"+
                                         "2. Arrange ingredients on a plate");
 
 

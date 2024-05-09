@@ -73,7 +73,7 @@ public class Menus
                 switch(userSelection)
                 {
                     case 1: // Create new meal plan & grocery list
-                    MealPlansLogic.GenerateNewMealPlan();
+                    MealPlanUI.DisplayNewMealPlan();
                     break;
 
                     case 2: // View or modify existing meal plan   
