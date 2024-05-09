@@ -2,9 +2,13 @@ namespace Project1.Models;
 
 public class GroceryItems
 {
+    private double v1;
+    private string v2;
+    private string v3;
+
     public string itemName {get;set;} = "";
 
-    public int quantity {get;set;} = 1;
+    public double quantity {get;set;} = 1;
 
     public string unitOfMeasure {get;set;} = "";
 
@@ -46,6 +50,10 @@ public class GroceryItems
 
     }
 
-
-
+    public GroceryItems(string _itemName, double v1, string v2, string v3) : this(_itemName)
+    {
+        this.v1 = v1;
+        this.v2 = v2;
+        this.v3 = v3;
+    }
 }
