@@ -2,8 +2,8 @@ namespace TrackMyStuff.Models;
 
 public class Item
 {
-    public int userId {get; internal set;}
-    public int itemId {get; private set;}
+    public Guid userId {get; internal set;}
+    public Guid itemId {get; private set;}
     public string category {get; set;}
     public double originalCost  {get; set;}
     public DateTime purchaseDate {get; set;}
@@ -13,12 +13,12 @@ public class Item
     public Item (){}
 
 
-    public Item  (int _userId, int _itemId, string _category,
+    public Item  (Guid _userId, Guid _itemId, string _category,
                 double _originalCost, DateTime _purchaseDate,
                 string _description)
     {
         userId = _userId;
-        itemId = itemId;
+        itemId = Guid.NewGuid();
         category = _category;
         originalCost = _originalCost;
         purchaseDate = _purchaseDate;

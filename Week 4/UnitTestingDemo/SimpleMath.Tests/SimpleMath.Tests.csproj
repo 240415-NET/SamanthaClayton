@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <!-- This is how you make a comment in XML -->
+  <!-- We create a new Item Group to hold our project references
+  We then give it a relative path using "Include" and the relative
+  path is FROM the xunit testing project TO the project
+  whose code you're trying to write tests for -->
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleMath\SimpleMath.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,5 +1,5 @@
-using System.Runtime.Intrinsics.Arm;
 using TrackMyStuff.Controllers;
+using TrackMyStuff.Models;
 
 namespace TrackMyStuff.Presentation;
 
@@ -29,10 +29,11 @@ public class Menu
                 switch(userChoice)
                 {
                     case 1: // Creating a new user profile
-                        Menu.UserCreationMenu();
+                        UserCreationMenu();
                         break;
 
                     case 2:
+                        UserLoginMenu();
                         break;
 
                     case 3:
@@ -141,6 +142,53 @@ public class Menu
 
         } while(!validInput); // Continue running the above block UNTIL input is valid
     }
+
+
+public static void UserLoginMenu() 
+    {
+ 
+        //Declaring our flag boolean outside of our loop, setting it to true
+        bool validInput = true;
+        string userInput = "";
+
+        do
+        {   
+            //Prompting the user for a username
+            Console.WriteLine("Please enter a username: ");
+
+            //The ?? is called the null-coalescing operator
+            //If the input comes back null, then we manually set it to an empty string - to avoid 
+            //the possibility of this userInput string ever being null. 
+            userInput = Console.ReadLine() ?? "";
+
+            //Here we are going to trim the string, to remove any leading or trailing spaces
+            userInput = userInput.Trim();
+
+            //If else to check both of our conditions - empty string and existing username
+            if(String.IsNullOrEmpty(userInput))
+            {
+                Console.WriteLine("Username cannot be blank, please try again.");
+                validInput = false;
+            }else if(!UserController.UserExists(userInput)) //if User doesn't exist
+            {
+                Console.WriteLine("Username doesn't exist, please choose another.");
+                validInput = false;
+            }else{ //If neither check trips we simply call CreateUser from the UserController!
+                User existingUser = UserController.ReturnUser(userInput);
+                Console.WriteLine("You're logged in!");
+                Console.WriteLine($"Username: {existingUser.userName}");
+                Console.WriteLine($"User Id: {existingUser.userId}");
+                validInput = true;
+            }
+
+        } while (!validInput); //Continue running the above block UNTIL input is valid
+
+    }
+
+
+    
+    
 }
+
 
 

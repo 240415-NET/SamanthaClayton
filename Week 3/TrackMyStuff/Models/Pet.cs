@@ -7,6 +7,8 @@ public class Pet : Item // Pet class inherits from our Item class
     public int age {get; set;}
     
     // Constructors
+    //Did he remove this constructor?
+    //either way, hsould userId have been userID = Guid.NewGuid();
     public Pet (string _name, string _species, int _age) : base ()
     {
         name = _name;
@@ -16,7 +18,7 @@ public class Pet : Item // Pet class inherits from our Item class
     }
     // Calling the base classes constructor
     //To do this, you need an all argument construcor in the base class
-    public Pet  (int userId, int itemId, string category,
+    public Pet  (Guid userId, Guid itemId, string category,
                 double originalCost, DateTime purchaseDate,
                 string description, string _name, string _species,
                 int _age) : base (userId, itemId, category,
