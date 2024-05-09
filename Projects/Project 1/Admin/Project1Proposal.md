@@ -30,9 +30,12 @@ Meal planning app that allows the user to plan their meals for a week and then c
         - Display the full list to the user and allow them to select
 - As a user, I want to view my grocery list
         - Based on the weekly meal plan, generate the grocery list
-        - Allow the uesr to modify the grocery list
+        - Allow the user to modify the grocery list
 - As a user, I want to be able to add new meals/recipes
 
+To do:
+- Add an interface
+~~ - Add pre-loaded meals to storage (& write method to do it)~~
 
 
 ## Models
