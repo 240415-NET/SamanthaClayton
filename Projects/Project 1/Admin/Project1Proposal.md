@@ -18,7 +18,7 @@ Meal planning app that allows the user to plan their meals for a week and then c
  - User can modify the list as needed
 
  ## User Stories/Features
- - As a user, I want to be able to create a profile and log in
+ ~~- As a user, I want to be able to create a profile and log in~~
     ~~- Main menu that allows a user to choose to create a new profile or log in to an existing one~~
     ~~- Use their selection to~~
         ~~- Create a new profile & stor exit~~

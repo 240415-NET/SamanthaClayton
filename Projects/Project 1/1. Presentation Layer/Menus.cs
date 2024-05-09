@@ -48,6 +48,7 @@ public class Menus
                 validUserInput = false;
             }
         } while (!validUserInput);
+        InAppMainMenu(); //Is this where I'd call this or the Progrma.cs or somewhere else?
     }
 
     public static void InAppMainMenu()
@@ -72,6 +73,7 @@ public class Menus
                 switch(userSelection)
                 {
                     case 1: // Create new meal plan & grocery list
+                    MealPlansLogic.GenerateNewMealPlan();
                     break;
 
                     case 2: // View or modify existing meal plan   

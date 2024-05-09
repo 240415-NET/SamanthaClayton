@@ -1,55 +1,46 @@
 using System.Text.Json;
+using Project1.Models;
 
 namespace Project1.DataAccessLayer;
 
-/*public class MealStorage
+public class MealsStorage
 {
     public readonly static string _filePath = "./3. Data Access Layer/Meals.json";
 
-    public static void StoreMeal(M)
-    {
-        if(File.Exists(_filePath))
-        {
-            string usersInStorageJSON = File.ReadAllText(_filePath);
-            List<Users> usersInStorageList = JsonSerializer.Deserialize<List<Users>>(usersInStorageJSON);
-            usersInStorageList.Add(newUser);
-            string revisedUsersInStorageJSON = JsonSerializer.Serialize<List<Users>>(usersInStorageList);
-            File.WriteAllText(_filePath, revisedUsersInStorageJSON);
-        }
-        else if (!File.Exists(_filePath))
-        {
-            List<Users> freshUsersInStorageList = new List<Users>();
-            freshUsersInStorageList.Add(newUser);
-            string freshUsersInStorageJSON = JsonSerializer.Serialize<List<Users>>(freshUsersInStorageList);
-            File.WriteAllText(_filePath, freshUsersInStorageJSON);
-        }
-    }
-
-
-    public static List<string> GetStoredMeals(List<int> _mealsToGet) //make this receive a list of integers
+    public static MealPlans GetStoredMeals(List<int> _mealsToGet) //make this receive a list of integers
     {
     
-        List<string> mealsInStorageList = new List<string>();
-        List<string> mealsFromStorageList = new List<string>();
+        //List<Recipes> recipesInStorage = new List<Recipes>();
+        List<Recipes> retrievedRecipesFromStorage = new List<Recipes>();
+        List<string> retrievedMealNamesFromStorage = new List<string>();
         
-        // Need to add in logic to take in a list of random integers, filter to the meals in those random integers, and send those meals back to the MealPlansLogic layer
         try
         {
-            string mealsInStorageJSON = File.ReadAllText(_filePath);
-            mealsInStorageList = JsonSerializer.Deserialize<List<string>>(mealsInStorageJSON);
-            for (int i = 0; i < _mealsToGet.Count(); i++)
+            string recipesInStorageJSON = File.ReadAllText(_filePath);                              // read the JSON
+            List<Recipes> recipesInStorage = JsonSerializer.Deserialize<List<Recipes>>(recipesInStorageJSON);     // deserialize the JSON and save as a list of recipes
+    
+            
+            
+           for (int i = 0; i < _mealsToGet.Count(); i++)                                           // for each random integer we pass it, save the recipe at that index in a list
             {
-                mealsFromStorageList[i] = mealsInStorageList[_mealsToGet[i]];
+              //retrievedRecipesFromStorage[i] = recipesInStorage.FirstOrDefault(recipe => recipe.MealName == "Grilled Cheese Sandwich");
+               retrievedRecipesFromStorage[i] = recipesInStorage[_mealsToGet[i]];                  //gets the recipes from storage using the index 
+            }
+            for (int i = 0; i <_mealsToGet.Count(); i++)                                            // for each random integer we pass it, save the recipe's meal name to a list of strings
+            {
+                retrievedMealNamesFromStorage[i] = retrievedRecipesFromStorage[i].MealName;
             }
 
             
         }
         catch (Exception exception)
         {
-            Console.WriteLine(exception.Message);
+            Console.WriteLine(exception.Message + exception.StackTrace);
         }
+
+        MealPlans newMealPlanMealsList = new MealPlans(retrievedMealNamesFromStorage);                // create a meal plan using the list of meal names we got rom storage
 
         return newMealPlanMealsList;  
     }
-}*/
+}
 

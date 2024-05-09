@@ -1,1 +1,296 @@
-[{"MealName":"Chicken \u0026 Broccoli Stir Fry","Ingredients":[{"itemName":"Chicken Breasts","quantity":1,"unitOfMeasure":"pound","purchased":"No"},{"itemName":"Broccoli","quantity":1,"unitOfMeasure":"head","purchased":"No"},{"itemName":"Avocado Oil","quantity":2,"unitOfMeasure":"tbsp.","purchased":"No"},{"itemName":"Garlic Powder","quantity":1,"unitOfMeasure":"tsp.","purchased":"No"},{"itemName":"Salt","quantity":1,"unitOfMeasure":"tsp.","purchased":"No"},{"itemName":"Pepper","quantity":1,"unitOfMeasure":"tsp.","purchased":"No"}],"RecipeSteps":"1. Cut chicken into 1 \u0022 cubes.\n2. Cut broccoli into bite-sized florets\n3. Heat avocado oil in saute pan on medium high heat\n4.Add chicken and broccoli to pan and cook until chicken is cooked through"},{"MealName":"Pasta with Homemade Pesto","Ingredients":[{"itemName":"Spaghetti","quantity":1,"unitOfMeasure":"box","purchased":"No"},{"itemName":"Basil","quantity":2,"unitOfMeasure":"cups","purchased":"No"},{"itemName":"Garlic","quantity":4,"unitOfMeasure":"cloves","purchased":"No"},{"itemName":"Pine Nuts","quantity":1,"unitOfMeasure":"cup","purchased":"No"},{"itemName":"Olive Oil","quantity":0.5,"unitOfMeasure":"cup","purchased":"No"},{"itemName":"Salt","quantity":1,"unitOfMeasure":"tsp.","purchased":"No"}],"RecipeSteps":"1. Bring a large pot of water to boil\n2. Add spaghetti and cook for length of time recommended on package\n3. While spaghetti cooks, add all other ingredients to a blender or food processor and blend\n4. Drain pasta\n5. Stir pesto and pasta together and serve"},{"MealName":"Buffalo Chicken Stuffed Baked Potatoes","Ingredients":[{"itemName":"Chicken Breasts","quantity":1,"unitOfMeasure":"pound","purchased":"No"},{"itemName":"Buffalo Sauce","quantity":1,"unitOfMeasure":"jar","purchased":"No"},{"itemName":"Potatoes","quantity":4,"unitOfMeasure":"whole","purchased":"No"},{"itemName":"Ranch","quantity":0.5,"unitOfMeasure":"cup","purchased":"No"},{"itemName":"Pepper","quantity":1,"unitOfMeasure":"tsp.","purchased":"No"},{"itemName":"Salt","quantity":1,"unitOfMeasure":"tsp.","purchased":"No"},{"itemName":"Butter","quantity":1,"unitOfMeasure":"tbsp.","purchased":"No"}],"RecipeSteps":"1. Pre-heat oven to 400 degrees\n2. Wash potatoes and wrap each one in foil and place in oven\n3. Let the potatoes cook for about 30 minutes and then start on the next steps\n4. Put chicken in a large pot and fill it with water until the chicken is fully covered and then some\n5. Put pot on the stove on medium high heat until the water boils \n6. Once the water boils, turn the heat down to medium and cook until the chicken is cooked through7. Once the chicken is cooked through, shred the chicken\n8. Stir the buffalo and chicken to coat the chicken in sauce\n9. When the potatoes are done, cut each potato down the center andtop with butter, salt, pepper, the shredded chicken coated in sauce, and ranch."},{"MealName":"Grilled Cheese Sandwich","Ingredients":[{"itemName":"White Bread","quantity":2,"unitOfMeasure":"slices","purchased":"No"},{"itemName":"Butter","quantity":0.5,"unitOfMeasure":"tbsp","purchased":"No"},{"itemName":"Cheese","quantity":2,"unitOfMeasure":"slices","purchased":"No"}],"RecipeSteps":"1. Butter 1 side of each slice of bread\n2. Place the buttered side of 1 slice of bread into a hot pan on medium heat\n3. Add the cheese slices on top of the bread\n4. Put the other slice of bread on top with the buttered side facing up\n5. Cook until the bottom is golden brown\n6. Flip sandwich over and cook until the other side is golden brown too"},{"MealName":" Board","Ingredients":[{"itemName":"Salami","quantity":3,"unitOfMeasure":"slices","purchased":"No"},{"itemName":"Grapes","quantity":1,"unitOfMeasure":"bunch","purchased":"No"},{"itemName":"Crackers","quantity":1,"unitOfMeasure":"cup","purchased":"No"},{"itemName":"Goat Cheese","quantity":3,"unitOfMeasure":"ounces","purchased":"No"},{"itemName":"Turkey","quantity":2,"unitOfMeasure":"slices","purchased":"No"},{"itemName":"Apple","quantity":1,"unitOfMeasure":"whole","purchased":"No"}],"RecipeSteps":"1. Cut the apple into slices\n2. Arrange ingredients on a plate"},{"MealName":"Turkey BLTA Sandwich","Ingredients":[{"itemName":"White Bread","quantity":2,"unitOfMeasure":"slices","purchased":"No"},{"itemName":"Turkey","quantity":3,"unitOfMeasure":"slices","purchased":"No"},{"itemName":"Bacon","quantity":2,"unitOfMeasure":"slices","purchased":"No"},{"itemName":"Lettuce","quantity":2,"unitOfMeasure":"leaves","purchased":"No"},{"itemName":"Mayonnaise","quantity":0.5,"unitOfMeasure":"tbsp.","purchased":"No"},{"itemName":"Avocado","quantity":0.5,"unitOfMeasure":"Whole","purchased":"No"},{"itemName":"Tomato","quantity":0.5,"unitOfMeasure":"Whole","purchased":"No"}],"RecipeSteps":"1. Slice the tomato and avacado\n2. AssemCharcuterieble the sandwich"},{"MealName":"Caprese Salad","Ingredients":[{"itemName":"Mozzarella","quantity":2,"unitOfMeasure":"ounces","purchased":"No"},{"itemName":"Grape Tomatoes","quantity":8,"unitOfMeasure":"ounces","purchased":"No"},{"itemName":"Basil","quantity":2,"unitOfMeasure":"cups","purchased":"No"},{"itemName":"Olive Oil","quantity":1,"unitOfMeasure":"tbsp.","purchased":"No"},{"itemName":"Balsamic Vinegar","quantity":1,"unitOfMeasure":"tbsp.","purchased":"No"},{"itemName":"Salt","quantity":0.5,"unitOfMeasure":"tsp.","purchased":"No"},{"itemName":"Pepper","quantity":0.5,"unitOfMeasure":"tsp.","purchased":"No"}],"RecipeSteps":"1. Cut the mozzarella into bite-sized pieces\n2. Tear/roughly chop the basil\n3. Add all inrgredients to a salad bowl and mix well"}]
+[
+    {
+        "MealName": "Chicken \u0026 Broccoli Stir Fry",
+        "Ingredients": [
+            {
+                "itemName": "Chicken Breasts",
+                "quantity": 1,
+                "unitOfMeasure": "pound",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Broccoli",
+                "quantity": 1,
+                "unitOfMeasure": "head",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Avocado Oil",
+                "quantity": 2,
+                "unitOfMeasure": "tbsp.",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Garlic Powder",
+                "quantity": 1,
+                "unitOfMeasure": "tsp.",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Salt",
+                "quantity": 1,
+                "unitOfMeasure": "tsp.",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Pepper",
+                "quantity": 1,
+                "unitOfMeasure": "tsp.",
+                "purchased": "No"
+            }
+        ],
+        "RecipeSteps": "1. Cut chicken into 1 \u0022 cubes.\n2. Cut broccoli into bite-sized florets\n3. Heat avocado oil in saute pan on medium high heat\n4.Add chicken and broccoli to pan and cook until chicken is cooked through"
+    },
+    {
+        "MealName": "Pasta with Homemade Pesto",
+        "Ingredients": [
+            {
+                "itemName": "Spaghetti",
+                "quantity": 1,
+                "unitOfMeasure": "box",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Basil",
+                "quantity": 2,
+                "unitOfMeasure": "cups",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Garlic",
+                "quantity": 4,
+                "unitOfMeasure": "cloves",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Pine Nuts",
+                "quantity": 1,
+                "unitOfMeasure": "cup",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Olive Oil",
+                "quantity": 0.5,
+                "unitOfMeasure": "cup",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Salt",
+                "quantity": 1,
+                "unitOfMeasure": "tsp.",
+                "purchased": "No"
+            }
+        ],
+        "RecipeSteps": "1. Bring a large pot of water to boil\n2. Add spaghetti and cook for length of time recommended on package\n3. While spaghetti cooks, add all other ingredients to a blender or food processor and blend\n4. Drain pasta\n5. Stir pesto and pasta together and serve"
+    },
+    {
+        "MealName": "Buffalo Chicken Stuffed Baked Potatoes",
+        "Ingredients": [
+            {
+                "itemName": "Chicken Breasts",
+                "quantity": 1,
+                "unitOfMeasure": "pound",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Buffalo Sauce",
+                "quantity": 1,
+                "unitOfMeasure": "jar",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Potatoes",
+                "quantity": 4,
+                "unitOfMeasure": "whole",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Ranch",
+                "quantity": 0.5,
+                "unitOfMeasure": "cup",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Pepper",
+                "quantity": 1,
+                "unitOfMeasure": "tsp.",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Salt",
+                "quantity": 1,
+                "unitOfMeasure": "tsp.",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Butter",
+                "quantity": 1,
+                "unitOfMeasure": "tbsp.",
+                "purchased": "No"
+            }
+        ],
+        "RecipeSteps": "1. Pre-heat oven to 400 degrees\n2. Wash potatoes and wrap each one in foil and place in oven\n3. Let the potatoes cook for about 30 minutes and then start on the next steps\n4. Put chicken in a large pot and fill it with water until the chicken is fully covered and then some\n5. Put pot on the stove on medium high heat until the water boils \n6. Once the water boils, turn the heat down to medium and cook until the chicken is cooked through7. Once the chicken is cooked through, shred the chicken\n8. Stir the buffalo and chicken to coat the chicken in sauce\n9. When the potatoes are done, cut each potato down the center andtop with butter, salt, pepper, the shredded chicken coated in sauce, and ranch."
+    },
+    {
+        "MealName": "Grilled Cheese Sandwich",
+        "Ingredients": [
+            {
+                "itemName": "White Bread",
+                "quantity": 2,
+                "unitOfMeasure": "slices",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Butter",
+                "quantity": 0.5,
+                "unitOfMeasure": "tbsp",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Cheese",
+                "quantity": 2,
+                "unitOfMeasure": "slices",
+                "purchased": "No"
+            }
+        ],
+        "RecipeSteps": "1. Butter 1 side of each slice of bread\n2. Place the buttered side of 1 slice of bread into a hot pan on medium heat\n3. Add the cheese slices on top of the bread\n4. Put the other slice of bread on top with the buttered side facing up\n5. Cook until the bottom is golden brown\n6. Flip sandwich over and cook until the other side is golden brown too"
+    },
+    {
+        "MealName": " Board",
+        "Ingredients": [
+            {
+                "itemName": "Salami",
+                "quantity": 3,
+                "unitOfMeasure": "slices",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Grapes",
+                "quantity": 1,
+                "unitOfMeasure": "bunch",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Crackers",
+                "quantity": 1,
+                "unitOfMeasure": "cup",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Goat Cheese",
+                "quantity": 3,
+                "unitOfMeasure": "ounces",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Turkey",
+                "quantity": 2,
+                "unitOfMeasure": "slices",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Apple",
+                "quantity": 1,
+                "unitOfMeasure": "whole",
+                "purchased": "No"
+            }
+        ],
+        "RecipeSteps": "1. Cut the apple into slices\n2. Arrange ingredients on a plate"
+    },
+    {
+        "MealName": "Turkey BLTA Sandwich",
+        "Ingredients": [
+            {
+                "itemName": "White Bread",
+                "quantity": 2,
+                "unitOfMeasure": "slices",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Turkey",
+                "quantity": 3,
+                "unitOfMeasure": "slices",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Bacon",
+                "quantity": 2,
+                "unitOfMeasure": "slices",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Lettuce",
+                "quantity": 2,
+                "unitOfMeasure": "leaves",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Mayonnaise",
+                "quantity": 0.5,
+                "unitOfMeasure": "tbsp.",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Avocado",
+                "quantity": 0.5,
+                "unitOfMeasure": "Whole",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Tomato",
+                "quantity": 0.5,
+                "unitOfMeasure": "Whole",
+                "purchased": "No"
+            }
+        ],
+        "RecipeSteps": "1. Slice the tomato and avacado\n2. AssemCharcuterieble the sandwich"
+    },
+    {
+        "MealName": "Caprese Salad",
+        "Ingredients": [
+            {
+                "itemName": "Mozzarella",
+                "quantity": 2,
+                "unitOfMeasure": "ounces",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Grape Tomatoes",
+                "quantity": 8,
+                "unitOfMeasure": "ounces",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Basil",
+                "quantity": 2,
+                "unitOfMeasure": "cups",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Olive Oil",
+                "quantity": 1,
+                "unitOfMeasure": "tbsp.",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Balsamic Vinegar",
+                "quantity": 1,
+                "unitOfMeasure": "tbsp.",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Salt",
+                "quantity": 0.5,
+                "unitOfMeasure": "tsp.",
+                "purchased": "No"
+            },
+            {
+                "itemName": "Pepper",
+                "quantity": 0.5,
+                "unitOfMeasure": "tsp.",
+                "purchased": "No"
+            }
+        ],
+        "RecipeSteps": "1. Cut the mozzarella into bite-sized pieces\n2. Tear/roughly chop the basil\n3. Add all inrgredients to a salad bowl and mix well"
+    }
+]
