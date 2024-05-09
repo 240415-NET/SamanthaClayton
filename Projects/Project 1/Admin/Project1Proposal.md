@@ -29,6 +29,8 @@ Meal planning app that allows the user to plan their meals for a week and then c
 - As a user, I want to view my grocery list
     - When a new meal plan is generated
     - Also when I log in later
+- Change to SQL
+- Unit tests
 
 **Nice to have:**
 - As a user, I want to be able to modify the weekly meal plan
