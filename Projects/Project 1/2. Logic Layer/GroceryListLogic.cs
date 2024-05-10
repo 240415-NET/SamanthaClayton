@@ -10,7 +10,7 @@ public class GroceryListLogic
     private static IMealPlansStorageRepo _userMealPlanData = new JsonMealPlansStorage();
 
 
-    public static GroceryLists GetGroceryList(MealPlans userMealPlan)
+    /*public static GroceryLists GetGroceryList(MealPlans userMealPlan)
     {
         GroceryLists userGroceryList = new GroceryLists();
         List<GroceryItems> userGroceryItems = new List <GroceryItems>();
@@ -55,21 +55,7 @@ public class GroceryListLogic
     }
 
 
-public static void SaveMealPlan(Guid userId, MealPlans userMealPlan)
-    {
-        _userMealPlanData.StoreMealPlan(userId, userMealPlan);
-
-    }
-
-public static MealPlans GetMealPlan (Guid userId)
-    {
-        MealPlans existingUserMealPlan = _userMealPlanData.RetrieveUserMealPlan(userId);
-
-        return existingUserMealPlan;
-        
-
-    }
-
+*/
 
 
 }
