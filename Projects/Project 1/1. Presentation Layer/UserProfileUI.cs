@@ -1,13 +1,16 @@
+using System.ComponentModel.DataAnnotations;
 using Project1.LogicLayer;
 using Project1.Models;
 namespace Project1.PresentationLayer;
 
 public class UserProfileUI
 {
-    public static void CreateNewUserPrompts()
+    public static Guid CreateNewUserPrompts()
     {
         bool validUserInput;
         string userInput;
+        Guid userId = Guid.NewGuid(); //come back later to get help with this
+        Users newUser;
 
         do
         {
@@ -25,21 +28,24 @@ public class UserProfileUI
             }
             else
             {
-                Users newUser = UsersLogic.CreateNewUser(userInput);
+                newUser = UsersLogic.CreateNewUser(userInput);
                 Console.WriteLine("Profile created!");
                 Console.WriteLine($"Username: {newUser.userName}");
                 Console.WriteLine($"UserId: {newUser.userId}");
                 validUserInput = true;
+                userId = newUser.userId;
             }
         } while (!validUserInput);
+        return userId;
 
     }
 
 
-    public static void LogInPrompts()
+    public static Guid LogInPrompts()
     {
         bool validUserInput;
         string userInput;
+        Guid userId = Guid.NewGuid();
 
         do
         {
@@ -61,9 +67,11 @@ public class UserProfileUI
                 Console.WriteLine("Profile found! You are now logged in.");
                 Console.WriteLine($"Username: {currentUser.userName}");
                 Console.WriteLine($"UserId: {currentUser.userId}");
+                userId = currentUser.userId;
             }
 
         } while (!validUserInput);
+        return userId;
     }
 
 

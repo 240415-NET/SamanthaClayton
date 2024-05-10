@@ -10,6 +10,7 @@ public class Menus
     {
         bool validUserInput;
         int userSelection;
+        Guid userId = Guid.NewGuid();
 
         do
         {
@@ -26,11 +27,12 @@ public class Menus
                 switch(userSelection)
                 {
                     case 1: // Create new profile
-                    UserProfileUI.CreateNewUserPrompts();
+                    userId = UserProfileUI.CreateNewUserPrompts();
                     break;
 
                     case 2: // Log into existing profile
-                    UserProfileUI.LogInPrompts();
+                    userId = UserProfileUI.LogInPrompts();
+    
                     break;
 
                     case 3: //Exit the application
@@ -48,10 +50,10 @@ public class Menus
                 validUserInput = false;
             }
         } while (!validUserInput);
-        InAppMainMenu(); //Is this where I'd call this or the Progrma.cs or somewhere else?
+        InAppMainMenu(userId); //Is this where I'd call this or the Progrma.cs or somewhere else?
     }
 
-    public static void InAppMainMenu()
+    public static void InAppMainMenu(Guid userId)
     {
         bool validUserInput;
         int userSelection;
@@ -73,10 +75,11 @@ public class Menus
                 switch(userSelection)
                 {
                     case 1: // Create new meal plan & grocery list
-                    MealPlanUI.DisplayNewMealPlan();
+                    MealPlanUI.CreateNewMealPlan(userId);
                     break;
 
-                    case 2: // View or modify existing meal plan   
+                    case 2: // View or modify existing meal plan
+                    MealPlanUI.GetExistingMealPlan(userId);
                     break;
 
                     case 3: // View or modify existing grocery list

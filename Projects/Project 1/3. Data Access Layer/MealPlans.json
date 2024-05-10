@@ -1,0 +1,16 @@
+{
+    "5eea60c6-0233-4a18-b00e-1e4c2a573205": {
+        "mealList": [
+            "Turkey BLTA Sandwich",
+            "Caprese Salad",
+            "Buffalo Chicken Stuffed Baked Potatoes",
+            "Pasta with Homemade Pesto",
+            "Chicken \u0026 Broccoli Stir Fry"
+        ],
+        "mondayMeal": "Turkey BLTA Sandwich",
+        "tuesdayMeal": "Caprese Salad",
+        "wednesdayMeal": "Buffalo Chicken Stuffed Baked Potatoes",
+        "thursdayMeal": "Pasta with Homemade Pesto",
+        "fridayMeal": "Chicken \u0026 Broccoli Stir Fry"
+    }
+}

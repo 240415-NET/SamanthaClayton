@@ -18,14 +18,14 @@ Meal planning app that allows the user to plan their meals for a week and then c
  - User can modify the list as needed
 
  ## User Stories/Features
- - Done:  As a user, I want to be able to create a profile and log in
+ - Done: As a user, I want to be able to create a profile and log in
     - Main menu that allows a user to choose to create a new profile or log in to an existing one
     - Use their selection to
         - Create a new profile & store it
         - Log in
 - Done: As a user, I want to be able to view the weekly meal plan
     - Create and display a meal plan from a pre-loaded list of meals
-- As a user, I want to be able to save my weekly meal plan & load it later
+- Done: As a user, I want to be able to save my weekly meal plan & load it later
 - As a user, I want to view my grocery list
     - When a new meal plan is generated
     - Also when I log in later
