@@ -38,6 +38,7 @@ public class MealPlansLogic
         List<Recipes> recipeListFromStorage = _mealsData.GetStoredMeals(randomIntegerList); // Calls the GetStoredMeals method and passes the random integer list to it
         List<Recipes> chosenRecipeList = new List<Recipes>();
         List<string> chosenMealNames = new List<string>();
+        List<Guid>chosenRecipeIds = new List<Guid>();
        
         try{
 
@@ -45,6 +46,7 @@ public class MealPlansLogic
             {
                chosenRecipeList.Add(recipeListFromStorage[randomIntegerList[i]]);  // Adds the recipe from 
                chosenMealNames.Add(chosenRecipeList[i].MealName);
+               chosenRecipeIds.Add(chosenRecipeList[i].recipeId);
             }
         }
         catch (Exception e)
@@ -53,7 +55,7 @@ public class MealPlansLogic
         
         
         
-        MealPlans newWeekOfMealsList = new MealPlans(chosenMealNames);
+        MealPlans newWeekOfMealsList = new MealPlans(chosenRecipeIds, chosenMealNames);
 
         return newWeekOfMealsList;
     }

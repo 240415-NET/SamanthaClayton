@@ -4,7 +4,7 @@ public class GroceryItems
 {
     public string itemName {get;set;} = "";
 
-    public double quantity {get;set;} = 1;
+    public double quantity {get;set;} = 0;
 
     public string unitOfMeasure {get;set;} = "";
 
@@ -15,7 +15,7 @@ public class GroceryItems
     public GroceryItems(string _itemName)
     {
         itemName = _itemName;
-        quantity = 1;
+        quantity = 0;
         unitOfMeasure = "";
         purchased = "no";
 

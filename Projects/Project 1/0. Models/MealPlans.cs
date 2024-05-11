@@ -1,10 +1,10 @@
-using System.Security.Principal;
-
 namespace Project1.Models;
 
 public class MealPlans
 {
-    public List<string>? mealList {get;set;}
+    public List<Guid> recipeIds {get;set;}
+    public List<string> mealNames {get; set;}
+    /*public List<string>? mealList {get;set;}
 
     //public Guid mondayMealGuid {get; set;}
 
@@ -25,7 +25,8 @@ public class MealPlans
 
     public string? fridayMeal {get; set;} = "";
 
-    public MealPlans(){}
+   */
+   public MealPlans(){}
 
 /*
     public MealPlans(string _mondayMeal, string _tuesdayMeal, string _wednesdayMeal, string _thursdayMeal, string _fridayMeal,
@@ -47,25 +48,11 @@ public class MealPlans
     }
 */
 
-    public MealPlans(string _mondayMeal, string _tuesdayMeal, string _wednesdayMeal, string _thursdayMeal, string _fridayMeal)
-    
+    public MealPlans(List<Guid> _recipeIds, List<string> _mealNames)
     {
-    mealList = [_mondayMeal, tuesdayMeal, _wednesdayMeal, _thursdayMeal, fridayMeal];
-    mondayMeal = _mondayMeal;
-    tuesdayMeal = _tuesdayMeal;
-    wednesdayMeal = _wednesdayMeal;
-    thursdayMeal = _thursdayMeal;
-    fridayMeal = _fridayMeal;
+        recipeIds = _recipeIds;
+        mealNames = _mealNames;
 
-    }
-    public MealPlans(List<string> _mealList)
-    {
-    mealList = _mealList;
-    mondayMeal = _mealList[0];
-    tuesdayMeal = _mealList[1];
-    wednesdayMeal = _mealList[2];
-    thursdayMeal = _mealList[3];
-    fridayMeal = _mealList[4];
     }
 
 }

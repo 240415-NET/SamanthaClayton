@@ -1,16 +1,1 @@
-{
-    "5eea60c6-0233-4a18-b00e-1e4c2a573205": {
-        "mealList": [
-            "Turkey BLTA Sandwich",
-            "Caprese Salad",
-            "Buffalo Chicken Stuffed Baked Potatoes",
-            "Pasta with Homemade Pesto",
-            "Chicken \u0026 Broccoli Stir Fry"
-        ],
-        "mondayMeal": "Turkey BLTA Sandwich",
-        "tuesdayMeal": "Caprese Salad",
-        "wednesdayMeal": "Buffalo Chicken Stuffed Baked Potatoes",
-        "thursdayMeal": "Pasta with Homemade Pesto",
-        "fridayMeal": "Chicken \u0026 Broccoli Stir Fry"
-    }
-}
+{"5eea60c6-0233-4a18-b00e-1e4c2a573205":{"recipeIds":["2a34e985-5c0b-4146-831e-6ef69df482e2","c79b5d2a-4a15-481d-9bdb-25a60b3a3b75","ebe25025-9bfa-4e44-a3bf-31d80ecef965","b508122f-c19c-4f3d-9b53-571e4f855104","f8638252-0ed1-442f-8d98-4e9b3f6e758b"],"mealNames":["Buffalo Chicken Stuffed Baked Potatoes","Caprese Salad","Grilled Cheese Sandwich","Chicken \u0026 Broccoli Stir Fry","Girl Dinner"]}}

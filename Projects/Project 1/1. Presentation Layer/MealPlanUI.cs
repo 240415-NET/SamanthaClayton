@@ -16,9 +16,9 @@ public class MealPlanUI
         MealPlans newUserMealPlan = MealPlansLogic.GenerateNewMealPlan();
         Console.WriteLine("Here's your meal plan!");
 
-        for (int i = 0; i < newUserMealPlan.mealList.Count(); i++)
+        for (int i = 0; i < newUserMealPlan.mealNames.Count(); i++)
         {
-            Console.WriteLine($"Day {i+1}: {newUserMealPlan.mealList[i]}");
+            Console.WriteLine($"Day {i+1}: {newUserMealPlan.mealNames[i]}");
 
         }
 
@@ -85,9 +85,9 @@ public class MealPlanUI
 
         Console.WriteLine("Here's your meal plan!");
 
-        for (int i = 0; i < existingUserMealPlan.mealList.Count(); i++)
+        for (int i = 0; i < existingUserMealPlan.mealNames.Count(); i++)
         {
-            Console.WriteLine($"Day {i+1}: {existingUserMealPlan.mealList[i]}");
+            Console.WriteLine($"Day {i+1}: {existingUserMealPlan.mealNames[i]}");
 
         }
 
@@ -115,6 +115,7 @@ public class MealPlanUI
 
                     case 2: // Save meal plan & view grocery list
                     MealPlansLogic.SaveMealPlan(userId, existingUserMealPlan);
+                    GroceryListUI.DisplayGroceryList(userId, existingUserMealPlan);
                     keepAlive = false;
                     break;
 

@@ -1,6 +1,11 @@
 using Project1.Models;
 using Project1.DataAccessLayer;
 using System.Runtime.CompilerServices;
+using System.Diagnostics.CodeAnalysis;
+using System.ComponentModel;
+using Microsoft.VisualBasic;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace Project1.LogicLayer;
 
@@ -10,52 +15,89 @@ public class GroceryListLogic
     private static IMealPlansStorageRepo _userMealPlanData = new JsonMealPlansStorage();
 
 
-    /*public static GroceryLists GetGroceryList(MealPlans userMealPlan)
+public static List<GroceryItems> GetGroceryList(MealPlans userMealPlan)
     {
-        GroceryLists userGroceryList = new GroceryLists();
-        List<GroceryItems> userGroceryItems = new List <GroceryItems>();
+        List<GroceryItems> IngredientListFromRecipes = new List<GroceryItems>();
 
-        Random randomNumber = new Random(); 
-
-        for (int i = 0; i<5; i++) // Create a list of 5 random numbers between [0 and 7) <-- not inclusive of 7
+        for (int i = 0; i<userMealPlan.mealNames.Count(); i++) 
         {
-            int randomInteger;
-            do
+           Guid recipeIdToFind = userMealPlan.recipeIds[i]; // Get the recipeId for each meal in the meal plan
+           List<GroceryItems> ingredientsFromRecipeToFind = _mealsData.RetrieveIngredientList(recipeIdToFind); // Retrieve the ingredient list from storage for each recipeId in the meal plan
+           
+           for (int j = 0; j<ingredientsFromRecipeToFind.Count(); j++)
             {
-                randomInteger = randomNumber.Next(0, totalNumberofMealsInStorage);
+                IngredientListFromRecipes.Add(ingredientsFromRecipeToFind[j]);
             }
-            while (randomIntegerList.Contains(randomInteger));
+        }
+
+
+        List<GroceryItems> compiledGroceryList = CompileIngredientLists(IngredientListFromRecipes);
+        return compiledGroceryList;
+        
+
+    }
+
+public static List<GroceryItems> CompileIngredientLists(List<GroceryItems> ingredientListFromRecipes)
+{
+    List<GroceryItems> compiledGroceryList = new List<GroceryItems>();
+    List<GroceryItems>intermediateList = new List<GroceryItems>();
+
+
+    for (int i = 0; i<ingredientListFromRecipes.Count(); i++) // Iterate through every item in the mega ingredient list that was compiled from each recipe
+    {
+        // If the compiledGroceryList isn't empty & if the current item already exists in our final grocery list, move on to the next item
+        bool itemAlreadyInCompiledList = compiledGroceryList.Any(groceryitem=>groceryitem.itemName == ingredientListFromRecipes[i].itemName);
+        if (itemAlreadyInCompiledList)
+        {
+
+               continue;
+        }
+
+        // If the current item doesn't already exist in our final grocery list, we're gonna need to add it,
+        // but we need to check if there are any other instances of the same item in our list.  If so,
+        // we'll need to combine them so we can have (for example) Chicken 2 pounds instead of Chicken 1 pound
+        // repeating twice if 2 recipes require 1 pound of chicken.
+       else
+        {
+            intermediateList.Clear();
+            intermediateList.Add(ingredientListFromRecipes[i]); // Add current item to an intermediate list
+            GroceryItems itemToAdd = new GroceryItems();
+
+
+            // Check the remaining ingredients to see if they have the same name as the current item we're looking at
+            // If so, add that item to our intermediate list
+            for (int j = i+1; j<ingredientListFromRecipes.Count(); j++) 
+            {
+                    if (ingredientListFromRecipes[i].itemName == ingredientListFromRecipes[j].itemName)
+                    {
+                        intermediateList.Add(ingredientListFromRecipes[j]);
+                    }
+            }
             
-            randomIntegerList.Add(randomInteger);
-
-        }
-
-
-        List<Recipes> recipeListFromStorage = _mealsData.GetStoredMeals(randomIntegerList); // Calls the GetStoredMeals method and passes the random integer list to it
-        List<Recipes> chosenRecipeList = new List<Recipes>();
-        List<string> chosenMealNames = new List<string>();
-       
-        try{
-
-        for (int i = 0; i < 5; i++)   // for each random integer we pass it, save the recipe at that index in a list
+            // The item to add is the item in the intermediate list with all the quantities summed up
+            itemToAdd.itemName = intermediateList[0].itemName;
+            itemToAdd.unitOfMeasure = intermediateList[0].unitOfMeasure;
+            itemToAdd.quantity = 0;
+            for (int k = 0; k<intermediateList.Count(); k++)
             {
-               chosenRecipeList.Add(recipeListFromStorage[randomIntegerList[i]]);  // Adds the recipe from 
-               chosenMealNames.Add(chosenRecipeList[i].MealName);
+                itemToAdd.quantity = itemToAdd.quantity + intermediateList[k].quantity;
             }
-        }
-        catch (Exception e)
-        {Console.WriteLine(e.Message);
-        Console.WriteLine(e.StackTrace);}
-        
-        
-        
-        MealPlans newWeekOfMealsList = new MealPlans(chosenMealNames);
 
-        return newWeekOfMealsList;
+            compiledGroceryList.Add(itemToAdd); // Add the item to the final grocery list
+
+    }
     }
 
 
-*/
+    return compiledGroceryList;
+
+
+    }
+    
+
+
+
+
 
 
 }
