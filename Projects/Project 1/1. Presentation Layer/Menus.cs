@@ -21,6 +21,7 @@ public class Menus
 
             try
             {
+                Console.Write("Selection: ");
                 userSelection = int.Parse(Console.ReadLine() ?? "");
                 validUserInput = true;
 
@@ -32,7 +33,6 @@ public class Menus
 
                     case 2: // Log into existing profile
                     userId = UserProfileUI.LogInPrompts();
-    
                     break;
 
                     case 3: //Exit the application
@@ -50,22 +50,25 @@ public class Menus
                 validUserInput = false;
             }
         } while (!validUserInput);
-        InAppMainMenu(userId); //Is this where I'd call this or the Progrma.cs or somewhere else?
+        InAppMainMenu(userId);
     }
 
     public static void InAppMainMenu(Guid userId)
     {
         bool validUserInput;
         int userSelection;
+        bool keepAlive = true;
+        MealPlans userMealPlan = new MealPlans();
 
         do
         {
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("1. Generate a new meal plan");
-            Console.WriteLine("2. View &/or modify an existing meal plan");
-            Console.WriteLine("3. View &/or modify an existing grocery list");
-            // Console.WriteLine("Add new recipe");
-            Console.WriteLine("4. Log out");
+            Console.WriteLine("2. Pull up existing meal plan");
+            Console.WriteLine("3. Edit existing meal plan");
+            Console.WriteLine("4. View current grocery list");
+            Console.WriteLine("5. Log out");
+            Console.Write("Selection: ");
 
             try
             {
@@ -75,21 +78,55 @@ public class Menus
                 switch(userSelection)
                 {
                     case 1: // Create new meal plan & grocery list
-                    MealPlanUI.CreateNewMealPlan(userId);
+                        userMealPlan = MealPlanUI.DisplayNewMealPlan(userId);
+                        keepAlive = true;
                     break;
 
-                    case 2: // View or modify existing meal plan
-                    MealPlanUI.GetExistingMealPlan(userId);
+                    case 2: // Pull up existing meal plan
+                        try
+                        {
+                            userMealPlan = MealPlanUI.DisplayExistingMealPlan(userId);
+                        }
+                       catch
+                        {
+                            Console.WriteLine("Oops! You don't have an existing meal plan. Please create one to view the grocery list.");
+                        }
+                        keepAlive = true;
                     break;
 
-                    case 3: // View or modify existing grocery list
+                    case 3: //Edit existing meal plan
+                        try
+                        {
+                            userMealPlan = MealPlanUI.DisplayExistingMealPlan(userId);
+                            MealPlanUI.ModifyExistingMealPlan(userId, userMealPlan);
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Oops! You don't have an existing meal plan. Please create one to view the grocery list.");
+                        }
+                        keepAlive = true;
                     break;
 
-                    case 4: // Log out
+                    case 4: //View current grocery list
+                        try
+                        {
+                            userMealPlan = MealPlanUI.DisplayExistingMealPlan(userId);
+                            GroceryListUI.DisplayGroceryList(userId, userMealPlan);
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Oops! You don't have an existing meal plan. Please create one to view the grocery list.");
+                        }
+                        keepAlive = true;
+                    break;
+
+                    case 5: // Log out
+                        keepAlive = false;
                     break;
 
                     default:
                         Console.WriteLine("Please enter a valid selection.");
+                        Console.ReadLine();
                         validUserInput = false;
                         break;
                 }
@@ -99,9 +136,8 @@ public class Menus
                 Console.WriteLine($"{exception.Message}\nPlease enter a valid selection.");
                 validUserInput = false;
             }
-        } while (!validUserInput);
+        
+        } while (!validUserInput || keepAlive);
     }
-
-
     
 }

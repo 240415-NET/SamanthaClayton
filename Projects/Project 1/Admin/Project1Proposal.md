@@ -85,9 +85,9 @@ Meal planning app that allows the user to plan their meals for a week and then c
     - LogInPrompts()
 
 - MealPlansUI Class
-    - CreateNewMealPlan()
-    - GetExistingMealPlan()
-    - ModifyMealPlanPrompts() - NOT ADDED YET
+    - DisplayNewMealPlan()
+    - DisplayExistingMealPlan()
+    - ModifyExistingMealPlan(): Change this to use the GenerateNewMeals() method in MealPlansLogic
 
 - GroceryListUI Class
     - DisplayGroceryList()
@@ -97,22 +97,27 @@ Meal planning app that allows the user to plan their meals for a week and then c
     - CreateNewUser()
     - CheckIfUserExists()
     - FindExistingUsers()
+
 - MealPlansLogic Class
-    - GenerateNewMealPlan()
+    - GenerateNewMeals()
     - SaveMealPlan()
     - GetMealPlan()
-    - ModifyMealPlan() - NOT ADDED YET
+    - ViewAllMeals()
+
 - GroceryListLogic Class
     - GetGroceryList()
     - CompileIngredientList()
 
 ## Data Access Layer
-- UsersStorage Class
+- JsonUsersStorage Class
     - StoreNewUser()
     - SearchUsersStorage()
-- MealPlansStorage Class
+
+- JsonMealPlansStorage Class
     - StoreMealPlan()
     - RetrieveUserMealPlan()
-- MealsSorage Class
-    - GetStoredMeals() - could change this to get 1 meal & have logic layer loop it
+
+- JsonMealsSorage Class
+    - RetrieveStoredMeal()
     - RetrieveIngredientList()
+    - RetrieveAllMeals()

@@ -36,6 +36,9 @@ public class UserProfileUI
                 userId = newUser.userId;
             }
         } while (!validUserInput);
+        Console.WriteLine("Hit enter to continue.");
+        Console.ReadLine();
+        Console.Clear();
         return userId;
 
     }
@@ -61,6 +64,7 @@ public class UserProfileUI
                 Console.WriteLine("Profile does not exist. Please try again.");
                 validUserInput = false;
             }
+            else
             {        
                 Users currentUser = UsersLogic.FindExistingUser(userInput);
                 validUserInput = true;
@@ -71,6 +75,9 @@ public class UserProfileUI
             }
 
         } while (!validUserInput);
+        Console.WriteLine("Hit enter to continue.");
+        Console.ReadLine(); 
+        Console.Clear();
         return userId;
     }
 

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Runtime.Intrinsics.Arm;
 using Project1.LogicLayer;
 using Project1.Models;
 
@@ -7,139 +8,169 @@ namespace Project1.PresentationLayer;
 public class MealPlanUI
 {
 
-    public static Guid CreateNewMealPlan(Guid userId)
+    public static MealPlans DisplayNewMealPlan(Guid userId)
     {
-        bool keepAlive = true;
+        bool generateAgain = true;
+        bool validUserInput = true;
+        MealPlans newUserMealPlan = new MealPlans();
+
         do
-        {
-        Console.Clear();
-        MealPlans newUserMealPlan = MealPlansLogic.GenerateNewMealPlan();
+        {Console.Clear();
+        newUserMealPlan = MealPlansLogic.GenerateNewMeals(5);
         Console.WriteLine("Here's your meal plan!");
 
         for (int i = 0; i < newUserMealPlan.mealNames.Count(); i++)
         {
-            Console.WriteLine($"Day {i+1}: {newUserMealPlan.mealNames[i]}");
-
+            Console.WriteLine($"Day {i + 1}: {newUserMealPlan.mealNames[i]}");
         }
+        Console.WriteLine("\n\n");
 
-        bool validUserInput;
-        int userSelection;
-
-        do
+        Console.WriteLine("Enter 1 to save your meal plan or 2 to generate a new one.");
+        Console.Write("Selection: ");
+        try
         {
-            Console.WriteLine("\n\n\n\n\nWhat would you like to do?");
-            Console.WriteLine("1. Generate a new meal plan");
-            Console.WriteLine("2. Save this meal plan & view the grocery list");
-            Console.WriteLine("3. Log out");
-
-
-            try
+            int userSelection = int.Parse(Console.ReadLine() ?? "");
+            switch(userSelection)
             {
-                userSelection = int.Parse(Console.ReadLine() ?? "");
-                validUserInput = true;
-                keepAlive=true;
+                case 1:
+                generateAgain = false;
+                MealPlansLogic.SaveMealPlan(userId, newUserMealPlan);
 
-                switch(userSelection)
-                {
-                    case 1: // Create new meal plan & grocery list
-                    break;
+                Console.Clear();
+                break;
+                
+                case 2:
+                generateAgain = true;
+                Console.Clear();
+                break;
 
-                    case 2: // Save meal plan & view grocery list
-                    MealPlansLogic.SaveMealPlan(userId, newUserMealPlan);
-                    keepAlive = false;
-                    break;
-
-                    case 3: //Exit the app
-                    keepAlive = false;
-                    break;
-
-                    default:
-                        Console.WriteLine("Please enter a valid selection.");
-                        validUserInput = false;
-                        break;
-                }
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine($"{exception.Message}\nPlease enter a valid selection.");
+                default:
+                Console.WriteLine("Please enter a valid selection");
                 validUserInput = false;
-                keepAlive=true;
+                break;
             }
+        }
+        catch
+        {
+           Console.WriteLine("Please enter a valid selection");
+            validUserInput = false;
+        }
+        } while (!validUserInput || generateAgain);
 
-        } while (!validUserInput);
-    } while (keepAlive);
-    return userId;
+        return newUserMealPlan;
     }
 
-
-    public static Guid GetExistingMealPlan(Guid userId)
+    public static MealPlans DisplayExistingMealPlan(Guid userId)
     {
-        
-        MealPlans existingUserMealPlan = MealPlansLogic.GetMealPlan(userId);
-
-
-        bool keepAlive = true;
-        do
-        {
         Console.Clear();
-
+        MealPlans existingUserMealPlan = MealPlansLogic.GetMealPlan(userId);
         Console.WriteLine("Here's your meal plan!");
 
         for (int i = 0; i < existingUserMealPlan.mealNames.Count(); i++)
         {
-            Console.WriteLine($"Day {i+1}: {existingUserMealPlan.mealNames[i]}");
-
+            Console.WriteLine($"Day {i + 1}: {existingUserMealPlan.mealNames[i]}");
         }
+        Console.WriteLine("\n\n");
 
+
+        return existingUserMealPlan;
+    }
+
+    public static Guid ModifyExistingMealPlan(Guid userId, MealPlans userMealPlan)
+    {
+        Console.WriteLine("Select the meal you want to change or enter 6 to return to the previous menu.");
+
+        bool keepAlive = true;
         bool validUserInput;
         int userSelection;
-
+        int daySelectionIndex = 0;
         do
         {
-            Console.WriteLine("\n\n\n\n\nWhat would you like to do?");
-            Console.WriteLine("1. Generate a new meal plan");
-            Console.WriteLine("2. Save this meal plan & view the grocery list");
-            Console.WriteLine("3. Log out");
-
-
             try
             {
+                Console.Write("Selection: ");
                 userSelection = int.Parse(Console.ReadLine() ?? "");
                 validUserInput = true;
-                keepAlive=true;
+                keepAlive = true;
+                daySelectionIndex = userSelection-1;
 
-                switch(userSelection)
+                if (daySelectionIndex == 5)
                 {
-                    case 1: // Create new meal plan & grocery list
-                    break;
-
-                    case 2: // Save meal plan & view grocery list
-                    MealPlansLogic.SaveMealPlan(userId, existingUserMealPlan);
-                    GroceryListUI.DisplayGroceryList(userId, existingUserMealPlan);
                     keepAlive = false;
-                    break;
-
-                    case 3: //Exit the app
-                    keepAlive = false;
-                    break;
-
-                    default:
-                        Console.WriteLine("Please enter a valid selection.");
-                        validUserInput = false;
-                        break;
+                    Console.Clear();
+                    return userId;
+                }
+                else if (daySelectionIndex > 4 || daySelectionIndex < 0)
+                {
+                    validUserInput = false;
+                    Console.WriteLine("Please enter a valid selection.");
                 }
             }
             catch (Exception exception)
             {
                 Console.WriteLine($"{exception.Message}\nPlease enter a valid selection.");
                 validUserInput = false;
-                keepAlive=true;
+                keepAlive = true;
             }
 
-        } while (!validUserInput);
-    } while (keepAlive);
-    return userId;
-    }
+        } while (!validUserInput && keepAlive);
+
+        List<Recipes> allRecipesInStorage = MealPlansLogic.ViewAllMeals();
+        for (int i = 0; i<allRecipesInStorage.Count(); i++)
+        {
+            Console.WriteLine($"{i+1}. {allRecipesInStorage[i].MealName}");
+        }
+
+        Console.Write("Which meal do you want to cook instead?: ");
+        
+        bool validUserInput2;
+        int userSelection2;
+        bool keepAlive2;
+
+        do
+        {
+
+            try
+            {
+                userSelection = int.Parse(Console.ReadLine() ?? "");
+                validUserInput = true;
+                
+                int userSelectionIndex = userSelection-1;
+
+
+                if (userSelectionIndex>allRecipesInStorage.Count())
+                {validUserInput = false;
+                Console.WriteLine("Please enter a valid selection.");}
+
+                else{
+
+                userMealPlan.recipeIds[daySelectionIndex] = allRecipesInStorage[userSelectionIndex].recipeId;
+                userMealPlan.mealNames[daySelectionIndex] = allRecipesInStorage[userSelectionIndex].MealName;
+                keepAlive = true;
+                MealPlansLogic.SaveMealPlan(userId, userMealPlan);
+
+                Console.WriteLine("Your change has been saved!");
+                Console.WriteLine("Hit enter to continue.");
+                Console.ReadLine();
+                Console.Clear();
+                }
+
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($"{exception.Message}\nPlease enter a valid selection.");
+                validUserInput = false;
+            }
+        } while (!validUserInput && keepAlive);
+        
+
+
+        
+        return userId;
+
 
     }
+
+
+}
 

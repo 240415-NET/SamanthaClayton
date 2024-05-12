@@ -1,6 +1,5 @@
 using Project1.Models;
 using Project1.DataAccessLayer;
-using System.Runtime.CompilerServices;
 
 namespace Project1.LogicLayer;
 
@@ -10,10 +9,7 @@ public class MealPlansLogic
     private static IMealsStorageRepo _mealsData = new JsonMealsStorage();
     private static IMealPlansStorageRepo _userMealPlanData = new JsonMealPlansStorage();
 
-
-    public static MealPlans GenerateNewMealPlan()
-    {
-
+    public static MealPlans GenerateNewMeals(int numberOfMealsToGet){
         List<int> randomIntegerList = new List<int>();
         int totalNumberofMealsInStorage = 7; // should I do GetStoredMeals.count and call the data access layer here and then again below?
 
@@ -21,7 +17,7 @@ public class MealPlansLogic
         //These numbers will be used as indices to select meals at random from the stored meals list
         Random randomNumber = new Random(); 
 
-        for (int i = 0; i<5; i++) // Create a list of 5 random numbers between [0 and 7) <-- not inclusive of 7
+        for (int i = 0; i< numberOfMealsToGet; i++) // Create a list of 5 random numbers between [0 and 7) <-- not inclusive of 7
         {
             int randomInteger;
             do
@@ -35,14 +31,14 @@ public class MealPlansLogic
         }
 
 
-        List<Recipes> recipeListFromStorage = _mealsData.GetStoredMeals(randomIntegerList); // Calls the GetStoredMeals method and passes the random integer list to it
+        List<Recipes> recipeListFromStorage = _mealsData.RetrieveMeals(); // Calls the GetStoredMeals method and passes the random integer list to it
         List<Recipes> chosenRecipeList = new List<Recipes>();
         List<string> chosenMealNames = new List<string>();
         List<Guid>chosenRecipeIds = new List<Guid>();
        
         try{
 
-        for (int i = 0; i < 5; i++)   // for each random integer we pass it, save the recipe at that index in a list
+        for (int i = 0; i < numberOfMealsToGet; i++)   // for each random integer we pass it, save the recipe at that index in a list
             {
                chosenRecipeList.Add(recipeListFromStorage[randomIntegerList[i]]);  // Adds the recipe from 
                chosenMealNames.Add(chosenRecipeList[i].MealName);
@@ -54,12 +50,10 @@ public class MealPlansLogic
         Console.WriteLine(e.StackTrace);}
         
         
-        
-        MealPlans newWeekOfMealsList = new MealPlans(chosenRecipeIds, chosenMealNames);
+        MealPlans newMealList = new MealPlans(chosenRecipeIds, chosenMealNames);
 
-        return newWeekOfMealsList;
+        return newMealList;
     }
-
 
 public static void SaveMealPlan(Guid userId, MealPlans userMealPlan)
     {
@@ -76,6 +70,12 @@ public static MealPlans GetMealPlan (Guid userId)
 
     }
 
+public static List<Recipes> ViewAllMeals()
+{
+    List<Recipes> allRecipesInStorage = _mealsData.RetrieveMeals();
+    return allRecipesInStorage;
+
+}
 
 
 }

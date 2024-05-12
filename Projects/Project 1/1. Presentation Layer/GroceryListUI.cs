@@ -1,3 +1,7 @@
+using System.Collections;
+using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+using System.Runtime.Intrinsics.Arm;
 using Project1.LogicLayer;
 
 namespace Project1.Models;
@@ -8,7 +12,8 @@ public class GroceryListUI
 
 public static Guid DisplayGroceryList (Guid userId, MealPlans userMealPlan)
     {
-    
+       
+
         Console.WriteLine("Here's your grocery list!");
 
         Console.WriteLine("Item Name\t\t\tQuantity");
@@ -25,7 +30,10 @@ public static Guid DisplayGroceryList (Guid userId, MealPlans userMealPlan)
 
         }
 
-
+        Console.WriteLine("Hit enter to continue.");
+        Console.ReadLine();
+        Console.Clear();
+        
         return userId;
     }
 }
