@@ -12,12 +12,13 @@ public class Menus
         int userSelection;
         Guid userId = Guid.NewGuid();
 
+        Console.WriteLine("What would you like to do?");
+        Console.WriteLine("1. Create new profile");
+        Console.WriteLine("2. Log into existing profile");
+        Console.WriteLine("3. Exit");
         do
         {
-            Console.WriteLine("What would you like to do?");
-            Console.WriteLine("1. Create new profile");
-            Console.WriteLine("2. Log into existing profile");
-            Console.WriteLine("3. Exit");
+
 
             try
             {

@@ -7,7 +7,7 @@ public class JsonMealPlansStorage : IMealPlansStorageRepo
 {
     public readonly static string _filePath = "./3. Data Access Layer/MealPlans.json";
 
-    public void StoreMealPlan(Guid userId, MealPlans userMealPlan)
+    public void StoreUserMealPlan(Guid userId, MealPlans userMealPlan)
     {
         Dictionary<Guid, MealPlans> userMealPlanDictionary = new Dictionary<Guid, MealPlans>();
 

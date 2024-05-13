@@ -6,13 +6,12 @@ namespace Project1.LogicLayer;
 public class MealPlansLogic
 {
 
-    private static IMealsStorageRepo _mealsData = new JsonMealsStorage();
     private static IMealPlansStorageRepo _userMealPlanData = new JsonMealPlansStorage();
 
     
     public static void SaveMealPlan(Guid userId, MealPlans userMealPlan)
         {
-            _userMealPlanData.StoreMealPlan(userId, userMealPlan);
+            _userMealPlanData.StoreUserMealPlan(userId, userMealPlan);
 
         }
 
