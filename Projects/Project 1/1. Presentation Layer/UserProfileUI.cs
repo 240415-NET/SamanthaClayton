@@ -66,7 +66,7 @@ public class UserProfileUI
             }
             else
             {        
-                Users currentUser = UsersLogic.FindExistingUser(userInput);
+                Users currentUser = UsersLogic.GetExistingUser(userInput);
                 validUserInput = true;
                 Console.WriteLine("Profile found! You are now logged in.");
                 Console.WriteLine($"Username: {currentUser.userName}");

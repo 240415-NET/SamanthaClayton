@@ -27,7 +27,7 @@ public class UsersLogic
         }
     }
 
-    public static Users FindExistingUser(string userName)
+    public static Users GetExistingUser(string userName)
     {
         Users existingUser = _userData.RetrieveStoredUser(userName);
         return existingUser;

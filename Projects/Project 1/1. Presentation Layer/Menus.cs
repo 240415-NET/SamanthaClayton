@@ -1,3 +1,4 @@
+using Project1.LogicLayer;
 using Project1.Models;
 
 namespace Project1.PresentationLayer;
@@ -70,6 +71,7 @@ public class Menus
             Console.WriteLine("5. Log out");
             Console.Write("Selection: ");
 
+            do{
             try
             {
                 userSelection = int.Parse(Console.ReadLine() ?? "");
@@ -83,51 +85,58 @@ public class Menus
                     break;
 
                     case 2: // Pull up existing meal plan
-                        try
-                        {
+                        if (MealPlansLogic.CheckIfMealPlanExists(userId) == false)
+                            {
+                                Console.WriteLine("Oops! You don't have an existing meal plan. Please create one to view the grocery list.");
+                                validUserInput = false;}
+                            else
+                            {
                             userMealPlan = MealPlanUI.DisplayExistingMealPlan(userId);
-                        }
-                       catch
-                        {
-                            Console.WriteLine("Oops! You don't have an existing meal plan. Please create one to view the grocery list.");
-                        }
+                            validUserInput = true;
+                            }
                         keepAlive = true;
                     break;
 
                     case 3: //Edit existing meal plan
-                        try
+                        
+                        if(MealPlansLogic.CheckIfMealPlanExists(userId) == false)
                         {
-                           // userMealPlan = MealPlanUI.DisplayExistingMealPlan(userId);
-                            MealPlanUI.ModifyExistingMealPlan(userId);//commented out userMealPlan
+                                Console.WriteLine("Oops! You don't have an existing meal plan. Please create one to view the grocery list.");
+                                validUserInput = false;
                         }
-                        catch
+                        else
                         {
-                            Console.WriteLine("Oops! You don't have an existing meal plan. Please create one to view the grocery list.");
+                            MealPlanUI.ModifyExistingMealPlan(userId);
+                            validUserInput = true;
                         }
                         keepAlive = true;
                     break;
 
                     case 4: //View current grocery list
-                        try
+                        
+                        if(MealPlansLogic.CheckIfMealPlanExists(userId) == false)
+                        {
+                                Console.WriteLine("Oops! You don't have an existing meal plan. Please create one to view the grocery list.");
+                                validUserInput = false;
+                        }
+                        else
                         {
                             userMealPlan = MealPlanUI.DisplayExistingMealPlan(userId);
                             GroceryListUI.DisplayGroceryList(userId, userMealPlan);
-                        }
-                        catch
-                        {
-                            Console.WriteLine("Oops! You don't have an existing meal plan. Please create one to view the grocery list.");
+                            validUserInput = true;
                         }
                         keepAlive = true;
                     break;
 
                     case 5: // Log out
                         keepAlive = false;
+                        validUserInput = true;
                     break;
 
                     default:
                         Console.WriteLine("Please enter a valid selection.");
-                        Console.ReadLine();
                         validUserInput = false;
+                        keepAlive = true;
                         break;
                 }
             }
@@ -136,8 +145,8 @@ public class Menus
                 Console.WriteLine($"{exception.Message}\nPlease enter a valid selection.");
                 validUserInput = false;
             }
-        
-        } while (!validUserInput || keepAlive);
+            } while (!validUserInput);
+        } while (keepAlive);
     }
     
 }

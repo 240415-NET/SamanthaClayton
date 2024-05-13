@@ -24,6 +24,17 @@ public class MealPlansLogic
 
         }
 
+    public static bool CheckIfMealPlanExists(Guid userId)
+    {
+        if(_userMealPlanData.RetrieveUserMealPlan(userId) != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 
 }
