@@ -17,7 +17,7 @@ public class UsersLogic
 
     public static bool CheckIfUserExists(string userName)
     {
-        if(_userData.SearchUsersStorage(userName) != null)
+        if(_userData.RetrieveStoredUser(userName) != null)
         {
             return true;
         }
@@ -29,7 +29,7 @@ public class UsersLogic
 
     public static Users FindExistingUser(string userName)
     {
-        Users existingUser = _userData.SearchUsersStorage(userName);
+        Users existingUser = _userData.RetrieveStoredUser(userName);
         return existingUser;
     }
 

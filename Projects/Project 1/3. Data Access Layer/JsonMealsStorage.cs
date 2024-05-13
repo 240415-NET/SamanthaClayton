@@ -24,7 +24,7 @@ public class JsonMealsStorage : IMealsStorageRepo
     }
 
 
-    public List<Recipes> RetrieveMeals()
+    public List<Recipes> RetrieveStoredMeals()
     {
         List<GroceryItems> IngredientListFromStorage = new List<GroceryItems>();
         List<Recipes> allRecipesInStorage = new List<Recipes>();

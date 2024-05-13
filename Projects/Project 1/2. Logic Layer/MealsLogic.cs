@@ -12,7 +12,7 @@ public class MealsLogic
     // If you call GetStoredMeals with no arguments, you get all meals in storage
     public static List<Recipes> GetStoredMeals()
     {
-        List<Recipes> allRecipesInStorage = _mealsData.RetrieveMeals();
+        List<Recipes> allRecipesInStorage = _mealsData.RetrieveStoredMeals();
         return allRecipesInStorage;
 
     }
@@ -41,7 +41,7 @@ public class MealsLogic
         }
 
 
-        List<Recipes> recipeListFromStorage = _mealsData.RetrieveMeals(); //  Retrieves all meals from storage
+        List<Recipes> recipeListFromStorage = _mealsData.RetrieveStoredMeals(); //  Retrieves all meals from storage
         List<Recipes> chosenRecipeList = new List<Recipes>();
         List<string> chosenMealNames = new List<string>();
         List<Guid>chosenRecipeIds = new List<Guid>();

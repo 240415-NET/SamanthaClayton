@@ -1,19 +1,11 @@
 using Project1.Models;
 using Project1.DataAccessLayer;
-using System.Runtime.CompilerServices;
-using System.Diagnostics.CodeAnalysis;
-using System.ComponentModel;
-using Microsoft.VisualBasic;
-using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace Project1.LogicLayer;
 
 public class GroceryListLogic
 {
     private static IMealsStorageRepo _mealsData = new JsonMealsStorage();
-    private static IMealPlansStorageRepo _userMealPlanData = new JsonMealPlansStorage();
-
 
     public static List<GroceryItems> GetGroceryList(MealPlans userMealPlan)
         {

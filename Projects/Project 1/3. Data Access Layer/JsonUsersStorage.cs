@@ -27,7 +27,7 @@ public class JsonUsersStorage : IUsersStorageRepo
     }
 
 
-    public Users SearchUsersStorage(string userNameToFind)
+    public Users RetrieveStoredUser(string userNameToFind)
     {
         Users existingUser = new Users();
 

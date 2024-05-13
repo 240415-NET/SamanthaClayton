@@ -1,6 +1,6 @@
-using System.ComponentModel.DataAnnotations;
 using Project1.LogicLayer;
 using Project1.Models;
+
 namespace Project1.PresentationLayer;
 
 public class UserProfileUI

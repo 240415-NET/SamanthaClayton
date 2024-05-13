@@ -81,12 +81,14 @@ public class MealPlanUI
     public static Guid ModifyExistingMealPlan(Guid userId)
     {
         // Display the current meal plan to the uesr
-        MealPlans userMealPlan = MealPlanUI.DisplayExistingMealPlan(userId);
+        MealPlans userMealPlan = DisplayExistingMealPlan(userId);
 
         // Have the user choose which meal to modify
         int selectedMealToModify = SelectMealToModify(userMealPlan);
 
-        // Rename MealPlansLogic method ViewAllMeals() to MealLogic GetAllMeals()
+        // Could have a separate method in Meals.cs to DisplayAllMeals that
+        // calls the MealsLogic.cs method named GetStoredMeals()
+        // (instead of calling this in SelectReplacementMeal)
 
         // Have the user select the meal they want to cook instead
         userMealPlan = SelectReplacementMeal(userMealPlan, selectedMealToModify);

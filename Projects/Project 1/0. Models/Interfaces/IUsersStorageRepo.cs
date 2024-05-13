@@ -4,7 +4,7 @@ public interface IUsersStorageRepo
 {
     public void StoreNewUser(Users newUser);
 
-    public Users SearchUsersStorage(string userNameToFind);
+    public Users RetrieveStoredUser(string userNameToFind);
 
 
 }

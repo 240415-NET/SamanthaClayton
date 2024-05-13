@@ -6,7 +6,7 @@ public interface IMealsStorageRepo
 
       public List<GroceryItems> RetrieveIngredientList (Guid recipeIdToFind);
 
-      public List<Recipes> RetrieveMeals();
+      public List<Recipes> RetrieveStoredMeals();
 
 
 }
