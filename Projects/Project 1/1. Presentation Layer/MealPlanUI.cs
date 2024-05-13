@@ -1,5 +1,3 @@
-using System.Diagnostics;
-using System.Runtime.Intrinsics.Arm;
 using Project1.LogicLayer;
 using Project1.Models;
 
@@ -16,7 +14,7 @@ public class MealPlanUI
 
         do
         {Console.Clear();
-        newUserMealPlan = MealPlansLogic.GenerateNewMeals(5);
+        newUserMealPlan = MealsLogic.GetStoredMeals(5);
         Console.WriteLine("Here's your meal plan!");
 
         for (int i = 0; i < newUserMealPlan.mealNames.Count(); i++)
@@ -27,6 +25,8 @@ public class MealPlanUI
 
         Console.WriteLine("Enter 1 to save your meal plan or 2 to generate a new one.");
         Console.Write("Selection: ");
+
+        do {
         try
         {
             int userSelection = int.Parse(Console.ReadLine() ?? "");
@@ -34,6 +34,7 @@ public class MealPlanUI
             {
                 case 1:
                 generateAgain = false;
+                validUserInput = true;
                 MealPlansLogic.SaveMealPlan(userId, newUserMealPlan);
 
                 Console.Clear();
@@ -41,6 +42,7 @@ public class MealPlanUI
                 
                 case 2:
                 generateAgain = true;
+                validUserInput = true;
                 Console.Clear();
                 break;
 
@@ -55,8 +57,8 @@ public class MealPlanUI
            Console.WriteLine("Please enter a valid selection");
             validUserInput = false;
         }
+        }while(!validUserInput);
         } while (!validUserInput || generateAgain);
-
         return newUserMealPlan;
     }
 
@@ -76,14 +78,40 @@ public class MealPlanUI
         return existingUserMealPlan;
     }
 
-    public static Guid ModifyExistingMealPlan(Guid userId, MealPlans userMealPlan)
+    public static Guid ModifyExistingMealPlan(Guid userId)
     {
+        // Display the current meal plan to the uesr
+        MealPlans userMealPlan = MealPlanUI.DisplayExistingMealPlan(userId);
+
+        // Have the user choose which meal to modify
+        int selectedMealToModify = SelectMealToModify(userMealPlan);
+
+        // Rename MealPlansLogic method ViewAllMeals() to MealLogic GetAllMeals()
+
+        // Have the user select the meal they want to cook instead
+        userMealPlan = SelectReplacementMeal(userMealPlan, selectedMealToModify);
+
+        // Save the user's changes to their meal plan        
+        MealPlansLogic.SaveMealPlan(userId, userMealPlan);
+
+        // Confirm to the user that the changes have been made
+        Console.WriteLine("Your change has been saved!");
+        Console.WriteLine("Hit enter to continue.");
+        Console.ReadLine();
+        Console.Clear();
+                
+        return userId;
+    }
+
+    public static int SelectMealToModify(MealPlans userMealPlan)
+    {
+        // Have the user select the meal to change
         Console.WriteLine("Select the meal you want to change or enter 6 to return to the previous menu.");
 
         bool keepAlive = true;
         bool validUserInput;
         int userSelection;
-        int daySelectionIndex = 0;
+        int selectedMealToModify = 0;
         do
         {
             try
@@ -92,15 +120,15 @@ public class MealPlanUI
                 userSelection = int.Parse(Console.ReadLine() ?? "");
                 validUserInput = true;
                 keepAlive = true;
-                daySelectionIndex = userSelection-1;
+                selectedMealToModify = userSelection-1;
 
-                if (daySelectionIndex == 5)
+                if (selectedMealToModify == 5)
                 {
                     keepAlive = false;
                     Console.Clear();
-                    return userId;
+
                 }
-                else if (daySelectionIndex > 4 || daySelectionIndex < 0)
+                else if (selectedMealToModify > 4 || selectedMealToModify < 0)
                 {
                     validUserInput = false;
                     Console.WriteLine("Please enter a valid selection.");
@@ -115,17 +143,26 @@ public class MealPlanUI
 
         } while (!validUserInput && keepAlive);
 
-        List<Recipes> allRecipesInStorage = MealPlansLogic.ViewAllMeals();
+        return selectedMealToModify;
+    }
+
+public static MealPlans SelectReplacementMeal(MealPlans userMealPlan, int selectedMealToModify)
+{
+    List<Recipes> allRecipesInStorage = MealsLogic.GetStoredMeals();
         for (int i = 0; i<allRecipesInStorage.Count(); i++)
         {
             Console.WriteLine($"{i+1}. {allRecipesInStorage[i].MealName}");
         }
 
+        // Ask for new input
         Console.Write("Which meal do you want to cook instead?: ");
         
-        bool validUserInput2;
-        int userSelection2;
-        bool keepAlive2;
+        bool validUserInput;
+        int userSelection;
+
+        if (selectedMealToModify == 5)
+        {return userMealPlan;}
+        else{
 
         do
         {
@@ -142,17 +179,11 @@ public class MealPlanUI
                 {validUserInput = false;
                 Console.WriteLine("Please enter a valid selection.");}
 
-                else{
+                else
+                {
 
-                userMealPlan.recipeIds[daySelectionIndex] = allRecipesInStorage[userSelectionIndex].recipeId;
-                userMealPlan.mealNames[daySelectionIndex] = allRecipesInStorage[userSelectionIndex].MealName;
-                keepAlive = true;
-                MealPlansLogic.SaveMealPlan(userId, userMealPlan);
-
-                Console.WriteLine("Your change has been saved!");
-                Console.WriteLine("Hit enter to continue.");
-                Console.ReadLine();
-                Console.Clear();
+                userMealPlan.recipeIds[selectedMealToModify] = allRecipesInStorage[userSelectionIndex].recipeId;
+                userMealPlan.mealNames[selectedMealToModify] = allRecipesInStorage[userSelectionIndex].MealName;
                 }
 
             }
@@ -161,16 +192,9 @@ public class MealPlanUI
                 Console.WriteLine($"{exception.Message}\nPlease enter a valid selection.");
                 validUserInput = false;
             }
-        } while (!validUserInput && keepAlive);
-        
-
-
-        
-        return userId;
-
-
-    }
-
-
+        } while (!validUserInput);
+        }
+        return userMealPlan;
+}
 }
 

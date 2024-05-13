@@ -97,8 +97,8 @@ public class Menus
                     case 3: //Edit existing meal plan
                         try
                         {
-                            userMealPlan = MealPlanUI.DisplayExistingMealPlan(userId);
-                            MealPlanUI.ModifyExistingMealPlan(userId, userMealPlan);
+                           // userMealPlan = MealPlanUI.DisplayExistingMealPlan(userId);
+                            MealPlanUI.ModifyExistingMealPlan(userId);//commented out userMealPlan
                         }
                         catch
                         {

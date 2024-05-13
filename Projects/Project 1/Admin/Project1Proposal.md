@@ -31,7 +31,7 @@ Meal planning app that allows the user to plan their meals for a week and then c
     - Select day to change
     - View all meals -or- randomly generate a new one?
 - Change to a DTO?
-- Repeat menus
+- Done: Repeat menus
 - Modify the ToStrings for 
     - MealPlans class to display the meal plan instead of handling it in the MealPlanUI.cs
     - GroceryList class
