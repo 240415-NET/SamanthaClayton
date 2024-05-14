@@ -44,18 +44,73 @@ ORDER BY SalesTotal;
 
 -- JOINS CHALLENGES
 -- Show all invoices of customers from brazil (mailing address not billing)
+	SELECT Invoice.*, Customer.Country
+	FROM Customer
+	LEFT JOIN Invoice
+	ON Invoice.CustomerId = Customer.CustomerId
+	WHERE Customer.Country = 'Brazil';
+
 
 -- Show all invoices together with the name of the sales agent for each one
+	SELECT Invoice.*, Customer.SupportRepId, Employee.FirstName, Employee.LastName
+	FROM Invoice
+	LEFT JOIN Customer
+	ON Invoice.CustomerId = Customer.CustomerId
+	LEFT JOIN Employee
+	ON Customer.SupportRepId = Employee.EmployeeId;
 
 -- Show all playlists ordered by the total number of tracks they have
+	SELECT PlaylistId, COUNT(TrackId) as TrackCount
+	FROM PlaylistTrack
+	GROUP BY PlaylistId
+	ORDER BY TrackCount;
 
 -- Which sales agent made the most sales in 2009?
+	SELECT SUM(Invoice.Total), Employee.EmployeeId, Employee.FirstName, Employee.LastName
+	FROM Employee
+	LEFT JOIN Customer
+	ON Employee.EmployeeId = Customer.SupportRepId
+	LEFT JOIN Invoice
+	ON Customer.CustomerId = Invoice.CustomerId
+	AND YEAR(Invoice.InvoiceDate) = 2009
+	GROUP BY Employee.EmployeeId, Employee.FirstName, Employee.LastName;
+
 
 -- How many customers are assigned to each sales agent?
 
--- Which track was purchased the most ing 20010?
+SELECT Employee.EmployeeId, Employee.FirstName, Employee.LastName, COUNT(CustomerId) as CustomerCount
+FROM Employee
+LEFT JOIN Customer
+On Employee.EmployeeId = Customer.SupportRepId
+GROUP BY Employee.EmployeeId, Employee.FirstName, Employee.LastName;
+
+-- Which track was purchased the most in 20010?
+SELECT TOP 1
+SUM(InvoiceLine.TrackId) as NumberOfPurchases, Track.Name
+FROM Invoice
+LEFT JOIN
+InvoiceLine
+ON Invoice.InvoiceId = InvoiceLine.InvoiceId
+and YEAR (InvoiceDate) = 2010
+LEFT JOIN
+Track
+On InvoiceLine.TrackId = Track.TrackId
+GROUP BY Track.Name
+ORDER BY NumberOfPurchases DESC;
 
 -- Show the top three best selling artists.
+
+SELECT TOP (3)
+SUM(InvoiceLine.TrackId) as NumberOfPurchases, Artist.ArtistId, Artist.Name
+FROM Artist
+LEFT JOIN Album
+ON Artist.ArtistId = Album.ArtistId
+LEFT JOIN Track
+ON Album.AlbumId = Track.AlbumId
+LEFT JOIN InvoiceLine
+ON InvoiceLine.TrackId = Track.TrackId
+GROUP BY Artist.ArtistId, Artist.Name
+ORDER BY NumberOfPurchases DESC;
 
 -- Which customers have the same initials as at least one other customer?
 
