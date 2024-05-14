@@ -1,22 +1,45 @@
 -- On the Chinook DB, practice writing queries with the following exercises
 
 -- List all customers (full name, customer id, and country) who are not in the USA
+SELECT FirstName, LastName, CustomerId, Country
+FROM Customer
+WHERE NOT Country = 'USA';
 
 -- List all customers from Brazil
+SELECT *
+FROM Customer
+WHERE Country = 'Brazil';
 
 -- List all sales agents
+SELECT *
+FROM Employee
+WHERE Title = 'Sales Support Agent';
 
 -- Retrieve a list of all countries in billing addresses on invoices
+SELECT DISTINCT BillingCountry
+FROM Invoice;
 
 -- Retrieve how many invoices there were in 2009, and what was the sales total for that year?
     -- (challenge: find the invoice count sales total for every year using one query)
+SELECT YEAR(InvoiceDate) as Year, Count(*) as Count, Sum(Total) as Sum
+FROM Invoice
+GROUP BY YEAR (InvoiceDate)
 
 -- how many line items were there for invoice #37
+SELECT Count(*) as CountOfItems
+FROM InvoiceLine
+WHERE InvoiceId = 37;
 
 -- how many invoices per country?
+SELECT COUNT(*) as CountOfInvoices, BillingCountry
+FROM Invoice
+GROUP BY BillingCountry;
 
 -- Retrieve the total sales per country, ordered by the highest total sales first.
-
+SELECT SUM(Total) as SalesTotal, BillingCountry
+FROM Invoice
+GROUP BY BillingCountry
+ORDER BY SalesTotal;
 
 
 -- JOINS CHALLENGES
