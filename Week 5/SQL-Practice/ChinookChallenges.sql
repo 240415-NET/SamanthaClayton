@@ -84,16 +84,14 @@ LEFT JOIN Customer
 On Employee.EmployeeId = Customer.SupportRepId
 GROUP BY Employee.EmployeeId, Employee.FirstName, Employee.LastName;
 
--- Which track was purchased the most in 20010?
-SELECT TOP 1
-SUM(InvoiceLine.TrackId) as NumberOfPurchases, Track.Name
+-- Which track was purchased the most in 2010?
+SELECT
+COUNT(InvoiceLine.TrackId) as NumberOfPurchases, Track.Name
 FROM Invoice
-LEFT JOIN
-InvoiceLine
+INNER JOIN InvoiceLine
 ON Invoice.InvoiceId = InvoiceLine.InvoiceId
 and YEAR (InvoiceDate) = 2010
-LEFT JOIN
-Track
+INNER JOIN Track
 On InvoiceLine.TrackId = Track.TrackId
 GROUP BY Track.Name
 ORDER BY NumberOfPurchases DESC;
@@ -101,7 +99,7 @@ ORDER BY NumberOfPurchases DESC;
 -- Show the top three best selling artists.
 
 SELECT TOP (3)
-SUM(InvoiceLine.TrackId) as NumberOfPurchases, Artist.ArtistId, Artist.Name
+COUNT(InvoiceLine.TrackId) as NumberOfPurchases, Artist.ArtistId, Artist.Name
 FROM Artist
 LEFT JOIN Album
 ON Artist.ArtistId = Album.ArtistId
@@ -113,6 +111,16 @@ GROUP BY Artist.ArtistId, Artist.Name
 ORDER BY NumberOfPurchases DESC;
 
 -- Which customers have the same initials as at least one other customer?
+SELECT (A.FirstName + ' ' + A.LastName) as Name
+FROM Customer A, Customer B
+WHERE SUBSTRING(A.FirstName,1,1) = SUBSTRING(B.FirstName,1,1)
+AND SUBSTRING(A.LastName,1,1) = SUBSTRING(B.LastName,1,1)
+AND A.FirstName <> B.FirstName
+AND A.LastName <> B.LastName
+ORDER By Name;
+
+
+
 
 
 
@@ -121,6 +129,23 @@ ORDER BY NumberOfPurchases DESC;
 -- plan for them is the same, or different.
 
 -- 1. which artists did not make any albums at all?
+	SELECT A.Name
+	FROM Artist A
+	WHERE NOT EXISTS (SELECT * FROM Album B WHERE A.ArtistId = B.ArtistId);
+
+
+	SELECT A.Name, B.ArtistId
+	FROM Artist A
+	LEFT JOIN Album B
+	ON A.ArtistId = B.ArtistId
+	WHERE B.ArtistId is null;
+
+
+	Select distinct Name, al.Title
+	From Artist as a
+	LEFT JOIN ALBUM as al on al.ArtistId = a.ArtistId
+	where al.Title is null;
+
 
 -- 2. which artists did not record any tracks of the Latin genre?
 

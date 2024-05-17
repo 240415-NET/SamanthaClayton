@@ -1,6 +1,6 @@
 ﻿using Project1.PresentationLayer;
 
-namespace Project_1;
+namespace Project1;
 
 class Program
 {
