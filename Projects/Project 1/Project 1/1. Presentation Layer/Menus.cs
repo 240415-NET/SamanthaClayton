@@ -30,10 +30,14 @@ public class Menus
                 {
                     case 1: // Create new profile
                     userId = UserProfileUI.CreateNewUserPrompts();
+                    InAppMainMenu(userId);
+
                     break;
 
                     case 2: // Log into existing profile
                     userId = UserProfileUI.LogInPrompts();
+                    InAppMainMenu(userId);
+
                     break;
 
                     case 3: //Exit the application
@@ -51,7 +55,6 @@ public class Menus
                 validUserInput = false;
             }
         } while (!validUserInput);
-        InAppMainMenu(userId);
     }
 
     public static void InAppMainMenu(Guid userId)

@@ -8,11 +8,11 @@ public class Project1UnitTest1
     private static IMealsStorageRepo _mealsData = new JsonMealsStorage();
 
     [Fact]
-    public void GetStoredMeals_PassedNothing_Returns7()
+    public void GetStoredMeals_PassedNothing_Returns7Meals()
     {
         // Arrange
         //List<Recipes> testList = _mealsData.RetrieveStoredMeals();
-       List<Recipes> testList = MealsLogic.GetStoredMeals();
+        List<Recipes> testList = MealsLogic.GetStoredMeals();
         int countOfTestList = testList.Count();
 
         // Act

@@ -6,7 +6,9 @@ namespace Project1.LogicLayer;
 public class UsersLogic
 {
 
-    private static IUsersStorageRepo _userData = new JsonUsersStorage();
+    //private static IUsersStorageRepo _userData = new JsonUsersStorage();
+    private static IUsersStorageRepo _userData = new SQLUsersStorage();
+
 
     public static Users CreateNewUser(string userInput)
     {

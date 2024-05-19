@@ -5,7 +5,11 @@ namespace Project1.LogicLayer;
 
 public class GroceryListLogic
 {
-    private static IMealsStorageRepo _mealsData = new JsonMealsStorage();
+    //private static IMealsStorageRepo _JsonmealsData = new JsonMealsStorage();
+
+    private static string path = @"C:\Users\u41046\Revature Engineer Bootcamp\SamanthaClayton\Projects\Project 1\Project 1\ConnectionString.txt";
+    private static string connectionString = File.ReadAllText(path);
+    private static IMealsStorageRepo _mealsData = new SQLMealsStorage(connectionString);
 
     public static List<GroceryItems> GetGroceryList(MealPlans userMealPlan)
         {

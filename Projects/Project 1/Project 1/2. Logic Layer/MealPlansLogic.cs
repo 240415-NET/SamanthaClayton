@@ -6,7 +6,9 @@ namespace Project1.LogicLayer;
 public class MealPlansLogic
 {
 
-    private static IMealPlansStorageRepo _userMealPlanData = new JsonMealPlansStorage();
+   // private static IMealPlansStorageRepo _userMealPlanData = new JsonMealPlansStorage();
+        private static IMealPlansStorageRepo _userMealPlanData = new SQLMealPlansStorage();
+
 
     
     public static void SaveMealPlan(Guid userId, MealPlans userMealPlan)

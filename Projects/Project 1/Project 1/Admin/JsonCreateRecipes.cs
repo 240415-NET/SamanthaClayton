@@ -3,7 +3,7 @@ using Project1.Models;
 using System.Text.Json;
 namespace Project1.PresentationLayer;
 
-public class CreatRecipes
+public class JsonCreateRecipes
 {
 
     public readonly static string _filePath = "./3. Data Access Layer/Meals.json";
@@ -13,7 +13,7 @@ public class CreatRecipes
     
     {
 
-        // RECIPE 1: CHICKEN & BROCCOLI STIRFRY
+         // RECIPE 1: CHICKEN & BROCCOLI STIRFRY
         GroceryItems recipe1ingredient1 = new GroceryItems("Chicken Breasts", 1, "pound", "No");
         GroceryItems recipe1ingredient2 = new GroceryItems("Broccoli", 1, "head", "No");
         GroceryItems recipe1ingredient3 = new GroceryItems("Avocado Oil", 2, "tbsp.", "No");
@@ -24,9 +24,17 @@ public class CreatRecipes
         List<GroceryItems> recipe1ingredients = [recipe1ingredient1, recipe1ingredient2, recipe1ingredient3,
                                                 recipe1ingredient4, recipe1ingredient5, recipe1ingredient6];
 
-        Recipes recipe1 = new Recipes("Chicken & Broccoli Stir Fry", recipe1ingredients, "1. Cut chicken into 1\" cubes.\n2. Cut broccoli into bite-sized florets\n"
-                                        +"3. Heat avocado oil in saute pan on medium high heat\n4.Add chicken and broccoli to pan and cook until chicken is cooked through");
 
+        RecipeSteps recipe1step1 = new RecipeSteps(1, "Cut chicken into 1\" cubes");
+        RecipeSteps recipe1step2 = new RecipeSteps(2, "Cut broccoli into bite-sized florets");
+        RecipeSteps recipe1step3 = new RecipeSteps(3, "Heat avocado oil in saute pan on medium-high heat");
+        RecipeSteps recipe1step4 = new RecipeSteps(4, "Add chicken and broccoli to pan and cook until chicken reaches an internal temperature of 165 degrees Fahrenheit");
+
+        List<RecipeSteps> recipe1steps = [recipe1step1, recipe1step2, recipe1step3, recipe1step4];
+
+
+        Recipes recipe1 = new Recipes("Chicken & Broccoli Stir Fry", recipe1ingredients, recipe1steps);
+        
         // RECIPE 2: PASTA WITH HOMEMADE PESTO
         GroceryItems recipe2ingredient1 = new GroceryItems("Spaghetti", 1, "box", "No");
         GroceryItems recipe2ingredient2 = new GroceryItems("Basil", 2, "cups", "No");
@@ -38,8 +46,16 @@ public class CreatRecipes
         List<GroceryItems> recipe2ingredients = [recipe2ingredient1, recipe2ingredient2, recipe2ingredient3,
                                                 recipe2ingredient4, recipe2ingredient5, recipe2ingredient6];
 
-        Recipes recipe2 = new Recipes("Pasta with Homemade Pesto", recipe2ingredients, "1. Bring a large pot of water to boil\n2. Add spaghetti and cook for length of time recommended on package\n"
-                                        +"3. While spaghetti cooks, add all other ingredients to a blender or food processor and blend\n4. Drain pasta\n5. Stir pesto and pasta together and serve");
+        RecipeSteps recipe2step1 = new RecipeSteps(1, "Bring a large pot of water to boil");
+        RecipeSteps recipe2step2 = new RecipeSteps(2, "Add spaghetti and cook for length of time recommended on package");
+        RecipeSteps recipe2step3 = new RecipeSteps(3, "While spaghetti cooks, add all other ingredients to a blender or food processor and blend");
+        RecipeSteps recipe2step4 = new RecipeSteps(4, "Drain pasta\n5. Stir pesto and pasta together and serve");
+
+        List<RecipeSteps> recipe2steps = [recipe2step1, recipe2step2, recipe2step3, recipe2step4];
+
+
+        Recipes recipe2 = new Recipes("Pasta with Homemade Pesto", recipe2ingredients, recipe2steps);
+
 
         // RECIPE 3: BUFFALO CHICKEN STUFFED BAKED POTATOES
 
@@ -56,16 +72,28 @@ public class CreatRecipes
                                                 recipe3ingredient4, recipe3ingredient5, recipe3ingredient6,
                                                 recipe3ingredient7];
 
-        Recipes recipe3 = new Recipes("Buffalo Chicken Stuffed Baked Potatoes", recipe3ingredients, "1. Pre-heat oven to 400 degrees\n"+
-                                        "2. Wash potatoes and wrap each one in foil and place in oven\n"+
-                                        "3. Let the potatoes cook for about 30 minutes and then start on the next steps\n"+
-                                        "4. Put chicken in a large pot and fill it with water until the chicken is fully covered and then some\n"+
-                                        "5. Put pot on the stove on medium high heat until the water boils \n"+
-                                        "6. Once the water boils, turn the heat down to medium and cook until the chicken is cooked through"+
-                                        "7. Once the chicken is cooked through, shred the chicken\n"+
-                                        "8. Stir the buffalo and chicken to coat the chicken in sauce\n"+
-                                        "9. When the potatoes are done, cut each potato down the center and"+
-                                        "top with butter, salt, pepper, the shredded chicken coated in sauce, and ranch.");
+        RecipeSteps recipe3step1 = new RecipeSteps(1, "Pre-heat oven to 400 degrees");
+        RecipeSteps recipe3step2 = new RecipeSteps(2, "Wash potatoes and wrap each one in foil and place in oven");
+        RecipeSteps recipe3step3 = new RecipeSteps(3, "Let the potatoes cook for about 30 minutes and then start on the next steps");
+        RecipeSteps recipe3step4 = new RecipeSteps(4, "Put chicken in a large pot and fill it with water until the chicken is fully covered and then some");
+        RecipeSteps recipe3step5 = new RecipeSteps(5, "Put pot on the stove on medium high heat until the water boils ");
+        RecipeSteps recipe3step6 = new RecipeSteps(6, "Once the water boils, turn the heat down to medium and cook until the chicken is cooked through");
+        RecipeSteps recipe3step7 = new RecipeSteps(7, "Once the chicken is cooked through, shred the chicken");
+        RecipeSteps recipe3step8 = new RecipeSteps(8, "Stir the buffalo and chicken to coat the chicken in sauce");
+        RecipeSteps recipe3step9 = new RecipeSteps(9, "When the potatoes are done, cut each potato down the center and"+
+                                                      "top with butter, salt, pepper, the shredded chicken coated in sauce, and ranch.");
+
+        List<RecipeSteps> recipe3steps = [recipe3step1,
+                                          recipe3step2,
+                                          recipe3step3,
+                                          recipe3step4,
+                                          recipe3step5,
+                                          recipe3step6,
+                                          recipe3step7,
+                                          recipe3step8,
+                                          recipe3step9];
+
+        Recipes recipe3 = new Recipes("Buffalo Chicken Stuffed Baked Potatoes", recipe3ingredients, recipe3steps);
 
 
         // RECIPE 4: GRILLED CHEESE SANDWICH
@@ -75,14 +103,24 @@ public class CreatRecipes
         GroceryItems recipe4ingredient3 = new GroceryItems("Cheese", 2, "slices", "No");
 
 
+
         List<GroceryItems> recipe4ingredients = [recipe4ingredient1, recipe4ingredient2, recipe4ingredient3];
 
-        Recipes recipe4 = new Recipes("Grilled Cheese Sandwich", recipe4ingredients, "1. Butter 1 side of each slice of bread\n"+
-                                        "2. Place the buttered side of 1 slice of bread into a hot pan on medium heat\n"+
-                                        "3. Add the cheese slices on top of the bread\n"+
-                                        "4. Put the other slice of bread on top with the buttered side facing up\n"+
-                                        "5. Cook until the bottom is golden brown\n"+
-                                        "6. Flip sandwich over and cook until the other side is golden brown too");
+        RecipeSteps recipe4step1 = new RecipeSteps(1, "Butter 1 side of each slice of bread");
+        RecipeSteps recipe4step2 = new RecipeSteps(2, "Place the buttered side of 1 slice of bread into a hot pan on medium heat");
+        RecipeSteps recipe4step3 = new RecipeSteps(3, "Add the cheese slices on top of the bread");
+        RecipeSteps recipe4step4 = new RecipeSteps(4, "Put the other slice of bread on top with the buttered side facing up");
+        RecipeSteps recipe4step5 = new RecipeSteps(5, "Cook until the bottom is golden brown");
+        RecipeSteps recipe4step6 = new RecipeSteps(6, "Flip sandwich over and cook until the other side is golden brown too");
+
+        List<RecipeSteps> recipe4steps = [recipe4step1,
+                                          recipe4step2,
+                                          recipe4step3,
+                                          recipe4step4,
+                                          recipe4step5,
+                                          recipe4step6];
+
+        Recipes recipe4 = new Recipes("Grilled Cheese Sandwich", recipe4ingredients, recipe4steps);
 
         // RECIPE 5: GIRL DINNER
 
@@ -97,9 +135,15 @@ public class CreatRecipes
         List<GroceryItems> recipe5ingredients = [recipe5ingredient1, recipe5ingredient2, recipe5ingredient3,
                                                 recipe5ingredient4, recipe5ingredient5, recipe5ingredient6];
 
-        Recipes recipe5 = new Recipes("Girl Dinner", recipe5ingredients, "1. Cut the apple into slices\n"+
-                                        "2. Arrange ingredients on a plate");
+        RecipeSteps recipe5step1 = new RecipeSteps(1, "Cut the apple into slices");
+        RecipeSteps recipe5step2 = new RecipeSteps(2, "Arrange ingredients on a plate");
 
+
+        List<RecipeSteps> recipe5steps = [recipe5step1,
+                                          recipe5step2];
+
+
+        Recipes recipe5 = new Recipes("Girl Dinner", recipe5ingredients, recipe5steps);
 
         // RECIPE 6: TURKEY BLTA SANDWICH
 
@@ -115,9 +159,15 @@ public class CreatRecipes
         List<GroceryItems> recipe6ingredients = [recipe6ingredient1, recipe6ingredient2, recipe6ingredient3,
                                                 recipe6ingredient4, recipe6ingredient5, recipe6ingredient6,
                                                 recipe6ingredient7];
+        
+        RecipeSteps recipe6step1 = new RecipeSteps(1, "Slice the tomato and avacado");
+        RecipeSteps recipe6step2 = new RecipeSteps(2, "Assemble the sandwich");
 
-        Recipes recipe6 = new Recipes("Turkey BLTA Sandwich", recipe6ingredients, "1. Slice the tomato and avacado\n"+
-                                        "2. AssemCharcuterieble the sandwich");
+
+        List<RecipeSteps> recipe6steps = [recipe6step1,
+                                          recipe6step2];
+
+        Recipes recipe6 = new Recipes("Turkey BLTA Sandwich", recipe6ingredients, recipe6steps);
 
         
         // RECIPE 7: CAPRESE SALAD
@@ -135,12 +185,18 @@ public class CreatRecipes
                                                 recipe7ingredient4, recipe7ingredient5, recipe7ingredient6,
                                                 recipe7ingredient7];
 
-        Recipes recipe7 = new Recipes("Caprese Salad", recipe7ingredients, "1. Cut the mozzarella into bite-sized pieces\n"+
-                                        "2. Tear/roughly chop the basil\n"+
-                                        "3. Add all inrgredients to a salad bowl and mix well");
+        RecipeSteps recipe7step1 = new RecipeSteps(1, "Cut the mozzarella into bite-sized pieces");
+        RecipeSteps recipe7step2 = new RecipeSteps(2, "Tear/roughly chop the basil");
+        RecipeSteps recipe7step3 = new RecipeSteps(3, "Add all ingredients to a salad bowl and mix well");
 
 
-    
+        List<RecipeSteps> recipe7steps = [recipe7step1,
+                                          recipe7step2,
+                                          recipe7step3];
+
+
+
+        Recipes recipe7 = new Recipes("Caprese Salad", recipe7ingredients, recipe7steps);
     
             List<Recipes> newMealsToBeStored = [recipe1, recipe2, recipe3, recipe4, recipe5, recipe6, recipe7];
             string newMealsToBeStoredJson = JsonSerializer.Serialize<List<Recipes>>(newMealsToBeStored);
@@ -148,4 +204,3 @@ public class CreatRecipes
         }
     }
     
-

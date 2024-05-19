@@ -64,7 +64,7 @@ public class MealPlanUI
 
     public static MealPlans DisplayExistingMealPlan(Guid userId)
     {
-        Console.Clear();
+        //Console.Clear();
         MealPlans existingUserMealPlan = MealPlansLogic.GetMealPlan(userId);
         Console.WriteLine("Here's your meal plan!");
 
@@ -85,20 +85,13 @@ public class MealPlanUI
         MealPlans userMealPlan = DisplayExistingMealPlan(userId);
 
         // Have the user choose which meal to modify
-        int selectedMealToModify = SelectMealToModify(userMealPlan);
+        int selectedMealToModify = SelectMealToModify(userId, userMealPlan);
 
         // Could have a separate method in Meals.cs to DisplayAllMeals that
         // calls the MealsLogic.cs method named GetStoredMeals()
         // (instead of calling this in SelectReplacementMeal)
 
-        // Have the user select the meal they want to cook instead
-        userMealPlan = SelectReplacementMeal(userMealPlan, selectedMealToModify);
 
-        // Save the user's changes to their meal plan        
-        MealPlansLogic.SaveMealPlan(userId, userMealPlan);
-
-        // Confirm to the user that the changes have been made
-        Console.WriteLine("Your change has been saved!");
         Console.WriteLine("Hit enter to continue.");
         Console.ReadLine();
         Console.Clear();
@@ -106,7 +99,7 @@ public class MealPlanUI
         return userId;
     }
 
-    public static int SelectMealToModify(MealPlans userMealPlan)
+    public static int SelectMealToModify(Guid userId, MealPlans userMealPlan)
     {
         // Have the user select the meal to change
         Console.WriteLine("Select the meal you want to change or enter 6 to return to the previous menu.");
@@ -128,13 +121,22 @@ public class MealPlanUI
                 if (selectedMealToModify == 5)
                 {
                     keepAlive = false;
-                    Console.Clear();
-
+                    Console.WriteLine("Okay, no changes have been made to your meal plan.");
                 }
                 else if (selectedMealToModify > 4 || selectedMealToModify < 0)
                 {
                     validUserInput = false;
                     Console.WriteLine("Please enter a valid selection.");
+                }
+                else{
+                    // Have the user select the meal they want to cook instead
+                    userMealPlan = SelectReplacementMeal(userMealPlan, selectedMealToModify);
+
+                    // Save the user's changes to their meal plan        
+                    MealPlansLogic.SaveMealPlan(userId, userMealPlan);
+
+                    // Confirm to the user that the changes have been made
+                    Console.WriteLine("Your change has been saved!");
                 }
             }
             catch (Exception exception)

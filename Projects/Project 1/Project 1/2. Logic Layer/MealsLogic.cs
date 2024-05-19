@@ -1,15 +1,19 @@
 using Project1.Models;
 using Project1.DataAccessLayer;
+using Project1.PresentationLayer;
+using Microsoft.SqlServer.Server;
 
 namespace Project1.LogicLayer;
 
 public class MealsLogic
 {
 
-    private static IMealsStorageRepo _mealsData = new JsonMealsStorage();
+    //private static IMealsStorageRepo _JsonmealsData = new JsonMealsStorage();
 
-
-
+    private static string path = @"C:\Users\u41046\Revature Engineer Bootcamp\SamanthaClayton\Projects\Project 1\Project 1\ConnectionString.txt";
+    private static string connectionString = File.ReadAllText(path);
+    private static IMealsStorageRepo _mealsData = new SQLMealsStorage(connectionString);
+     
 
     // If you call GetStoredMeals with no arguments, you get all meals in storage
     public static List<Recipes> GetStoredMeals()
