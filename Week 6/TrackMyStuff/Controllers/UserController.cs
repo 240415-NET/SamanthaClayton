@@ -12,7 +12,9 @@ public class UserController
 {
 
     //Here, we will add an object to do data access stuff with
-    private static IUserStorageRepo _userData = new JsonUserStorage();
+    //private static IUserStorageRepo _userData = new JsonUserStorage();
+        private static IUserStorageRepo _userData = new SQLUserStorage();
+
     // We CANNOT instantiate an object representation of an interface
     // We CAN however create an object of a class
     //that implements that interface and store it in a varable of the 
