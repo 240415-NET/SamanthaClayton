@@ -10,15 +10,14 @@ public class MealsLogic
 
     //private static IMealsStorageRepo _JsonmealsData = new JsonMealsStorage();
 
-    private static string path = @"C:\Users\u41046\Revature Engineer Bootcamp\SamanthaClayton\Projects\Project 1\Project 1\ConnectionString.txt";
-    private static string connectionString = File.ReadAllText(path);
-    private static IMealsStorageRepo _mealsData = new SQLMealsStorage(connectionString);
+    private static IMealsStorageRepo _mealsData = new SQLMealsStorage();
      
 
     // If you call GetStoredMeals with no arguments, you get all meals in storage
     public static List<Recipes> GetStoredMeals()
     {
         List<Recipes> allRecipesInStorage = _mealsData.RetrieveStoredMeals();
+
         return allRecipesInStorage;
 
     }

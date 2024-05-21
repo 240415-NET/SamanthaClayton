@@ -7,18 +7,7 @@ namespace Project1.DataAccessLayer;
 public class SQLUsersStorage : IUsersStorageRepo
 {
 
-    /* Things to look into:
-    1. What is the benefit of having this stuff below instead of what I have?
-            private readonly string _connectionString;
-            public SQLMealsStorage(string connectionString)
-                {
-                    this._connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
-                }
-    2. Is there a nice way to check if a SQL table exists?  (For Json, we checked if the filepath existed and if not, we creae
-        a new json file.  Is there something similar in SQL?)
-    3.
 
-    */
 
     static string path = @"C:\Users\u41046\Revature Engineer Bootcamp\SamanthaClayton\Projects\Project 1\Project 1\ConnectionString.txt";
     string connectionString = File.ReadAllText(path);
@@ -101,7 +90,8 @@ public class SQLUsersStorage : IUsersStorageRepo
                     string userName = reader.GetString(1);
                     existingUser.userId = userId;
                     existingUser.userName = userName;
-                }      
+                }
+            myConnectionObject.Close();  
 
         }
         catch(Exception e)

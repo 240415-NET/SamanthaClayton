@@ -1,4 +1,3 @@
-using System.Text.Json;
 using Project1.Models;
 using System.Data.SqlClient;
 
@@ -99,7 +98,8 @@ public class SQLMealPlansStorage : IMealPlansStorageRepo
         {
             Console.WriteLine(exception.Message);
         }
-*/
+*/ 
+        myConnectionObject.Close();
         return existingUserMealPlan;
 
     }

@@ -11,6 +11,7 @@ public class Menus
         bool validUserInput;
         int userSelection;
         Guid userId = Guid.NewGuid();
+        Console.Clear();
 
         Console.WriteLine("What would you like to do?");
         Console.WriteLine("1. Create new profile");
@@ -94,6 +95,7 @@ public class Menus
                                 validUserInput = false;}
                             else
                             {
+                            Console.Clear();
                             userMealPlan = MealPlanUI.DisplayExistingMealPlan(userId);
                             validUserInput = true;
                             }
@@ -109,6 +111,7 @@ public class Menus
                         }
                         else
                         {
+                            Console.Clear();
                             MealPlanUI.ModifyExistingMealPlan(userId);
                             validUserInput = true;
                         }
@@ -124,6 +127,7 @@ public class Menus
                         }
                         else
                         {
+                            Console.Clear();
                             userMealPlan = MealPlanUI.DisplayExistingMealPlan(userId);
                             GroceryListUI.DisplayGroceryList(userId, userMealPlan);
                             validUserInput = true;

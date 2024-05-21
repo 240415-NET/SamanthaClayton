@@ -16,7 +16,7 @@ public class SQLUserStorage : IUserStorageRepo
     // Ignore all issues related to the slashes with Windows file paths 
     // and using an absolute file path, starting from my C drive to avoid
     // any relative file path issues
-    // If I moe my entire project directory, this file path will still
+    // If I move my entire project directory, this file path will still
     // work because it's an exact address to my connection string
     // Because of Windows file paths vs. Linux file paths having different
     // forward and back slashes and escape characters, @ is ignore all of that
@@ -26,7 +26,91 @@ public class SQLUserStorage : IUserStorageRepo
 
     public User FindUser(string usernameToFind)
     {
-        throw new NotImplementedException();
+       // Just like in the JsonUserStorage method, we will create an empty user
+       // to hold a potential user we find in our DB
+        User foundUser = new User();
+            // Just like with our INSERT, we will create a 
+            // SQLConnection object
+
+            using SqlConnection connection = new SqlConnection(connectionString);
+
+        try
+        {
+
+            // We then open the connection
+            connection.Open();
+
+            // We start creating our command/query text
+            // He said to expliclty tell is te specific columns you want and in
+            // the order you want it.  And to explicitly tell it dbo.tablename
+            // so there's no ambiguity
+            string cmdText = @"SELECT userId, userName 
+                                FROM dbo.Users
+                                WHERE userName = @userToFind;";
+
+            // We create our SQLCommand object
+            using SqlCommand cmd = new SqlCommand(cmdText, connection);
+
+            // We then fill in the parameter @userToFind with our 
+            // string userNameToFind thta comes in as an argument to our method
+            cmd.Parameters.AddWithValue("@userToFind", usernameToFind);
+
+            // To execue a query, we need to use a SqlDataReader object
+            // This object reads whatever is returned from our query, row by
+            // row - column by column
+            // As the reader passes over the columns and rows, we need to take steps
+            // to store or work with the data that comes back.
+            // Once the reader moves on fro ma row, we would need to execue
+            // the command again to re-read the row.
+            // It is forward only!  No going back up to another row we have already passed.
+
+            // We are going to use a while-loop to read through our data coming back
+            // from our SqlDataReader and execute code until it is done reading.
+
+            using SqlDataReader reader = cmd.ExecuteReader();
+            // This will create a sql data reader beased on our command that we've already fleshed out
+            // and store it as reader.  The cmd.ExecuteReader() sends the command text and everything it would
+            // need and we send it off and it returns a new SQLDataReader.  It builds it for us and
+            // returns it to the new SQLDataReader.
+            while (reader.Read())
+            {
+                //While we are on a particular row, we have to save stuff if we find it
+                //When using reader.GetType() methods, we have to specify which
+                // columns we are targeting via an index.  Like arrays, these start at position 0.
+                foundUser.userId = reader.GetGuid(0);
+                foundUser.userName = reader.GetString(1);
+
+            
+            }
+            // once we're done reading and no more records are coming back to be read, we exit the while loop
+        
+        //If we get to this point and found a user, we return the filled out user object
+
+        //Option 1:  If the username on foundUser is empty, we manually return a null 
+        /*if(string.IsNullOrEmpty(foundUser.userName))
+        {return null;
+        }*/
+
+        //Option 2:  If the userId on foundUser is empty, we manually return a null.
+        if (foundUser.userId == Guid.Empty)
+        {return null;}
+        
+        //Otherwise, we return the found filled out user object
+        return foundUser;
+
+        } catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        finally // We will leverage the finally block to close our connection in case
+                // either nothing is found or we actually catch some exception
+        {
+            // Close our connection if we find nothing or if something bad happens
+            connection.Close();
+
+        }
+        // We may never actualy hit this?  Warrants futher investigation
+        return null;
     }
 
     public void StoreUser(User user)

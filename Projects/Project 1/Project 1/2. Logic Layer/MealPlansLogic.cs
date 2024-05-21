@@ -1,12 +1,13 @@
 using Project1.Models;
 using Project1.DataAccessLayer;
 
+
 namespace Project1.LogicLayer;
 
 public class MealPlansLogic
 {
 
-   // private static IMealPlansStorageRepo _userMealPlanData = new JsonMealPlansStorage();
+        // private static IMealPlansStorageRepo _userMealPlanData = new JsonMealPlansStorage();
         private static IMealPlansStorageRepo _userMealPlanData = new SQLMealPlansStorage();
 
 
@@ -28,7 +29,7 @@ public class MealPlansLogic
 
     public static bool CheckIfMealPlanExists(Guid userId)
     {
-        if(_userMealPlanData.RetrieveUserMealPlan(userId) != null)
+        if(_userMealPlanData.RetrieveUserMealPlan(userId).mealPlanId != Guid.Empty)
         {
             return true;
         }

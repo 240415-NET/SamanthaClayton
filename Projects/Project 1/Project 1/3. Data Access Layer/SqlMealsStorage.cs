@@ -7,16 +7,19 @@ namespace Project1.DataAccessLayer;
 
 public class SQLMealsStorage : IMealsStorageRepo
 {
-    private readonly string _connectionString;
+    /*private readonly string _connectionString;
     public SQLMealsStorage(string connectionString)
         {
             this._connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
+    */
 
+    static string path = @"C:\Users\u41046\Revature Engineer Bootcamp\SamanthaClayton\Projects\Project 1\Project 1\ConnectionString.txt";
+    static string connectionString = File.ReadAllText(path);
     public List<GroceryItems> RetrieveIngredientList (Guid recipeIdToFind)
     {
         List<GroceryItems> IngredientListFromStorage = new List<GroceryItems>();
-        using SqlConnection myConnectionObject = new SqlConnection(this._connectionString);
+        using SqlConnection myConnectionObject = new SqlConnection(connectionString);
         myConnectionObject.Open();
         
         string commandTextForRetrievingIngredientList = @"SELECT * FROM Recipe_Ingredients WHERE RecipeId = @RecipeId;";
@@ -40,7 +43,7 @@ public class SQLMealsStorage : IMealsStorageRepo
                 IngredientListFromStorage.Add(ingredientfromstorage);
             }      
         
-
+        myConnectionObject.Close();
 
         return IngredientListFromStorage;
     }
@@ -49,7 +52,7 @@ public class SQLMealsStorage : IMealsStorageRepo
     {
         List<Recipes> allRecipesInStorage = new List<Recipes>();
 
-        using SqlConnection myConnectionObject = new SqlConnection(this._connectionString);
+        using SqlConnection myConnectionObject = new SqlConnection(connectionString);
         myConnectionObject.Open();
         
         string commandTextForRetrievingStoredMeals = @"SELECT * FROM Recipe_Names;";
@@ -65,6 +68,7 @@ public class SQLMealsStorage : IMealsStorageRepo
                 Recipes recipeFromStorage  = new Recipes(recipeId, mealname);
                 allRecipesInStorage.Add(recipeFromStorage);
             }      
+        myConnectionObject.Close();
         return allRecipesInStorage;
     }
 }
