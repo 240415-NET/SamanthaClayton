@@ -13,33 +13,18 @@ public class SQLMealPlansStorage : IMealPlansStorageRepo
         Dictionary<Guid, MealPlans> userMealPlanDictionary = new Dictionary<Guid, MealPlans>();
 
         // Could add a check if file path (SQL table) exists - if not, create the table
-           using SqlConnection mySQLConnection = new SqlConnection(connectionString);
+        using SqlConnection mySQLConnection = new SqlConnection(connectionString);
 
-            mySQLConnection.Open();
-        /*    string SQLCodeToCreateNewUserMealPlanTable =
-                @"CREATE TABLE UserMealPlans(
-                UserId UNIQUEIDENTIFIER NOT NULL,
-                MealPlanId UNIQUEIDENTIFIER NOT NULL,
-                RecipeId UNIQUEIDENTIFIER NOT NULL,
-                RecipeName NVARCHAR(255) NOT NULL
-                );";
-
-            using SqlCommand CreateNewUserMealPlanTableCommand = new SqlCommand(SQLCodeToCreateNewUserMealPlanTable, mySQLConnection);
-
-            CreateNewUserMealPlanTableCommand.ExecuteNonQuery();
-
-         */  
+        mySQLConnection.Open();
+        
         string SQLCodeToDeleteCurrentMealPlan = @"DELETE FROM UserMealPlans WHERE UserID = @UserId;";
         using SqlCommand DeleteOldMealPlanCommand = new SqlCommand(SQLCodeToDeleteCurrentMealPlan, mySQLConnection);
         DeleteOldMealPlanCommand.Parameters.AddWithValue("@UserId", userId);
         DeleteOldMealPlanCommand.ExecuteNonQuery();
 
-
-         
           for (int i = 0; i < userMealPlan.mealNames.Count(); i++)
             {
                 string SQLCodeToAddUserMealPlan =
-
                     @"INSERT INTO UserMealPlans (UserId, MealPlanId, RecipeId, RecipeName)
                     VALUES (@UserId, @MealPlanId, @RecipeId, @RecipeName);";
 
@@ -52,11 +37,7 @@ public class SQLMealPlansStorage : IMealPlansStorageRepo
                 AddUserMealPlanCommand.ExecuteNonQuery();
 
             }
-
-
-            mySQLConnection.Close();
-            
-        //}
+        mySQLConnection.Close();
     }
 
 
@@ -87,18 +68,7 @@ public class SQLMealPlansStorage : IMealPlansStorageRepo
  
                     existingUserMealPlan = new MealPlans (mealPlanId, foundRecipeIds, foundMealNames);
                 }
-/*
-        try
-        {
-            string mealPlansInStorageJSON = File.ReadAllText(_filePath);
-            Dictionary<Guid, MealPlans> mealPlansInStorage = JsonSerializer.Deserialize<Dictionary<Guid, MealPlans>>(mealPlansInStorageJSON);
-            existingUserMealPlan = mealPlansInStorage.FirstOrDefault(findmyuser => findmyuser.Key == userIdToFind).Value;
-        }
-        catch (Exception exception)
-        {
-            Console.WriteLine(exception.Message);
-        }
-*/ 
+
         myConnectionObject.Close();
         return existingUserMealPlan;
 

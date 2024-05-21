@@ -7,13 +7,6 @@ namespace Project1.DataAccessLayer;
 
 public class SQLMealsStorage : IMealsStorageRepo
 {
-    /*private readonly string _connectionString;
-    public SQLMealsStorage(string connectionString)
-        {
-            this._connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
-        }
-    */
-
     static string path = @"C:\Users\u41046\Revature Engineer Bootcamp\SamanthaClayton\Projects\Project 1\Project 1\ConnectionString.txt";
     static string connectionString = File.ReadAllText(path);
     public List<GroceryItems> RetrieveIngredientList (Guid recipeIdToFind)
@@ -32,7 +25,6 @@ public class SQLMealsStorage : IMealsStorageRepo
     
         while (reader.Read())
             {
-
                 Guid recipeId = reader.GetGuid(0);
                 Guid ingredientId = reader.GetGuid(1);
                 string ingredientName = reader.GetString(2);

@@ -6,53 +6,16 @@ namespace Project1.DataAccessLayer;
 
 public class SQLUsersStorage : IUsersStorageRepo
 {
-
-
-
     static string path = @"C:\Users\u41046\Revature Engineer Bootcamp\SamanthaClayton\Projects\Project 1\Project 1\ConnectionString.txt";
     string connectionString = File.ReadAllText(path);
 
     public void StoreNewUser(Users newUser)
     {
-        /*if(File.Exists(_filePath))
-        {
-
-            using SqlConnection mySQLConnection = new SqlConnection(connectionString);
-            mySQLConnection.Open();
-
-            string SQLCodeToAddNewUser =
-
-                 @"INSERT INTO Users (UserId, UserName)
-                 VALUES (@UserId, @UserName);";
-
-            using SqlCommand AddNewUser = new SqlCommand(SQLCodeToAddNewUser, mySQLConnection);
-
-            AddNewUser.Parameters.AddWithValue("@UserId", newUser.userId);
-            AddNewUser.Parameters.AddWithValue("@UserName", newUser.userName);
-
-            myCommandForRecipeNamesTable.ExecuteNonQuery();
-            mySQLConnection.Close();
-
-/*
-        }
-        else if (!File.Exists(_filePath))
-        {*/
             using SqlConnection mySQLConnection = new SqlConnection(connectionString);
 
             mySQLConnection.Open();
-       /*     string SQLCodeToCreateNewUsersTable =
-                @"CREATE TABLE Users(
-                UserId UNIQUEIDENTIFIER NOT NULL,
-                UserName NVARCHAR(255) NOT NULL
-                );";
-
-            using SqlCommand CreateNewUsersTableCommand = new SqlCommand(SQLCodeToCreateNewUsersTable, mySQLConnection);
-
-            CreateNewUsersTableCommand.ExecuteNonQuery();*/
-
 
             string SQLCodeToAddNewUser =
-
                  @"INSERT INTO Users (UserId, UserName)
                  VALUES (@UserId, @UserName);";
 
@@ -63,8 +26,6 @@ public class SQLUsersStorage : IUsersStorageRepo
 
             AddNewUserCommand.ExecuteNonQuery();
             mySQLConnection.Close();
-            
-        //}
     }
 
 
@@ -109,21 +70,5 @@ public class SQLUsersStorage : IUsersStorageRepo
         {
             return existingUser;
         }
-
-
-        /*try
-        {
-            string usersInStorageJSON = File.ReadAllText(_filePath);
-            List<Users> usersInStorageList = JsonSerializer.Deserialize<List<Users>>(usersInStorageJSON);
-            existingUser = usersInStorageList.FirstOrDefault(findmyuser => findmyuser.userName == userNameToFind);
-        }
-        catch (Exception exception)
-        {
-            Console.WriteLine(exception.Message);
-        }*/
     }
-
-
-
-
 }

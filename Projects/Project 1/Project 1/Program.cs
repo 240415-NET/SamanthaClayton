@@ -8,6 +8,6 @@ class Program
     {
         Menus.StartMenu();
         //JsonCreateRecipes.CreateRecipes();
-        //SQLCreateRecipes.CreateRecipes();
+        //SQLCreateRecipes.CreateInitialSQLTables();
     }
 }

@@ -54,7 +54,7 @@ public class MealPlanUI
         }
         catch
         {
-           Console.WriteLine("Please enter a valid selection");
+            Console.WriteLine("Please enter a valid selection");
             validUserInput = false;
         }
         }while(!validUserInput);
