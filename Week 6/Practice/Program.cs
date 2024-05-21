@@ -12,7 +12,6 @@ class Program
         // If first word has X letters,
         // FIRST.Replace(the first X letters of second string, the letters in the first string)
 
-
         // Look at the first word "ata"
         // In the first word ("ata"), replace first 2 letters of the second word ("at") with "ata"
         // In the first word, we have "ata" which includes "at"
