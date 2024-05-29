@@ -7,6 +7,7 @@ class Program
     static void Main(string[] args)
     {
         Menus.StartMenu();
+
         //JsonCreateRecipes.CreateRecipes();
         //SQLCreateRecipes.CreateInitialSQLTables();
     }
