@@ -5,9 +5,11 @@ public class Document : Item //Document inherits from our Item class
     public string documentType {get; set;}
     public DateTime expirationDate {get; set;}
 
-    public Document(Guid userId, string category, double originalCost, 
+    // Took out Guid userId from the Document() args
+    // Took out userId from the base() args
+    public Document(string category, double originalCost, 
         DateTime purchaseDate, string description, string documentType, DateTime expirationDate) : 
-        base(userId, category, originalCost,purchaseDate, description)
+        base(category, originalCost,purchaseDate, description)
     {
         this.documentType = documentType;
         this.expirationDate = expirationDate;

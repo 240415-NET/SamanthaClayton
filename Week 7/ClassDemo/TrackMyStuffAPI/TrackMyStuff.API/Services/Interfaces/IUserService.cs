@@ -4,7 +4,7 @@ namespace TrackMyStuff.API.Services;
 
 public interface IUserService
 {
-       public Task<User> CreateNewUserAysnc(User newUserSentFromController);
+       public Task<User> CreateNewUserAsync(User newUserSentFromController);
 
 
 

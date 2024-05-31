@@ -1,8 +1,18 @@
+using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
+
+
 namespace TrackMyStuff.API.Models;
 
 public class Item
 {
-    public Guid userId {get; set;}
+
+   //START CHANGES FOR EF CORE
+   // public Guid userId {get; set;}
+   public User user {get; set;} = new();
+    // Here we are using data annotations to se itemId as the primary
+    [Key]
+    //END CHANGES FOR EF CORE
     public Guid itemId {get; set;}
     public string category {get; set;}
     public double originalCost {get; set;}
@@ -12,9 +22,11 @@ public class Item
     //Constructors 
     public Item() { }
     
-    public Item(Guid _userId, string _category, double _originalCost, 
+    // Took out Guid userId from the Item() args
+    // Took out userId = _userId; from the Item() {} cod eblock
+    public Item(string _category, double _originalCost, 
         DateTime _purchaseDate, string _description) {
-            userId = _userId;
+
             itemId = Guid.NewGuid();
             category = _category;
             originalCost = _originalCost;

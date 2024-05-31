@@ -1,4 +1,5 @@
 using TrackMyStuff.API.Models;
+using TrackMyStuff.API.Data;
 
 namespace TrackMyStuff.API.Services;
 
@@ -15,7 +16,7 @@ public class UserService : IUserService
 
    public UserService(IUserStorageEFRepo efRepoFromBuilder)
    {
-    _userStorage = efRepoFromBuilder;
+      _userStorage = efRepoFromBuilder;
    }
 
    // This method will hold the business logic we decide on for
@@ -23,7 +24,7 @@ public class UserService : IUserService
    // method and then it will hopefully call our UserStorageEFRepo's method
    // for sticking the new user into the database.  Even with the increasing
    // scope of our applications, we respect layer separation.
-   public async Task<User> CreateNewUserAysnc(User newUserSentFromController)
+   public async Task<User> CreateNewUserAsync(User newUserSentFromController)
    {
         // Our rules for being able to create a user
         // 1. No duplicate names

@@ -24,10 +24,17 @@ public class TrackMyStuffContext : DbContext // DbContext comes in as part of Mi
 
     public DbSet<User> Users {get; set;}
     public DbSet<Item> Items {get; set;}
-
     public DbSet<Pet> Pets {get; set;}
     public DbSet<Document> Documents {get; set;}
+
+    // Here is a parameterless constructor
     public TrackMyStuffContext () {}
+
+    // In order to create/apply a migration, we need a contructor
+    // that accepts a DbContextOptions and passes it to the base constructor
+    // that comes in from the DbContext parent class.
+    // : base(options) means we also pass it to the base constructor
+    public TrackMyStuffContext(DbContextOptions options) : base (options) {}
 
     // In order to tweak EF Core's default behavior/assumptions
     // of what we want in our DB, whether it's in regards to things like
@@ -52,6 +59,11 @@ public class TrackMyStuffContext : DbContext // DbContext comes in as part of Mi
         // We explicitly named our other tables, so why not explicitly name the Users table?
         modelBuilder.Entity<User>()
             .ToTable("Users");
+        
+       /* modelBuilder.Entity<User>()
+            .HasMany(e => e.items)
+            .WithOne(e => e.userId
+*/
     }
 
 }
