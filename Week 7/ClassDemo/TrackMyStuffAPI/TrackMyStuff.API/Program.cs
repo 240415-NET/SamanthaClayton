@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen();
 // Here are dependencies that we are going to register.  These are things
 // we create or choose to bring in.
 builder.Services.AddScoped<IUserService, UserService>();
-//builder.Services.AddScoped<IUserStorageEFRepo, UserStorageEFRepo>(); // This adds our UesrStorageEFRepo (data access layer) that our User Service asks for
+builder.Services.AddScoped<IUserStorageEFRepo, UserStorageEFRepo>(); // This adds our UesrStorageEFRepo (data access layer) that our User Service asks for
 
 
 

@@ -11,11 +11,11 @@ public class UserService : IUserService
    // Again, we will create private readonly objects that we don't
    // create using "new" anywhere in this class.
 
-  // private readonly IUserStorageEFRepo _userStorage;
+   private readonly IUserStorageEFRepo _userStorage;
 
-   public UserService()//IUserStorageEFRepo efRepoFromBuilder)
+   public UserService(IUserStorageEFRepo efRepoFromBuilder)
    {
-  //  _userStorage = efRepoFromBuilder;
+    _userStorage = efRepoFromBuilder;
    }
 
    // This method will hold the business logic we decide on for
@@ -58,7 +58,7 @@ public class UserService : IUserService
 
         // At some point, we will have to call the data access layer before
         // creating a new user and check for an existing user with that name
-        //await _userStorage.CreateUserInDBAsync(newUserSentFromController);
+        await _userStorage.CreateUserInDBAsync(newUserSentFromController);
 
         // If this all goes smoothly and we successfully call the method
         // in the data access layer to create a new user, we will just
