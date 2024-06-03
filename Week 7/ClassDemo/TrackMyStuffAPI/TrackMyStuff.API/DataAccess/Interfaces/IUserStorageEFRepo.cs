@@ -6,5 +6,6 @@ public interface IUserStorageEFRepo
 {
     public Task<User?> CreateUserInDBAsync(User newUserSentFromUserService);
 // the ? allows us to return a blank User if we want to
+    public Task<User?> GetUserFromDBByUsernameAsync(string userNameToFindFromUserService);
 
 }

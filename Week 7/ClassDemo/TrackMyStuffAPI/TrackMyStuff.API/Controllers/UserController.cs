@@ -112,4 +112,27 @@ public class UserController : ControllerBase
         }
     }
 
+    // Now we are going to write a GET method to return a single user
+    // from our database based on the username passed in from 
+    // Swagger/postman/thunderclient/etc or whatever our front-end
+    // happens to be.
+
+    [HttpGet]
+
+    public async Task<ActionResult<User>> GetUserByUsername(string userNameToFindFromFrontEnd)
+    {
+        //We are goign to start with the try catch again so that we 
+        // don't crash our API.  If something goes wrong,
+        // we can inform the front end so it can inform the user
+
+        try
+        {
+            return await _userService.GetUserByUsernameAsync(userNameToFindFromFrontEnd);
+        }
+        catch(Exception e)
+        {
+            return NotFound(e.Message);
+        }
+    }
+
 }

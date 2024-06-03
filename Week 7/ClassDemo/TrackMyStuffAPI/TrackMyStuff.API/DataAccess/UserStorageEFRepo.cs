@@ -2,6 +2,7 @@ using TrackMyStuff.API.Models;
 using TrackMyStuff.API.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace TrackMyStuff.API.Data;
 
@@ -34,6 +35,32 @@ public class UserStorageEFRepo : IUserStorageEFRepo
 
         return newUserSentFromUserService;
         
+
+    }
+
+
+// We don't know if we'll find a user, so make it nullable
+    public async Task<User?> GetUserFromDBByUsernameAsync(string userNameToFindFromUserService)
+    {
+        // We are going to attempt to find a user based on the string
+        // We originally tried to use FindAsync(), but this takes
+        // the primary key as its argument
+        // User? foundUser = await _context.Users.FindAsync(userNameToFindFromUserService);
+        //                          our context object.Users << the Users table.FindAsync
+        // In this method call, we ask using LINQ for a single uesr
+        // based on it's username matching the usernameToFindFromUesrSErvice that
+        // we passed in.
+        // SingleOrDefaultAsync will look for 2 entires to see if there are multiple
+        // It's validating that
+        // It will also not throw an error if the user is null
+        // You could do FirstOrDefaultAsync too but this metohd won't inform
+        // you that there are multiple uesrs with the same name.
+        User? foundUser = await _context.Users.SingleOrDefaultAsync(user => user.userName == userNameToFindFromUserService);
+       
+       
+        // Returning either hte uesr we found or null to the serivce layer
+        //Checking for a null in our application will be part of our business logic
+        return foundUser;
 
     }
 

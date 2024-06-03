@@ -74,4 +74,50 @@ public class UserService : IUserService
    {
     return false;
    }
+
+// 'Task' says when we're done, you can expect the User.
+//  We don't know how long it'll take.
+   public async Task<User> GetUserByUsernameAsync(string usernameToFindFromController)
+   {
+
+      // Before we pass the string ot the data acces layer to see if
+      // the front end passed us an empty or null string. If either of those
+      // are true, we don't hit the data access layer, we just return
+      // this manually thrown exception
+      if(String.IsNullOrEmpty(usernameToFindFromController))
+      {
+         throw new Exception ("Cannot pass in a null or empty string");
+      }
+
+      // We do call the data access layer.  Because at this point, we
+      // have no idea if the given string corresponds to a user object,
+      // we don't know how this method call will go.  So we wrap it in a try-catch
+      // so that we don't crash the entire API if someone
+      // makes a typo from the front end.
+      
+      try
+      {
+
+         // Creating a user object that can be null in order to check if the user
+         // was actually found before returning it to the controller layer
+
+         User? foundUser = await _userStorage.GetUserFromDBByUsernameAsync(usernameToFindFromController);
+         
+         // If our data access layer's SingleOrDefaultAsync call doesn't find a user
+         // that has the given passed in username, it will return a null.
+         // Here we check for that null and if foundUser is null, we manually
+         // throw an exception that is caught in the try-catch of the controller
+         // and that gets sent back to the front-end.
+         if (foundUser == null)
+         {
+            throw new Exception("User not found in DB");
+         }
+
+         return foundUser;
+      }
+      catch(Exception e)
+      {
+         throw new Exception (e.Message);
+      }
+   }
 }
