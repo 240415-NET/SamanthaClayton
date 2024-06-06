@@ -26,6 +26,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserService, UserService>(); // This adds our UserService that our UesrController then asks for
 builder.Services.AddScoped<IUserStorageEFRepo, UserStorageEFRepo>(); // This adds our UesrStorageEFRepo (data access layer) that our User Service asks for
 
+// Doing it now for items
+builder.Services.AddScoped<IItemService, ItemService>(); // This adds our UserService that our UesrController then asks for
+builder.Services.AddScoped<IItemStorageEFRepo, ItemStorageEFRepo>(); // This adds our UesrStorageEFRepo (data access layer) that our User Service asks for
+
 // Here we are going to add our TrackMyStuff Context class (that inherits
 // from EF Core's DbContext) to the builder.
 string connectionString = File.ReadAllText(@"C:\Users\u41046\Revature Engineer Bootcamp\TrackMyStuffConnectionStringEFCore.txt");
