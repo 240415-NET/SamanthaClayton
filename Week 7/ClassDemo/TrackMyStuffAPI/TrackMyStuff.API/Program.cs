@@ -48,6 +48,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// Editing our apps CORS settings to allow us to use DELETE and other
+// destructive HTTP metohds
+app.UseCors(policy => policy.AllowAnyMethod());
+// marcus did allowanyorigin.allowanyheader.allowanymethod in his own project
+
 app.UseAuthorization();
 
 app.MapControllers();

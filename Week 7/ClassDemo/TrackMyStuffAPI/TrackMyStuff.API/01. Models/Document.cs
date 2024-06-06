@@ -5,6 +5,9 @@ public class Document : Item //Document inherits from our Item class
     public string documentType {get; set;}
     public DateTime expirationDate {get; set;}
 
+    //Add a no-argument constructor for EF model creation during DB operatoins
+    public Document(){}
+
     // Took out Guid userId from the Document() args
     // Took out userId from the base() args
     public Document(string category, double originalCost, 

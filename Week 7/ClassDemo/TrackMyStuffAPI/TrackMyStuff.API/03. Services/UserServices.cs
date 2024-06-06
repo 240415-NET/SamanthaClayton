@@ -1,5 +1,6 @@
 using TrackMyStuff.API.Models;
 using TrackMyStuff.API.Data;
+using Azure.Identity;
 
 namespace TrackMyStuff.API.Services;
 
@@ -40,7 +41,7 @@ public class UserService : IUserService
 
         // Checking is a user already exists via the username and the UserExists()
         // method.
-        if(UserExists(newUserSentFromController.userName) == true)
+        if(await UserExistsAsync(newUserSentFromController.userName) == true)
         {
             // If this returns a true and we enter this code block,
             // we will manually throw an exception.
@@ -70,10 +71,12 @@ public class UserService : IUserService
 
 // Method to check if a user exists. During early development, we will
 // return a false everytime.  Later on, we can flesh this out more.
-   public bool UserExists(string UserName)
+   public async Task<bool> UserExistsAsync(string userNameToFindFromController)
    {
-    return false;
+         return await _userStorage.DoesThisUserExistInDBAsync(userNameToFindFromController);
+         
    }
+
 
 // 'Task' says when we're done, you can expect the User.
 //  We don't know how long it'll take.
@@ -120,4 +123,39 @@ public class UserService : IUserService
          throw new Exception (e.Message);
       }
    }
+
+public async Task<string> DeleteUserByUserNameAsync(string userNameToDeleteFromController)
+{
+   // Let's leverage UserExistsAsync.
+   // If the user exists we delete it
+
+
+   try
+   {
+      if (await UserExistsAsync(userNameToDeleteFromController) == true)
+      {
+         await _userStorage.DeleteUserFromDBAsync(userNameToDeleteFromController);
+         //don't need await before because this DeleteUserFromDBAsync returns void
+      }
+      // If not, we throw an exception to enter the controller's catch block
+      else
+      {
+         throw new Exception("User does not exist & cannot be deleted");
+      }
+      return userNameToDeleteFromController;
+   }
+   catch (Exception e)
+   {
+      throw new Exception(e.Message);
+   }
+}
+
+// Method in our Service Layer called by our controller to updat
+// a user's username.  It will call the data access layer for a method to do
+
+public async Task<string> UpdateUserNameAsync(UserNameUpdateDTO userNamesToSwapFromController)
+{
+   return await _userStorage.UpdateUserInDBAsync(userNamesToSwapFromController);
+}
+
 }

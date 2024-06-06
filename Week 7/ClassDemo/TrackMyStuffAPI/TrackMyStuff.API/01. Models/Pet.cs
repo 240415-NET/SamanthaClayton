@@ -9,7 +9,9 @@ public class Pet : Item //Pet inherits from our Item class as well
     public int? age {get; set;}
 
     // Constructors
-    public Pet() : base() { }
+    public Pet() {}
+    // public Pet() : base() { } is the same
+    
 
 
     // An example of calling the base class constructor (ALL POSSIBLE ARGUMENTS in this case)
@@ -18,6 +20,8 @@ public class Pet : Item //Pet inherits from our Item class as well
     public Pet(string category, double originalCost, 
         DateTime purchaseDate, string description, string _name, string _species, int _age) : 
         base(category, originalCost,purchaseDate, description)
+        // In our Pet constructor, because there are things in the parent class Item, we call the base constructor and we pass those things at the same time
+
     {
         name = _name;
         species = _species;

@@ -60,10 +60,17 @@ public class TrackMyStuffContext : DbContext // DbContext comes in as part of Mi
         modelBuilder.Entity<User>()
             .ToTable("Users");
         
-       /* modelBuilder.Entity<User>()
+       /* modelBuilder.Entity<User>() -- he doesn't want to do anything with fluent API
             .HasMany(e => e.items)
             .WithOne(e => e.userId
-*/
+        */
+
+        // In this line, we tell our SQL database to become case sensitive.
+        // MS SQL Server is case insensitive for strings by default.
+        // By including this in our OnModelCreating override, we have EF
+        // toggle this setting so that our strings in our DB obey case
+        // sensitivity.
+        modelBuilder.UseCollation("SQL_Latin1_General_CP1_CS_AS");
     }
 
 }
