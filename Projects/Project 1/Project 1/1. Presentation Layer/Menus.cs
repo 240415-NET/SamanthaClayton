@@ -6,6 +6,8 @@ namespace Project1.PresentationLayer;
 
 public class Menus
 {
+
+    // The StartMenu() method gives the user the option to create a new profile, log into an existing profile, or exit the app.
     public static void StartMenu()
     {
         bool validUserInput;
@@ -58,6 +60,8 @@ public class Menus
         } while (!validUserInput);
     }
 
+
+    // Once a user has created a profile or has logged into an existing profile, they enter the InAppMainMenu.
     public static void InAppMainMenu(Guid userId)
     {
         bool validUserInput;

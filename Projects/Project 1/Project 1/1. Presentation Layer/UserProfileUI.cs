@@ -9,9 +9,10 @@ public class UserProfileUI
     {
         bool validUserInput;
         string userInput;
-        Guid userId = Guid.NewGuid(); //come back later to get help with this
+        Guid userId = Guid.NewGuid();
         Users newUser;
 
+        // Have the new user provide a username.  If the username is blank or already exists, alert the user and have them try again.
         do
         {
             Console.Write("Please provide a username: ");
@@ -28,7 +29,7 @@ public class UserProfileUI
             }
             else
             {
-                newUser = UsersLogic.CreateNewUser(userInput);
+                newUser = UsersLogic.CreateNewUser(userInput);  // This kicks off the process of storing the new user
                 Console.WriteLine("Profile created!");
                 Console.WriteLine($"Username: {newUser.userName}");
                 Console.WriteLine($"UserId: {newUser.userId}");
