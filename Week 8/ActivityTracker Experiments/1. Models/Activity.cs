@@ -1,9 +1,5 @@
 
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace ActivityTracker.Models;
 public class Activity
@@ -15,7 +11,7 @@ public class Activity
     public DateOnly Date_OfActivity {get;set;}
     public TimeOnly Time_OfActivity {get;set;}
     public User user {get; set;} = new();
-
+ 
     public Activity(){}
 
     public Activity (string _activity_Description, string _nameOfPerson,
@@ -27,5 +23,28 @@ public class Activity
         Date_OfActivity = _Date_OfActivity;
         Time_OfActivity = _Time_OfActivity;
     }
+    
+    public Activity (string _activity_Description, string _nameOfPerson,
+                DateOnly _Date_OfActivity, TimeOnly _Time_OfActivity, Guid _userId)
+        {
+        activityID = Guid.NewGuid();
+        activity_Description = _activity_Description;
+        nameOfPerson = _nameOfPerson;
+        Date_OfActivity = _Date_OfActivity;
+        Time_OfActivity = _Time_OfActivity;
+        user.userId = _userId;
+    }
+
+    public Activity (string _activity_Description, string _nameOfPerson,
+                DateOnly _Date_OfActivity, TimeOnly _Time_OfActivity, User _user)
+        {
+        activityID = Guid.NewGuid();
+        activity_Description = _activity_Description;
+        nameOfPerson = _nameOfPerson;
+        Date_OfActivity = _Date_OfActivity;
+        Time_OfActivity = _Time_OfActivity;
+        user = _user;
+    }
+
 
 }

@@ -57,5 +57,19 @@ public class ActivityController : ControllerBase
         }
     }
 
+    [HttpGet("/GetByUserId")]
+    public async Task<ActionResult<List<Activity>>> GetAllActivitiesByUserId(Guid Id)
+    {
+        try
+        {
+            List<Activity> userActivitiesList = await _activityService.GetAllActivitiesByUserIdAsync(Id);
+            return Ok(userActivitiesList);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
 
 }

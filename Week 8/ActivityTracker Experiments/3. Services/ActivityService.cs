@@ -23,9 +23,14 @@ public class ActivityService : IActivityService
 
     public async Task<List<Activity>> GetAllActivitiesByUserNameAsync(string username)
     {
-        List<Activity> userActivitiesList = await activityStorageEFRepo.GetAllActivitiesbyUserNameFromDBAsync(username);
-        return userActivitiesList;
+        return await activityStorageEFRepo.GetAllActivitiesbyUserNameFromDBAsync(username);
     }
+
+    public async Task<List<Activity>> GetAllActivitiesByUserIdAsync(Guid userId)
+    {
+        return await activityStorageEFRepo.GetAllActivitiesbyUserIdFromDBAsync(userId);
+    }
+
 
 }
 

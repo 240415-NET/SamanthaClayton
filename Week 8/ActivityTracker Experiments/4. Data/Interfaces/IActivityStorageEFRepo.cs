@@ -6,5 +6,7 @@ public interface IActivityStorageEFRepo
 {
     public Task<Activity> CreateNewActivityInDBAsync (Activity newActivityToAddFromActivityService);
     public Task<List<Activity>> GetAllActivitiesbyUserNameFromDBAsync(string username);
+    public Task<List<Activity>> GetAllActivitiesbyUserIdFromDBAsync(Guid userId);
+
 
 }

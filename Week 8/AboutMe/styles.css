@@ -1,0 +1,34 @@
+    
+    /*This is an example of a CSS comment. You notice that because
+    im inside the style tag, and in here we write CSS, the comment syntax is different.
+    Here im going to use an id selector to recolor my first h1 tag */
+    body, p {
+        background-color: #efefef;
+        font-family: Verdana, Geneva, Tahoma, sans-serif
+
+    }
+
+    h1, #my-first-h1 { /*To select an ID, we use a hash infront of the name */
+        color: #000000;
+        font-family: Verdana, Geneva, Tahoma, sans-serif
+    }
+
+    .my-lists{ /* To select a class we use a . infront of the name*/
+        background-color: #9999FF;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    #first-ol{
+        background-color: #99CCFF;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    #first-ul{
+        background-color: #cc77ff
+    }
+
+    div p { /*We can chain tag selectors together, so in this case we are selecting
+        every p tag that is inside of a div tag */
+        background-color: darkgray;
+        font-family: Verdana, Geneva, Tahoma, sans-serif
+    }

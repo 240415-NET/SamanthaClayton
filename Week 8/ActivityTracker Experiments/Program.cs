@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ActivityTracker.Data;
 using ActivityTracker.Services;
-using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,11 +21,11 @@ builder.Services.AddScoped<IUserStorageEFRepo, UserStorageEFRepo>();// This adds
 builder.Services.AddScoped<IActivityService, ActivityService>(); 
 builder.Services.AddScoped<IActivityStorageEFRepo, ActivityStorageEFRepo>();
 
-builder.Services.AddControllers().AddNewtonsoftJson(options =>
+/*builder.Services.AddControllers().AddNewtonsoftJson(options =>
       options.SerializerSettings.ReferenceLoopHandling = 
         Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
-string connectionString = File.ReadAllText(@"../../ConnectionString.txt");
+*/
+string connectionString = File.ReadAllText(@"../../../ConnectionString - Copy.txt");
 
 builder.Services.AddDbContext<DataContext>(options => 
     options.UseSqlServer(connectionString));

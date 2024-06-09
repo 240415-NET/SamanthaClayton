@@ -36,7 +36,7 @@ public class UserStorageEFRepo : IUserStorageEFRepo
     {
         User? userToUpdate = await GetUserByUserNameFromDBAsync(oldUserName);
         userToUpdate.userName = newUserName;
-        dataContext.SaveChangesAsync();
+        await dataContext.SaveChangesAsync();
         return newUserName;
     }
 
