@@ -10,6 +10,22 @@ using Microsoft.EntityFrameworkCore;
 // All of this is done, when we dotnet run our webapi
 var builder = WebApplication.CreateBuilder(args);
 
+// The reason we're okay with having CORS wide open for project 2 is because 
+// we'll be running it on a different port (on our local?) so it's find having
+// the origin be open.
+
+// First, I'm going to use var to create an object to store the CORS policy
+var myBadCORSPolicy = "_badCorsPolicy";
+builder.Services.AddCors(options => {
+    options.AddPolicy(name: myBadCORSPolicy,
+                        policy =>
+                        {
+                            policy.AllowAnyOrigin(); // this allows incoming requests from anywhere
+                            policy.AllowAnyMethod(); // this allows any methods to be used
+                            policy.AllowAnyHeader(); // this allows any headers
+                        });
+});
+
 // Add services to the container - these below came in from the template.
 // By default, you will have AddControllers(), AddEndPointsApiExplorer(), &
 // AddSwaggerGen() in your Program.cs included.  We are going to move
@@ -43,6 +59,7 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -54,9 +71,11 @@ app.UseHttpsRedirection();
 
 // Editing our apps CORS settings to allow us to use DELETE and other
 // destructive HTTP metohds
-app.UseCors(policy => policy.AllowAnyMethod());
+//app.UseCors(policy => policy.AllowAnyMethod());
 // marcus did allowanyorigin.allowanyheader.allowanymethod in his own project
 
+// Here we will actually tell our app to use the CORS policy that we created above
+app.UseCors(myBadCORSPolicy);
 app.UseAuthorization();
 
 app.MapControllers();

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackMyStuff Front End</title>
+</head>
+<body>
+   
+   <!-- We want this to hold all of the elements that deal with 
+    logging in.  The div element will act as a container for all of my 
+    HTML related to user log in stuff.  Things like an input tag to take
+    in a username to find and a button to send off the login request-->
+    <div id = "login-container">
+        <h2>Login</h2>
+        <!-- This input tag of type text will take our user inputted username
+         Note: Inputs are self closing.
+         Placeholder is optional and it's the gray text that's there
+         before you as a user type something in -->
+        <input type="text" id="username" placeholder="username"> <!--inputs are self-closing-->
+        <br> <!-- Added a break tag -->
+        <button id="login-button">Login</button>
+    </div>
+
+            
+        <!-- This div will be used to display user information that we 
+            eventually get back from our ASP.NET backend API for TrackMyStuff-->
+        <div id="user-container" style="display:none;">
+            <!-- This will greet the user once logged in-->
+            <h2 id = "welcome-message"></h2>
+
+            <!-- Eventually I will add a list of items belonging to the user
+            down below -->
+            <h4>Your items:</h4>
+            <br>
+            <ol id = "items-list"></ol>
+            <br>
+
+            <button id = "logout-button">Logout</button>
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <!-- Adding my script tag to the bottom of the body -->
+    <script src="script.js"></script>
+</body>
+</html>
