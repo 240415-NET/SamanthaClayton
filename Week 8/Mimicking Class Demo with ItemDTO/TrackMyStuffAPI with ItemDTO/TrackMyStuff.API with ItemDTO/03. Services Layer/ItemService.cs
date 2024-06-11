@@ -24,4 +24,10 @@ public class ItemService : IItemService
         return foundItems;
     }
 
+        public async Task<List<Item>> GetAllItemsForUserAsyncNoDTO(Guid userIdFromController)
+    {
+        List<Item> foundItems = await itemStorage.GetAllItemsForUserFromDBAsyncNoDTO(userIdFromController);
+        return foundItems;
+    }
+
 }

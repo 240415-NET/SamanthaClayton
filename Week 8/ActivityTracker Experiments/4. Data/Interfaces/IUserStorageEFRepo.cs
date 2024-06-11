@@ -5,6 +5,7 @@ namespace ActivityTracker.Data;
 public interface IUserStorageEFRepo
 {
     public Task<User> CreateNewUserInDBAsync(User newUserSentFromUserService);
+
     public Task<User> GetUserByUserNameFromDBAsync(string userNameToFindFromUserService);
     public Task<string> DeleteUserByUserNameFromDBAsync (string userNameToDeleteFromUserService);
     public  Task<string> UpdateUserInDBAsync(string oldUserName, string newUserName);

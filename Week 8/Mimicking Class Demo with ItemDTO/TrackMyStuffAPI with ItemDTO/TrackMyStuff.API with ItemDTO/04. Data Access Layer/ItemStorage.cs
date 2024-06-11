@@ -1,6 +1,4 @@
-using System.Net.Mime;
-using System.Runtime.ExceptionServices;
-using Microsoft.AspNetCore.Http.Features;
+
 using Microsoft.EntityFrameworkCore;
 using TrackMyStuff.API.Models;
 
@@ -22,6 +20,32 @@ public class ItemStorage : IItemStorage
         await context.SaveChangesAsync();
         return newItemFromService;
     }
+
+
+        /*public async Task<List<Item>> GetAllItemsForUserFromDBAsyncNoDTO(Guid userIdFromService)
+    {
+
+        // Creating a new list and creating new itmes each time changes nohing
+
+       // List<Item> newItemList = new List<Item>();
+        //Item itemToAddToList = new Item();
+        List<Item> returnedListFromDB = await context.Items
+                                    //.Include(item => item.user)
+                                    .Where(item =>item.user.userId == userIdFromService)
+                                    .ToListAsync();
+                                    */
+
+        /*for (int i = 0; i < returnedListFromDB.Count; i++)
+        {
+            itemToAddToList = returnedListFromDB[i];
+            newItemList.Add(itemToAddToList);
+        }*/
+        /*
+        return returnedListFromDB;
+
+    }
+*/
+
     public async Task<List<ItemUserIdDTO>> GetAllItemsForUserFromDBAsync(Guid userIdFromService)
     {
 
@@ -39,6 +63,17 @@ public class ItemStorage : IItemStorage
         return foundItems;
 
     }
+   public async Task<List<Item>> GetAllItemsForUserFromDBAsyncNoDTO(Guid userIdFromService)
+    {
 
+        List<Item> returnedListFromDB = await context.Items
+                                    .Include(item => item.user)
+                                    .Where(item =>item.user.userId == userIdFromService)
+                                    .ToListAsync();
+
+
+        return returnedListFromDB;
+
+    }
 
 }

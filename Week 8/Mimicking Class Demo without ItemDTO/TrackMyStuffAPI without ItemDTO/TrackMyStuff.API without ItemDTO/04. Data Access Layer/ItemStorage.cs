@@ -27,18 +27,18 @@ public class ItemStorage : IItemStorage
         public async Task<List<Item>> GetAllItemsForUserFromDBAsync(Guid userIdFromService)
     {
 
-        List<Item> foundItems = new List<Item>();
+       // List<Item> foundItems = new List<Item>();
         List<Item> returnedListFromDB = await context.Items
                                     //.Include(item => item.user)
                                     .Where(item =>item.userId == userIdFromService)
                                     .ToListAsync();
 
-        for (int i = 0; i < returnedListFromDB.Count; i++)
+       /* for (int i = 0; i < returnedListFromDB.Count; i++)
         {
             Item itemUserIdDTOToAdd = returnedListFromDB[i];
             foundItems.Add(itemUserIdDTOToAdd);
-        }
-        return foundItems;
+        }*/
+        return returnedListFromDB;
 
     }
 

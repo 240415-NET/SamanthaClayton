@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ActivityTracker.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateTables : Migration
+    public partial class CreateTablesAgainnnn : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "users",
+                name: "Users",
                 columns: table => new
                 {
                     userId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -23,34 +23,34 @@ namespace ActivityTracker.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_users", x => x.userId);
+                    table.PrimaryKey("PK_Users", x => x.userId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "activities",
+                name: "Activity",
                 columns: table => new
                 {
                     activityID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    userId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     activity_Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     nameOfPerson = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date_OfActivity = table.Column<DateOnly>(type: "date", nullable: false),
-                    Time_OfActivity = table.Column<TimeOnly>(type: "time", nullable: false),
-                    userId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Time_OfActivity = table.Column<TimeOnly>(type: "time", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_activities", x => x.activityID);
+                    table.PrimaryKey("PK_Activity", x => x.activityID);
                     table.ForeignKey(
-                        name: "FK_activities_users_userId",
+                        name: "FK_Activity_Users_userId",
                         column: x => x.userId,
-                        principalTable: "users",
+                        principalTable: "Users",
                         principalColumn: "userId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_activities_userId",
-                table: "activities",
+                name: "IX_Activity_userId",
+                table: "Activity",
                 column: "userId");
         }
 
@@ -58,10 +58,10 @@ namespace ActivityTracker.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "activities");
+                name: "Activity");
 
             migrationBuilder.DropTable(
-                name: "users");
+                name: "Users");
         }
     }
 }

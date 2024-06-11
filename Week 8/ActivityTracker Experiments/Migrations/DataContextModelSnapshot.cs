@@ -50,7 +50,9 @@ namespace ActivityTracker.Migrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("activities");
+                    b.ToTable("Activity", (string)null);
+
+                    b.UseTpcMappingStrategy();
                 });
 
             modelBuilder.Entity("ActivityTracker.Models.User", b =>
@@ -77,13 +79,13 @@ namespace ActivityTracker.Migrations
 
                     b.HasKey("userId");
 
-                    b.ToTable("users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("ActivityTracker.Models.Activity", b =>
                 {
                     b.HasOne("ActivityTracker.Models.User", "user")
-                        .WithMany("activityList")
+                        .WithMany("activitys")
                         .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -93,7 +95,7 @@ namespace ActivityTracker.Migrations
 
             modelBuilder.Entity("ActivityTracker.Models.User", b =>
                 {
-                    b.Navigation("activityList");
+                    b.Navigation("activitys");
                 });
 #pragma warning restore 612, 618
         }

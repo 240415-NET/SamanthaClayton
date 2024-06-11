@@ -25,7 +25,7 @@ builder.Services.AddScoped<IActivityStorageEFRepo, ActivityStorageEFRepo>();
       options.SerializerSettings.ReferenceLoopHandling = 
         Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 */
-string connectionString = File.ReadAllText(@"../../../ConnectionString - Copy.txt");
+string connectionString = File.ReadAllText(@"../../../ActivityTrackerNoDTOWithUserInItem.txt");
 
 builder.Services.AddDbContext<DataContext>(options => 
     options.UseSqlServer(connectionString));

@@ -26,7 +26,6 @@ public class Item
         /* We never want there to be an item without an associated
         user. Jonathan thinks if you take out the =new();, it would
         work just fine, but he prefers it there.*/
-    public User user {get;set;} = new();
 
     // 4. USE DATA ANNOTATON TO SET itemID AS PRIMARY KEY
     [Key]
@@ -35,14 +34,17 @@ public class Item
     public double originalCost  {get; set;}
     public DateTime purchaseDate {get; set;}
     public string description {get; set;}
+    public Guid userId {get; set;}
+    public User user {get;set;} = new();
+
     public Item (){}
 
     /*
     5. For our convenience (not for EF), we create this
         this mapping constructor. It allows us to create
         an item out of an ItemsDTO and a user object.
-   */
-    public Item(ItemUserIdDTO item, User owner)
+   
+   */public Item(ItemUserIdDTO item, User owner)
     {
         user = owner;
         itemId = Guid.NewGuid();
@@ -51,6 +53,7 @@ public class Item
         purchaseDate = item.purchaseDate;
         description = item.description;
     }
+
 
 
     public Item (string _category, double _originalCost, DateTime _purchaseDate, string _description)
@@ -62,6 +65,7 @@ public class Item
         description = _description;
     }
 
+/*
     public override string ToString()
     {
         return $"Category: {category}\nOriginal Cost: {originalCost}\nPurchase Date: {purchaseDate}\nDescription: {description}";
@@ -71,5 +75,5 @@ public class Item
         return String.Format("Description: {0,-25}   Purchase Date: {1,10:d}   Original Cost: {2,-12:C2}",description,purchaseDate,originalCost);
     }
 
-
+*/
 }

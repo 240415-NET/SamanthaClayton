@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ActivityTracker.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240608231524_MakeSQLCaseSensitive")]
-    partial class MakeSQLCaseSensitive
+    [Migration("20240610110526_CreateTablesAgainnnn")]
+    partial class CreateTablesAgainnnn
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,7 +53,9 @@ namespace ActivityTracker.Migrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("activities");
+                    b.ToTable("Activity", (string)null);
+
+                    b.UseTpcMappingStrategy();
                 });
 
             modelBuilder.Entity("ActivityTracker.Models.User", b =>
@@ -80,13 +82,13 @@ namespace ActivityTracker.Migrations
 
                     b.HasKey("userId");
 
-                    b.ToTable("users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("ActivityTracker.Models.Activity", b =>
                 {
                     b.HasOne("ActivityTracker.Models.User", "user")
-                        .WithMany("activityList")
+                        .WithMany("activitys")
                         .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -96,7 +98,7 @@ namespace ActivityTracker.Migrations
 
             modelBuilder.Entity("ActivityTracker.Models.User", b =>
                 {
-                    b.Navigation("activityList");
+                    b.Navigation("activitys");
                 });
 #pragma warning restore 612, 618
         }

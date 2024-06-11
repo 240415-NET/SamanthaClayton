@@ -45,4 +45,18 @@ public class ItemController : ControllerBase
         }
     }
 
+    [HttpGet("/Activity without ADTO")]
+    public async Task<ActionResult<List<Item>>> GetAllItemsForUserByUserIdNoDTO (Guid userIdFromFrontEnd)
+    {
+        try
+        {
+            List<Item> itemsFound = await itemService.GetAllItemsForUserAsyncNoDTO(userIdFromFrontEnd);
+            return Ok(itemsFound);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
+
 }

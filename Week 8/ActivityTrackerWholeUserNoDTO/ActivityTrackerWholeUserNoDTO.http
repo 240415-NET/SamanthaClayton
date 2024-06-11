@@ -1,0 +1,6 @@
+@ActivityTrackerWholeUserNoDTO_HostAddress = http://localhost:5217
+
+GET {{ActivityTrackerWholeUserNoDTO_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

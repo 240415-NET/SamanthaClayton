@@ -11,7 +11,6 @@ the options are all done when we run the
 */
 
 using Microsoft.EntityFrameworkCore; // ALLOWS US TO ADD THE CONTEXT CLASS
-using Microsoft.EntityFrameworkCore.Update.Internal;
 using TrackMyStuff.API.Data;
 using TrackMyStuff.API.Services;
 

@@ -225,4 +225,114 @@ if(mySet){
 }
 
 // Functions in javascript 
+// Funcitons in javascript allow us to reuse code the same way as C#
+// objects that contain a function within them 
+// functions declared as part of an object are referred to as methods
+// there are a few different ways to create functions in JS
 
+// function declarations - using the keyword function
+function Greet(name)
+{
+    console.log(`Hello ${name}!`);
+}
+
+Greet("Pol");
+
+// Function expressions - defining a function as part of an expression
+// Looks similar to variable declaration
+
+const AddTwoNumbers = function(x,y)
+{
+    return x + y;
+}
+
+let sum = AddTwoNumbers(5, 12);
+console.log(sum);
+
+/*function AddMoreNumbers(x,y)
+{
+    return x+y;
+}
+let sum2 = AddMoreNumber(5, 2);
+console.log(sum2);*/
+
+
+// We can declare a function using arrow syntax
+// as shorthand.  This is really popular & you'll probably see it
+// in existing codebases.
+
+const NewGreet = (newName) => {
+    console.log(`Hello ${newName}!`);
+}
+NewGreet("John");
+
+// Classes in JS
+// we delvare our class with the class keyword
+// it serves as a template for object
+// same as c#
+
+//Constructor functions/methods
+//Create a vehicle lcass that is then called to create
+// a vehicle object in my person
+class Vehicle{
+    //Unlike C#, we set the properties of our class within the
+    //constructor itself.  We do not do things like 
+    //declaring properties to hold those values
+    // so no let make; let model;
+    // we just take them as arguments fo rour constructor
+    //method and then set them using this.PropertyName = argumentFromConstructor
+    constructor(make, model)
+    {
+        this.make = make;
+        this.model = model;
+    }
+}
+class DefaultPerson
+{
+//lets creat ea constructor method - Inn JS we only get one constructor
+// and if you don't create one, you get the deault no-argu constructor
+    constructor (personName, hobby, make, model){
+        this.personName = personName;
+        this.hobby = hobby;
+        this.Vehicle = new Vehicle(make, model);
+    }
+    AboutMe() // We can also store funcitons instide of classes, like in c#
+    //  A function that belongs to a class is referred to as a method
+    {
+        console.log(`My name is ${this.personName}, my vehicle is a ${this.Vehicle.make} ${this.Vehicle.model}`);
+    }
+};
+
+let josh = new DefaultPerson("Josh", "volleyball", "Ford", "1972 Pinto");
+console.log(josh);
+
+//Inheritance in JS - instead of the C# colon notatoin, we use the "extends" keyword
+
+class Employee extends DefaultPerson
+{
+    // When I create a constructor for Employee,
+    // I will call the parent class construcor
+    //using super()
+    constructor(personName, hobby, make,model, jobTitle)
+    {
+        //this is how we use super() to call the parent class contructor
+        super(personName, hobby, make, model);
+        // you must call the super() constructor before setting any new properties
+        // in the child with the normal this.property syntax
+        this.jobTitle = jobTitle;
+
+    }
+
+    // Let's say I want to override and provide a new implementation of AboutMe()
+    // in my employee class
+    AboutMe()
+    {
+        console.log(`My name is ${this.personName},
+            my job is ${this.jobTitle}`);
+    }
+
+}
+let marcus = new Employee("Marcus", "Sleeping", "Reliant", "Robin", "Engineer");
+console.log(marcus);
+josh.AboutMe(); // josh is a default person object
+marcus.AboutMe(); // marcus is an employee object

@@ -12,21 +12,26 @@ public class UserStorageEFRepo : IUserStorageEFRepo
     }
     public async Task<User> CreateNewUserInDBAsync(User newUserSentFromUserService)
     {
-        dataContext.users.Add(newUserSentFromUserService);
+        dataContext.Users.Add(newUserSentFromUserService);
         await dataContext.SaveChangesAsync();
         return newUserSentFromUserService;
     }
 
     public async Task<User> GetUserByUserNameFromDBAsync(string userNameToFindFromUserService)
     {
-        User foundUser = await dataContext.users.SingleOrDefaultAsync(user => user.userName == userNameToFindFromUserService);
+        User? foundUser = await dataContext.Users.SingleOrDefaultAsync(user => user.userName == userNameToFindFromUserService);
+        
+        if (foundUser == null)
+        {
+            throw new Exception ("User not found in database.");
+        }
         return foundUser;
     }
 
     public async Task<string> DeleteUserByUserNameFromDBAsync (string userNameToDeleteFromUserService)
     {
         User userToDelete = await GetUserByUserNameFromDBAsync(userNameToDeleteFromUserService);
-        dataContext.users.Remove(userToDelete);
+        dataContext.Users.Remove(userToDelete);
         await dataContext.SaveChangesAsync();
         return userNameToDeleteFromUserService;
 
