@@ -10,12 +10,29 @@ document.addEventListener("DOMContentLoaded", () =>
         // Select my div containers by their id
         const loginContainer = document.getElementById("login-container");
         const userContainer = document.getElementById("user-container");
+        const createUserContainer = document.getElementById("create-user-container");
 
         // Select my elements such as buttons and text to update
         const loginButton = document.getElementById("login-button");
         const logoutButton = document.getElementById("logout-button");
         const welcomeMessage = document.getElementById("welcome-message");
         const itemsList = document.getElementById("items-list");
+
+        // These items belong to my add new item form
+        const itemForm = document.getElementById("add-item-form");
+        const itemCategory = document.getElementById("new-item-category");
+        const itemCost = document.getElementById("new-item-cost");
+        const itemDate = document.getElementById("new-item-date");
+        const itemDescription = document.getElementById("new-item-description");
+        // We never ended up using this selector due to HTML form behavior
+        // Having the button as type submit was enough
+        //const submitItemFormButton = document.getElementById("submit-item-button");
+
+        // Here are my elements that are related to my create user functionality
+        const showCreateUserButton = document.getElementById("show-create-user-button");
+        const newUsernameInput = document.getElementById("new-username");
+        const createUserButton = document.getElementById("create-user-button");
+        const cancelCreateUserButton = document.getElementById("cancel-create-user-button");
 
         // Check if a uesr is already logged in
         // First, I'm going to create something to hold my logged in user if they exist
@@ -72,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () =>
         });// Closing the loginButton.addEventListener("clck") aka end of the loginButton event listener
    
         // This will fire off when a user is logged in and then choose to log out via our logout button
-        
+
         logoutButton.addEventListener("click", () => {
             // upon logout, get rid of the local storage item with the key user
             // the local storage item is the json object for a whole uesr
@@ -141,5 +158,109 @@ document.addEventListener("DOMContentLoaded", () =>
                 itemsList.appendChild(listItem);
             });
         }
+
+        // Adding a listener for the submission of my new item form
+        itemForm.addEventListener("submit", async (event) => {
+            
+            // This tells our page to ignore the default behavior of the form submission event
+            event.preventDefault()
+
+            // Bringing in the userId that is stored in our local storage if a user is logged in
+            const loggedInUserId = JSON.parse(localStorage.getItem("user")).userId;
+            if(loggedInUserId)
+                {
+                    // Here we will create the item object in our JS that will eventually be translated
+                    // to json and sent off to our backend API
+
+                    const newItem = 
+                    {
+                        userId: loggedInUserId,
+                        itemId: "00000000-0000-0000-0000-000000000000", // default empty itemId since we'll generate a new one in C# but this is a sign to have a DTO
+                        category: itemCategory.value,
+                        originalCost: parseFloat(itemCost.value), // if you don't do parseFloat, it'll give a string that's a numerical value.  Parsing this one into a number
+                        purchaseDate: itemDate.value,
+                        description: itemDescription.value
+                    };
+
+                    // Here we will use Fetch to send our POST request to our API.
+                    // Notice how there are some additional steps required vs. a GET request using fetch
+                    try
+                    {
+                        // Here we use fetch to request object and then send it off to our API as a POST
+                        const itemPostResponse = await fetch(`http://localhost:5192/Item`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type" : "application/json" // headers are metadata about our request. since we're using swagger, we haven't needed to worry about them.  To see them in swagger, it's after the -H in the Curl when you send a request
+                            },
+                            body: JSON.stringify(newItem)  //stringify = convert this into a json string representation of whatever we pass in
+                         });
+
+                         //Refreshing the item list
+                         fetchUserItems(loggedInUserId);
+
+                         // Resetting the fields in our add-item-form in our HTML
+                         itemForm.reset();
+
+                    } catch(error)
+                    {
+                        console.error("Error adding item: ", error)
+                    }
+                }
+
+        }); // End of the itemForm.addEventListener("submit")
+
+        // Down here re going to be my lsteners and/or functions for my
+        // create uesr feature.  This listener will take us from the login-
+        //container to the create-user-container
+        showCreateUserButton.addEventListener("click", () =>{
+            loginContainer.style.display="none";
+            createUserContainer.style.display = "block";
+        }); // End of showCreateUserButton.addeventListener("click")
+
+        // This listener will take us from the create-user-container back to the login container
+        cancelCreateUserButton.addEventListener("click", () =>{
+            loginContainer.style.display="block";
+            createUserContainer.style.display = "none";
+
+        }); // end cancelCreateUserButton.addeventListener
+
+
+        // This listener will use fetch to send a POST request to our API and create our user
+        createUserButton.addEventListener("click", () => {
+            // When they click the create user button,
+            // I will check that they entered something
+            // Taking whatever is in the new username input when the button is clicked
+            const newUsername = newUsernameInput.value;
+
+            // We check using JS "truthy/falsy" weirdness to make sure they entered something in the text input
+            if(newUsername)
+            {
+                // We send our fetch and under the hood, a promise created. 
+                // A promise's JS analog to a C# task
+                fetch(`http://localhost:5192/Users/${newUsername}`,
+                    {
+                        method: "POST"
+                    }) // Once the promise resolved, we call .then() to do something with its result
+                .then(responseFromNewUser => responseFromNewUser.json())
+                .then(newlyCreatedUser => { // We can keep chaining .then() as long as we need to continue doing more work on subsequent promises
+                    localStorage.setItem("user", JSON.stringify(newlyCreatedUser));
+                    updateUIForLoggedInUser(newlyCreatedUser);
+                    createUserContainer.style.display = "none";
+                    userContainer.style.display = "block";
+                })
+                .catch(error => 
+                    {
+                        console.error("Error creating user: ", error);
+                        alert(error);
+                    });
+
+            } else {
+                // If the username is blank, we forcibly alert the user with a popup telling them  what they did wrong
+                alert ("Username cannot be blank!)")
+
+            }
+
+        }); // end createUserButton.addEventListener("click")
+
 
     }); // End of document.addEventListener("DOMContentLoaded")
