@@ -129,9 +129,16 @@ interface Animal {
     species: String;
 }
 
+
+// Classes can have access modifiers
+// public - can be seen from anywhere in our code
+// private - can ONLY be seen from within the class the field is declared in (not its children)
+// protected - can be seen from the class it was declared in as well as its child classes
+// default in TypeScript is public if you don't set one
+
 class Bird implements Animal {
     species: string;
-    birdHeight: number; // have to give a default value or some way in a constructor for it to get a value
+    private birdHeight: number; // have to give a default value or some way in a constructor for it to get a value
     birdWeight: number;
     birdColor: string;
     
@@ -150,3 +157,95 @@ class Bird implements Animal {
 
 let yellowWarbler = new Bird("yellow warbler", 5, 0.36, "yellow");
 console.log(yellowWarbler.birdCall());
+
+class Dunlin extends Bird {
+
+    constructor(species: string, height: number, weight: number, color: string)
+    { super(species, height,weight, color); // Calling the constructor inherited from Bird
+
+    }
+    dunlinActivities() : string {
+        return `*Things that dunlins like to do!*`
+
+    
+    // because birdHeight is private can't do ${this.birdHeight} in the string above
+    //could do that if it's public or protected
+
+    }
+}
+
+// Now if we create a new Dunlin object, it has access to all of the methods
+// and fields from both bird and Dunlin, and it inherits the implementation
+// of the Animal interface implemented in Bird
+
+let myDunlin = new Dunlin("Dunlin", 7, 3, "gray");
+console.log(myDunlin.birdCall());
+console.log(myDunlin.dunlinActivities());
+
+// We made birdHeight private, so we can use the bird constructor
+// But we can't do 
+// console.log(myDunlin.birdheight);
+
+// Casting 
+let num : number = 12;
+console.log(num as unknown as string);
+
+type Admin = {
+    name: string,
+    adminDuties: string[]
+}
+
+type NormalEmployee = {
+    name: string,
+    startDate: Date;
+}
+
+type SuperEmployee = Admin & NormalEmployee; // This would be an example of
+// an intersection type that gets the properties of both of the types that
+// compose it. (Not something you see in C#).
+// In our SuperEmployee, the name fields collapse into a single field.
+
+let ross : SuperEmployee = {
+    name: "Ross",
+    adminDuties: [
+        "change diapers",
+        "drive to/from school",
+        "solve rubik's cubes",
+        "some more things to do",
+        "and another one"
+    ],
+    startDate: new Date()
+}
+
+console.log(ross);
+
+// Union Type
+type UnionDemo = string | number;
+let myUnion : UnionDemo = "any string";// or any number, can't give it a boolean or anything else
+
+type Employee = Admin | NormalEmployee;
+let unionRoss : Employee = ross; // can do this because ross is already an admin so it works
+
+type Comparable = string | number;
+
+//Type guard
+// A function that does stuff based on what input type it gets
+function comparableTypeGuard(arg: Comparable)
+{
+    if(typeof arg === "string")
+        {
+            return `stuff related to arg being a string`; 
+        }
+    if(typeof arg ==="number")
+        {
+            return arg * arg;
+        }
+}
+
+let myComparable : Comparable = 20;
+let myNewComparable  : Comparable = "thank goodness it's friday";
+
+console.log(comparableTypeGuard(myComparable));
+console.log(comparableTypeGuard(myNewComparable));
+
+

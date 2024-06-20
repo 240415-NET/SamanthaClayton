@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackMyStuff Front End</title>
+</head>
+<body>
+   
+   <!-- We want this to hold all of the elements that deal with 
+    logging in.  The div element will act as a container for all of my 
+    HTML related to user log in stuff.  Things like an input tag to take
+    in a username to find and a button to send off the login request-->
+    <div id = "login-container">
+        <h2>Login</h2>
+        <!-- This input tag of type text will take our user inputted username
+         Note: Inputs are self closing.
+         Placeholder is optional and it's the gray text that's there
+         before you as a user type something in -->
+        <input type="text" id="username" placeholder="username"> <!--inputs are self-closing-->
+        <br> <!-- Added a break tag -->
+        <button id="login-button">Login</button>
+        <button id="show-create-user-button">Create User</button>
+    </div>
+
+    <div id = "create-user-container" style="display:none;">
+        <h2>Create User</h2>
+        <input type = "text" id = "new-username" placeholder = "New Username">
+        <br>
+        <button id = "create-user-button">Create</button><br>
+        <button id = "cancel-create-user-button">Cancel</button>
+
+    </div>
+
+            
+        <!-- This div will be used to display user information that we 
+            eventually get back from our ASP.NET backend API for TrackMyStuff-->
+        <div id="user-container" style="display:none;">
+            <!-- This will greet the user once logged in-->
+            <h2 id = "welcome-message"></h2>
+            <!--Here we will use a form to hold user input for the item to be created-->
+            <h4>Add new item</h4>
+            <form id="add-item-form">
+                <input type = "text" id = "new-item-category" placeholder = "Category" required> <!-- can get away from checking in JS whether the form is null because of this required in the form, it checks it here-->
+                <input type = "number" id = "new-item-cost" placeholder = "Original Cost" required> 
+                <input type = "date" id = "new-item-date" required> <!-- don't need a placeholder here, it automatically will have mm/dd/yyyy and then a calendar view when they click into the box-->
+                <input type = "text" id = "new-item-description" placeholder = "Description" required>
+                <button type = "submit" id = "submit-item-button">Add Item</button>
+
+            </form>
+
+            <!-- Eventually I will add a list of items belonging to the user
+            down below -->
+            <h4>Your items:</h4>
+            <br>
+            <ol id = "items-list"></ol>
+            <br>
+
+            <button id = "logout-button">Logout</button>
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <!-- Adding my script tag to the bottom of the body -->
+    <script src="script.js"></script>
+</body>
+</html>
