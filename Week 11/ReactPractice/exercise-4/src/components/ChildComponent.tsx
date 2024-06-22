@@ -12,11 +12,8 @@ interface ChildComponentPropsFromParent {
 
 function ChildComponent({prop1FromParent} : ChildComponentPropsFromParent) {
 
-    const [valueToDisplay, setValueToDisplay] = useState<any>("");
-   // setValueToDisplay({prop1FromParent} + "look, the child modified it");
-
     return (
-    <div>Child component is now displaying it: {prop1FromParent}</div>
+    <div>Now we're in the ChildComponent & here is the string the ChildComponent was passed: {prop1FromParent}</div>
   )
 }
 
