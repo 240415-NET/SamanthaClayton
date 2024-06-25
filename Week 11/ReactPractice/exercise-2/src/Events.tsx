@@ -38,7 +38,10 @@ function Events() {
   // statement when a button is clicked.  When a user clicks, it
   // sets the value of "valueToDisplay" to be whatever it inside of the input box.
 
+  const click = (event: any) => {
+      setValueToDisplay(inputBoxValue);
 
+    }
 
 
   return (
